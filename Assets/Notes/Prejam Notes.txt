@@ -1,0 +1,75 @@
+**Main gameplay**
+- Two main characters who occupy a big sub robot
+  - Diver who pilots it - explores + hunts resources
+  - Mechanic who keeps the robot functional and can craft things from resources
+  - Metal gear-style radio conversations between the two
+
+
+- Movement
+  - Slow and difficult to move around this bigass robot
+  - Can move freely if you're not touching anything, but releasing inputs makes you sink
+
+- Harpoon gun
+  - Used for movement and combat
+  - Harpoon uses finite resource to reinforce survival horror theme
+  - Can risk damaging enemies with harpoon or use it to more safely escape threats - resource management
+  - Harpoon drags things towards you if your feet are planted
+  - Harpoon drags you towards it if your feet are not planted
+  - Can recover harpoons that get stuck in walls, but need to hold a button for a second to get it
+
+- Pile bunker
+  - Very strong point blank weapon
+  - Extremely risky to use, if you miss the piston takes time to recharge
+
+- Dash move 
+  - Long recharge time but lets you avoid danger once or twice
+
+- Crafting + resources
+  - A couple of key resources - keep it as simple as we can
+  - Go to menu and decide what you want to make
+    - Harpoons
+    - Some sort of 
+  - Break down moon rocks + other undersea things for metals from harpoons
+     - Occasionally throw in things that look like earth objects that server the same purpose (but don't be too obvious)
+     - Hard geometric shapes that people don't think much about, but later bring them back for the city
+
+- Levels
+  - Should funnel you downwards
+  - Wide open spaces that leave you vulnerable - no walls to grapple to, fish can come from anywhere
+  - Fish come at you fast as fuck 
+
+- Enemy ideas
+  - Leeches: Stick to robot and siphon health / resources, can shake them off by using a harpoon to pull yourself away quickly or by dodging
+  - 
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Setting + Story**
+- Rogue moon that entered the solar system
+- Implied that its origins are terrestrial, with the reveal of the city at the bottom of the depths
+- Essentially a chunk of the earth where weird shit happened
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Ideas**
+- Radar UI element: small screen size forces you to rely on radar at times
+- Pitch black areas eventually might help play off that
+
+- Towards the end, the back of the sub opens up without warning and the mechanics gets ejected out, drowns / gets depressurized
+- From this point on you can't craft shit + use the sub(?)
+
+- Robot/sub you find near the bottom of the sea that's barely functional
+- Guy inside that's all fucked up with tubes in him (optional: he's just Slick and it's our Grunge easter egg)
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Sprites + Canvas sizes**
+- 256x224 (SNES canvas size)
+- SNES Style sprites
+- UI will not be upscaled like it was in Grunge
+- **BE SURE TO KEEP CANVAS SIZES ON MULTIPLES OF 16**
+- Each tile should be 16x16
+- Main robot sprite w/ separated arms so we can rotate things freely
+- Dialog portraits are in metal slug / snes / retro anime style
