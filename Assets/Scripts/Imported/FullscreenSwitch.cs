@@ -29,5 +29,6 @@ public class FullscreenSwitch : MonoBehaviour
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
         else
             Screen.SetResolution((int)windowedX, (int)windowedY, false);
+        print("Pressed");
     }
 }

@@ -1,0 +1,45 @@
+{
+    "filename": "Dialog",
+    "conversations": [
+        {
+            "conversationId": "Test_Dialog",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Starting boot process.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Checking biometric inputs\\and joint integrity.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Hydraulic fluid is at capacity,\\reactor is in the green.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "MS Scrander, how's it looking\\on your end?",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "The mats printer is running\\fine, and I'm not seeing any\\errors in our sensor arrays.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Have Hynobius wiggle around\\some, though.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                }
+            ]
+        }
+    ]
+}
