@@ -2,7 +2,7 @@
     "filename": "Dialog",
     "conversations": [
         {
-            "conversationId": "Test_Dialog",
+            "conversationId": "tutorial_1",
             "initialPortraits": [0, 1],
             "dialog": [
                 {
@@ -35,6 +35,102 @@
                         },
                         {
                             "text": "Have Hynobius wiggle around\\some, though.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            "conversationId": "tutorial_2",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Seems that problem with the\\joint lockup won't be a pain in\\our cornholes today!",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "We're on record right now,\\Scrander.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Aye aye, Pilot Abner.\\This old man will be a\\consummate professional\\from here on out.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Anywho, we ought to be clear\\to proceed down the\\Gaap Entrance.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Roger.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "...",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Put your crash harness on,\\Bo.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "You're no fun.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            "conversationId": "tutorial_3",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "End of the road already?",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I'm planting my feet, Scrander.\\Brace.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Oh boy!",
                             "portraitIndex": 1
                         }
                     ],

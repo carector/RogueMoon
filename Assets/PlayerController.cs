@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     {
         public bool canMove = true;
         public bool isGrounded;
+        public bool isTouchingCeiling;
+        public float hoverTime = 4;
         public float acceleration = 5;
         public float groundSpeed = 5;
         public float airSpeed = 3;
@@ -31,11 +33,18 @@ public class PlayerController : MonoBehaviour
         public bool aiming;
         public float harpoonRange = 10;
         public bool firingHarpoon;
+        public bool attacking;
+        public int attackCharges = 2;
         public bool beingPulledTowardsHarpoon;
         public float impactDelayTime = 0.35f;
         public float jumpDelayTime = 0.25f;
+        public float attackDelayTime = 0.25f;
+        public float attackRecoveryTime = 3f;
+        public float swapToolDelayTime = 0.35f;
         public bool jumpDelayInProgress = false;
         public bool impactDelayInProgress = false;
+        public bool attackDelayInProgress = false;
+        public bool swapToolDelayInProgress = false;
     }
 
     public PlayerMovementSettings pMovement;
@@ -51,18 +60,23 @@ public class PlayerController : MonoBehaviour
     Animator bodyAnim;
     Animator armsAnim;
     Transform harpoonStartPoint;
+    Transform damageStartPoint;
     AudioSource harpoonLoopingAudio;
+    AudioSource attackLoopingAudio;
+    ParticleSystem[] steamParticles;
     Vector2 mouseWorldPos;
 
     public LineRenderer lineTEMP;
 
     float gravityScale;
     bool hasRetractedArm;
+    float storedHoverTime;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        storedHoverTime = pMovement.hoverTime;
         gravityScale = rb.gravityScale;
         bodySpr = transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
         bodyAnim = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
@@ -70,7 +84,12 @@ public class PlayerController : MonoBehaviour
         armsAnim = transform.GetChild(0).GetChild(1).GetComponent<Animator>();
         harpoonEndpoint = GameObject.Find("HarpoonEndpoint").GetComponent<SpriteRenderer>();
         harpoonStartPoint = armsSpr.transform.GetChild(0);
-        harpoonLoopingAudio= armsSpr.transform.GetChild(1).GetComponent<AudioSource>();
+        harpoonLoopingAudio = armsSpr.transform.GetChild(1).GetComponent<AudioSource>();
+        attackLoopingAudio = armsSpr.transform.GetChild(2).GetComponent<AudioSource>();
+        steamParticles = new ParticleSystem[2];
+        steamParticles[0] = armsSpr.transform.GetChild(3).GetComponent<ParticleSystem>();
+        steamParticles[1] = armsSpr.transform.GetChild(4).GetComponent<ParticleSystem>();
+        damageStartPoint = armsSpr.transform.GetChild(5).transform;
         harpoonChain = GameObject.Find("HarpoonChain").GetComponent<SpriteRenderer>();
         harpoonEndpoint.color = Color.clear;
         gm = FindObjectOfType<GameManager>();
@@ -81,6 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         bool lastGroundedState = pMovement.isGrounded;
         pMovement.isGrounded = CheckForGround();
+        pMovement.isTouchingCeiling = CheckForCeiling();
 
         // Play impact animation if we just hit the ground
         if (lastGroundedState != pMovement.isGrounded)
@@ -110,6 +130,9 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
+        if (gm.gamePaused || gm.menuOpen)
+            return;
+
         if (pAbilities.beingPulledTowardsHarpoon || !pMovement.canMove || pAbilities.impactDelayInProgress)
             return;
 
@@ -123,6 +146,8 @@ public class PlayerController : MonoBehaviour
         // Can move up and down only if not grounded
         if (pMovement.isGrounded)
         {
+            storedHoverTime = pMovement.hoverTime;
+
             if (horiz == 0)
                 vel = Vector2.zero;
             else
@@ -131,9 +156,24 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (vert > 0 && storedHoverTime > 0)
+            {
+                CheckAndPlayClip(bodyAnim, "Mech_Midair");
+                storedHoverTime -= Time.fixedDeltaTime;
+                if (storedHoverTime <= 0)
+                {
+                    gm.PlaySFX(gm.sfx.playerSounds[2]);
+                    CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
+                }                    
+            }
+            else if (storedHoverTime <= 0)
+                vert = 0;
+            else if(vert <= 0)
+                CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
+
             // Minor gravity + additional downwards force if we're airborne
             rb.gravityScale = 0.15f;
-            vel = new Vector2(horiz, vert) * pMovement.acceleration * rb.mass;
+            vel = new Vector2(horiz, vert*0.5f) * pMovement.acceleration * rb.mass;
             vel += vel = Vector2.down * pMovement.acceleration * rb.mass / 4;
         }
 
@@ -149,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
     void RotateArm()
     {
-        if (pAbilities.firingHarpoon)
+        if (pAbilities.firingHarpoon || pAbilities.attacking)
             return;
 
         bool lastAimState = pAbilities.aiming;
@@ -190,22 +230,45 @@ public class PlayerController : MonoBehaviour
 
     void CheckButtonInputs()
     {
-        // Fire harpoon
-        if (Input.GetMouseButtonDown(0) && !pAbilities.firingHarpoon && pAbilities.aiming)
+        if (gm.gamePaused || gm.menuOpen)
+            return;
+
+        if (pAbilities.aiming)
         {
-            pAbilities.firingHarpoon = true;
-            StartCoroutine(FireHarpoon());
+            // Fire harpoon
+            if (pAbilities.activeAbility == 0 && Input.GetMouseButtonDown(0) && !pAbilities.firingHarpoon)
+            {
+                pAbilities.firingHarpoon = true;
+                StartCoroutine(FireHarpoon());
+            }
+
+            // Attack
+            if (pAbilities.activeAbility == 1 && Input.GetMouseButtonDown(0) && !pAbilities.attacking && !pAbilities.attackDelayInProgress)
+            {
+                pAbilities.attacking = true;
+                StartCoroutine(Attack());
+            }
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        // Swap current tool
+        if (Input.GetKeyDown(KeyCode.F) && !pAbilities.firingHarpoon && !pAbilities.swapToolDelayInProgress && !pAbilities.attackDelayInProgress)
         {
+            gm.PlaySFX(gm.sfx.playerSounds[1]);
+
             pAbilities.activeAbility++;
             if (pAbilities.activeAbility > 1)
                 pAbilities.activeAbility = 0;
+
+            gm.SwitchActiveToolHUD();
+            StartCoroutine(SwitchToolDelayCoroutine());
         }
 
+        // Reload
+        if (pAbilities.activeAbility == 1 && Input.GetKeyDown(KeyCode.R) && !pAbilities.attacking && !pAbilities.attackDelayInProgress && pAbilities.attackCharges != 2)
+            StartCoroutine(RechargeAttack());
+
         // Jump
-        if (Input.GetKeyDown(KeyCode.W) && pMovement.isGrounded && !pAbilities.jumpDelayInProgress && !pAbilities.impactDelayInProgress)
+        if (!pMovement.isTouchingCeiling && !pAbilities.firingHarpoon && Input.GetKeyDown(KeyCode.W) && pMovement.isGrounded && !pAbilities.jumpDelayInProgress && !pAbilities.impactDelayInProgress)
         {
             StartCoroutine(JumpDelayCoroutine());
         }
@@ -235,12 +298,12 @@ public class PlayerController : MonoBehaviour
         Vector2 previousPointPos = harpoonStartPoint.position;
         while (pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, pos) > 1 && !pAbilities.beingPulledTowardsHarpoon)
         {
-            harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, pos, 0.5f);
+            harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, pos, 0.75f);
             harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
             harpoonChain.transform.position = (harpoonEndpoint.transform.position + harpoonStartPoint.position) / 2;
             harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
 
-            Collider2D[] cols = Physics2D.OverlapBoxAll(harpoonEndpoint.transform.position - harpoonEndpoint.transform.right*0.125f, new Vector2(0.5f, 0.25f), harpoonEndpoint.transform.eulerAngles.z);
+            Collider2D[] cols = Physics2D.OverlapBoxAll(harpoonEndpoint.transform.position - harpoonEndpoint.transform.right * 0.25f, new Vector2(1f, 0.25f), harpoonEndpoint.transform.eulerAngles.z);
             if (cols.Length > 0)
             {
                 foreach (Collider2D col in cols)
@@ -251,14 +314,12 @@ public class PlayerController : MonoBehaviour
                         pAbilities.beingPulledTowardsHarpoon = true;
                         break;
                     }
-                    else if(col.tag.Equals("Harpoonable"))
+                    else if (col.tag.Equals("Harpoonable"))
                     {
                         gm.PlaySFX(gm.sfx.playerSounds[0]);
                         hitObject = col.transform;
                         harpoonEndpoint.transform.parent = col.transform;
                         hitRb = hitObject.GetComponent<Rigidbody2D>();
-                        hitRb.velocity = (harpoonEndpoint.transform.position - hitObject.transform.position).normalized * 15;
-                        hitRb.angularVelocity = Vector2.Angle(harpoonEndpoint.transform.position, hitObject.position);
                         break;
                     }
                 }
@@ -268,7 +329,7 @@ public class PlayerController : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
-
+        harpoonLoopingAudio.loop = true;
         if (hitGroundPoint != Vector3.zero)
         {
             harpoonLoopingAudio.Play();
@@ -277,6 +338,7 @@ public class PlayerController : MonoBehaviour
                 float timePassed = 0;
                 while (timePassed < 1.75f && Vector2.Distance(transform.position, hitGroundPoint) > 3 && !pMovement.isGrounded)
                 {
+                    harpoonLoopingAudio.pitch = 1.25f - (Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f));
                     harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
                     harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
                     harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
@@ -289,8 +351,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if(hitObject != null)
+        else if (hitObject != null && pMovement.isGrounded)
         {
+            bodyAnim.SetFloat("WalkSpeed", 0);
+            armsAnim.SetFloat("WalkSpeed", 0);
             harpoonLoopingAudio.Play();
             pMovement.canMove = false;
             rb.velocity = new Vector2(0, -2);
@@ -299,24 +363,25 @@ public class PlayerController : MonoBehaviour
             float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
             while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3 && pMovement.isGrounded)
             {
+                harpoonLoopingAudio.pitch = 1.25f - (Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f));
                 harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
                 harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
                 harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
 
-                hitRb.transform.rotation = Quaternion.Lerp(hitRb.transform.rotation, Quaternion.Euler(0, 0, angleBetweenHarpoon), 0.25f);
+                //hitRb.transform.rotation = Quaternion.Lerp(hitRb.transform.rotation, Quaternion.Euler(0, 0, angleBetweenHarpoon), 0.25f);
 
-                if (hitRb.velocity.magnitude < pMovement.pulledSpeed/2)
-                    hitRb.AddForce((transform.position - hitObject.position) * hitRb.mass * pMovement.pulledSpeed/5);
+                if (hitRb.velocity.magnitude < pMovement.pulledSpeed)
+                    hitRb.AddForce((transform.position - hitObject.position) * hitRb.mass * pMovement.pulledSpeed / 6);
 
                 timePassed += Time.fixedDeltaTime;
 
                 yield return new WaitForFixedUpdate();
             }
             pMovement.canMove = true;
-            harpoonEndpoint.transform.parent = null;
         }
 
-        harpoonLoopingAudio.Stop();
+        harpoonEndpoint.transform.parent = null;
+        harpoonLoopingAudio.loop = false;
         harpoonEndpoint.color = Color.clear;
         harpoonEndpoint.transform.position = transform.position;
         harpoonChain.size = new Vector2(0, 0.375f);
@@ -328,11 +393,30 @@ public class PlayerController : MonoBehaviour
     {
         bool grounded = false;
         int mask = ~(1 << 8);
-        //Debug.DrawRay(transform.position + Vector3.down * 2, Vector2.down*0.25f, Color.red, Time.fixedDeltaTime);
-        if (Physics2D.Raycast(transform.position + Vector3.down * 2, Vector2.down, 0.35f, mask))
+        Debug.DrawRay(transform.position + Vector3.down * 2, Vector2.down*0.25f, Color.red, Time.fixedDeltaTime);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.down * 2, Vector2.down, 0.35f, mask);
+        if (hit.transform != null && hit.transform.tag == "Ground")
             grounded = true;
 
         return grounded;
+    }
+
+    bool CheckForCeiling()
+    {
+        bool ceilinged = false;
+        int mask = ~(1 << 8);
+        Debug.DrawRay(transform.position + Vector3.up, Vector2.up * 0.25f, Color.red, Time.fixedDeltaTime);
+        Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position + Vector3.up * 1f, new Vector2(0.75f, 0.5f), 0, mask);
+        foreach (Collider2D col in cols)
+        {
+            if (col.transform != null && col.transform.tag == "Ground")
+            {
+                ceilinged = true;
+                break;
+            }
+        }
+
+        return ceilinged;
     }
 
     IEnumerator ImpactDelayCoroutine()
@@ -344,6 +428,41 @@ public class PlayerController : MonoBehaviour
         pAbilities.impactDelayInProgress = false;
     }
 
+    IEnumerator Attack()
+    {
+        pAbilities.attackCharges--;
+        CheckAndPlayClip(armsAnim, "Arm_Attack");
+
+        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2, 0.5f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
+        foreach(Collider2D c in cols)
+        {
+            if(c.tag == "Breakable")
+            {
+                c.SendMessage("BreakApart");
+            }
+        }
+
+        yield return new WaitForSeconds(pAbilities.attackDelayTime);
+        pAbilities.attacking = false;
+        if (pAbilities.attackCharges == 0)
+            StartCoroutine(RechargeAttack());
+    }
+
+    IEnumerator RechargeAttack()
+    {
+        pAbilities.attackDelayInProgress = true;
+        attackLoopingAudio.Play();
+        steamParticles[0].Play();
+        steamParticles[1].Play();
+        yield return new WaitForSeconds(pAbilities.attackRecoveryTime - (pAbilities.attackRecoveryTime * 0.5f * pAbilities.attackCharges));
+        gm.PlaySFX(gm.sfx.playerSounds[0]);
+        attackLoopingAudio.Stop();
+        steamParticles[0].Stop();
+        steamParticles[1].Stop();
+        pAbilities.attackCharges = 2;
+        pAbilities.attackDelayInProgress = false;
+    }
+
     IEnumerator JumpDelayCoroutine()
     {
         pAbilities.jumpDelayInProgress = true;
@@ -351,6 +470,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 4.5f);
         yield return new WaitForSeconds(pAbilities.jumpDelayTime);
         pAbilities.jumpDelayInProgress = false;
+    }
+
+    IEnumerator SwitchToolDelayCoroutine()
+    {
+        pAbilities.swapToolDelayInProgress = true;
+        yield return new WaitForSeconds(pAbilities.swapToolDelayTime);
+        pAbilities.swapToolDelayInProgress = false;
     }
 
     void AddWaterResistanceForce()
@@ -391,6 +517,6 @@ public class PlayerController : MonoBehaviour
     public void CheckAndPlayClip(Animator anim, string clipName)
     {
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName(clipName))
-            anim.Play(clipName);
+            anim.Play(clipName, 0, 0);
     }
 }

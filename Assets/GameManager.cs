@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI dialogText;
     Image leftPortrait;
     Image rightPortrait;
+    Image toolbarFill;
 
     PlayerController ply;
 
@@ -106,9 +107,10 @@ public class GameManager : MonoBehaviour
         dialogAudio = transform.GetChild(4).GetComponent<AudioSource>();
 
         Transform toolbar = GameObject.Find("ToolBar").transform;
-        numberIconTens = toolbar.GetChild(0).GetComponent<Image>();
-        numberIconOnes = toolbar.GetChild(1).GetComponent<Image>();
-        currentToolIcon = toolbar.GetChild(2).GetComponent<Image>();
+        toolbarFill = toolbar.GetChild(0).GetComponent<Image>();
+        numberIconTens = toolbar.GetChild(1).GetComponent<Image>();
+        numberIconOnes = toolbar.GetChild(2).GetComponent<Image>();
+        currentToolIcon = toolbar.GetChild(3).GetComponent<Image>();
         textboxHolder = GameObject.Find("TextboxHolder").GetComponent<RectTransform>();
         dialogText = textboxHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         leftPortrait = textboxHolder.GetChild(1).GetComponent<Image>();
@@ -132,11 +134,11 @@ public class GameManager : MonoBehaviour
         // TEMP TEMP TEMP
         if (Input.GetKeyDown(KeyCode.Alpha1) && !interactions.isPrintingDialog)
         {
-            StartCoroutine(DisplayDialog(interactions.JSONSource, "Test_Dialog"));
+            StartCoroutine(DisplayDialog(interactions.JSONSource, "tutorial_1"));
         }
 
         // Open mech menu
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             menuOpen = !menuOpen;
             if (menuOpen)
@@ -152,7 +154,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Open pause menu
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             gamePaused = !gamePaused;
             if (gamePaused)
@@ -162,26 +164,86 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        UpdateAttackBar();
+    }
+
     void UpdateHUD()
     {
         // Update healthbar
         healthbarFill.rectTransform.sizeDelta = new Vector2(5 * ply.pResources.health, 6);
         healthbarFill.rectTransform.anchoredPosition = new Vector2(3 + 2.5f * ply.pResources.health, 0);
 
-        // Update active tool
-        if(ply.pAbilities.activeAbility == 0)
-        {
-            UpdateHarpoonNumber();
-        }
+        UpdateHarpoonNumber();
+    }
 
+    public void UpdateAttackBar()
+    {
+        if (ply.pAbilities.activeAbility == 1)
+        {
+            toolbarFill.color = Color.white;
+            Vector2 fillPos = Vector2.zero;
+            Vector2 fillSize = Vector2.zero;
+
+            // 14 units between edges
+            if (!ply.pAbilities.attackDelayInProgress)
+            {
+                switch (ply.pAbilities.attackCharges)
+                {
+                    case 2:
+                        fillPos = new Vector2(-31, -8);
+                        fillSize = new Vector2(0, 16);
+                        break;
+                    case 1:
+                        fillPos = new Vector2(-23.5f, -8);
+                        fillSize = new Vector2(15, 16);
+                        break;
+                    case 0:
+                        fillPos = new Vector2(-16f, -8);
+                        fillSize = new Vector2(30, 16);
+                        break;
+                }
+            }
+            else
+            {
+                float rate = Time.fixedDeltaTime * 16;
+
+                // Lerp towards left to recharge
+                fillPos = toolbarFill.rectTransform.anchoredPosition + Vector2.left * rate;
+                fillSize = toolbarFill.rectTransform.sizeDelta + Vector2.left * rate * 2;
+            }
+
+            toolbarFill.rectTransform.anchoredPosition = Vector2.Lerp(toolbarFill.rectTransform.anchoredPosition, fillPos, 0.5f);
+            toolbarFill.rectTransform.sizeDelta = Vector2.Lerp(toolbarFill.rectTransform.sizeDelta, fillSize, 0.5f);
+
+        }
+        else
+            toolbarFill.color = Color.clear;
+    }
+
+    public void SwitchActiveToolHUD()
+    {
+        if (ply.pAbilities.activeAbility == 0)
+            currentToolIcon.sprite = interactions.numbers[10];
+        else
+            currentToolIcon.sprite = interactions.numbers[11];
     }
 
     public void UpdateHarpoonNumber()
     {
-        int ones = ply.pResources.harpoons % 10;
-        int tens = ply.pResources.harpoons / 10;
-        numberIconOnes.sprite = interactions.numbers[ones];
-        numberIconTens.sprite = interactions.numbers[tens];
+        if (ply.pAbilities.activeAbility == 0)
+        {
+            int ones = ply.pResources.harpoons % 10;
+            int tens = ply.pResources.harpoons / 10;
+            numberIconOnes.sprite = interactions.numbers[ones];
+            numberIconTens.sprite = interactions.numbers[tens];
+        }
+        else
+        {
+            numberIconOnes.sprite = interactions.numbers[12];
+            numberIconTens.sprite = interactions.numbers[12];
+        }
     }
 
     public void PlaySFX(AudioClip clip)
@@ -240,7 +302,7 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < dialogLength; j++)
             {
                 TextData.Sentence s = c.dialog[i].sentences[j];
-                if(c.dialog[i].portrait == 0)
+                if (c.dialog[i].portrait == 0)
                 {
                     leftPortrait.sprite = interactions.portraits[s.portraitIndex];
                     leftPortrait.color = Color.white;
@@ -259,10 +321,10 @@ public class GameManager : MonoBehaviour
 
                 for (int k = 0; k < sentenceLength; k++)
                 {
-                    if(k % 2 == 0)
+                    if (k % 2 == 0)
                     {
                         dialogAudio.Stop();
-                        dialogAudio.PlayOneShot(sfx.dialogVoices[Random.Range(0, sfx.dialogVoices.Length-1)]);
+                        dialogAudio.PlayOneShot(sfx.dialogVoices[Random.Range(0, sfx.dialogVoices.Length - 1)]);
                     }
                     dialogText.text = sentence.Substring(0, k);
                     yield return new WaitForSecondsRealtime(0.025f);
