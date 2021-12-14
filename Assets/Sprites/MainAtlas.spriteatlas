@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: c0d9b4b51b3c59c479e0dcaf5b286bde, type: 3}
     - {fileID: 102900000, guid: 5210abf30b0896c4fb09192bd36ec757, type: 3}
-    totalSpriteSurfaceArea: 164900
+    totalSpriteSurfaceArea: 240676
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -81,6 +81,13 @@ SpriteAtlas:
   - {fileID: 2618990693341204918, guid: 6ea4cdc46163f41419c6b5494a7a8f9f, type: 3}
   - {fileID: 21300000, guid: 543eeee432221744d89f2a19f75cf5de, type: 3}
   - {fileID: 21300000, guid: 1f78a726f83e25440869d7941fe3ff61, type: 3}
+  - {fileID: 21300000, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
+  - {fileID: 21300000, guid: 45ae9ce819a5d5e44a8ed0c1cc751619, type: 3}
+  - {fileID: -1852099465601461954, guid: b11e40ea1948877458118c7e98759425, type: 3}
+  - {fileID: 4919029706181758544, guid: b11e40ea1948877458118c7e98759425, type: 3}
+  - {fileID: -2095503374983935893, guid: b11e40ea1948877458118c7e98759425, type: 3}
+  - {fileID: 2544297380283852088, guid: b11e40ea1948877458118c7e98759425, type: 3}
+  - {fileID: -3277572661443764114, guid: b11e40ea1948877458118c7e98759425, type: 3}
   - {fileID: 2322887504798322181, guid: faf1d14b3fd335b408e8df92369d80cb, type: 3}
   - {fileID: 7634412019114000045, guid: faf1d14b3fd335b408e8df92369d80cb, type: 3}
   - {fileID: 691213645215678097, guid: faf1d14b3fd335b408e8df92369d80cb, type: 3}
@@ -169,6 +176,7 @@ SpriteAtlas:
   - {fileID: 4051281221030417845, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
   - {fileID: 7135510106612867387, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
   - {fileID: 6697915092173370042, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
+  - {fileID: 21300000, guid: 37516baf407a40c4486a5689ba591398, type: 3}
   m_PackedSpriteNamesToIndex:
   - Coral1_11
   - Coral1_10
@@ -203,6 +211,13 @@ SpriteAtlas:
   - Mech_Arm_1
   - Harpoon
   - Mech_NoThrust
+  - Ferns1
+  - Coral2
+  - MinimapTiles_2
+  - MinimapTiles_3
+  - MinimapTiles_0
+  - MinimapTiles_1
+  - MinimapTiles_4
   - Mech_Impact_0
   - Mech_Impact_1
   - Mech_Impact_2
@@ -291,5 +306,6 @@ SpriteAtlas:
   - OceanTiles1_7
   - OceanTiles1_4
   - OceanTiles1_5
+  - OceanTiles2
   m_Tag: MainAtlas
   m_IsVariant: 0

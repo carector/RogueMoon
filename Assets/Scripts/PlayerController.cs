@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     {
         public int health = 8;
         public int harpoons;
+        public int depthCharges;
+        public int metal;
     }
 
     [System.Serializable]
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
         public float groundSpeed = 5;
         public float airSpeed = 3;
         public float pulledSpeed = 8;
+        public PhysicsMaterial2D groundedMaterial;
+        public PhysicsMaterial2D airMaterial;
     }
 
     [System.Serializable]
@@ -71,6 +75,8 @@ public class PlayerController : MonoBehaviour
     float gravityScale;
     bool hasRetractedArm;
     float storedHoverTime;
+    int mask = ~((1 << 8) | (1 << 10) | (1 << 9)); // Ground + ceiling raycast layermask
+    bool harpoonStartingGroundedState;
 
     // Start is called before the first frame update
     void Start()
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         bool lastGroundedState = pMovement.isGrounded;
-        pMovement.isGrounded = CheckForGround();
+        pMovement.isGrounded = (CheckForGround() && !harpoonStartingGroundedState);
         pMovement.isTouchingCeiling = CheckForCeiling();
 
         // Play impact animation if we just hit the ground
@@ -115,6 +121,15 @@ public class PlayerController : MonoBehaviour
                     CheckAndPlayClip(bodyAnim, "Mech_Midair");
             }
         }
+
+        if (pMovement.isGrounded)
+            rb.sharedMaterial = pMovement.groundedMaterial;
+        else
+            rb.sharedMaterial = pMovement.airMaterial;
+
+        if (Time.timeScale == 0)
+            return;
+
         MovePlayer();
         AddWaterResistanceForce();
         UpdateSprite();
@@ -124,16 +139,17 @@ public class PlayerController : MonoBehaviour
     {
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         lineTEMP.SetPositions(new Vector3[2] { transform.position, transform.position });
+
+        if (Time.timeScale == 0)
+            return;
+
         RotateArm();
         CheckButtonInputs();
     }
 
     void MovePlayer()
     {
-        if (gm.gamePaused || gm.menuOpen)
-            return;
-
-        if (pAbilities.beingPulledTowardsHarpoon || !pMovement.canMove || pAbilities.impactDelayInProgress)
+        if (pAbilities.beingPulledTowardsHarpoon || pAbilities.impactDelayInProgress)
             return;
 
         bodyAnim.SetFloat("WalkSpeed", Mathf.Clamp(rb.velocity.magnitude / 3, 0, pMovement.groundSpeed / 3f));
@@ -141,6 +157,12 @@ public class PlayerController : MonoBehaviour
 
         float horiz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
+        if (!pMovement.canMove)
+        {
+            horiz = 0;
+            vert = 0;
+        }
+
         Vector2 vel = Vector2.zero;
 
         // Can move up and down only if not grounded
@@ -164,20 +186,21 @@ public class PlayerController : MonoBehaviour
                 {
                     gm.PlaySFX(gm.sfx.playerSounds[2]);
                     CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
-                }                    
+                }
             }
             else if (storedHoverTime <= 0)
-                vert = 0;
-            else if(vert <= 0)
+                vert = Mathf.Clamp(vert, -1, 0);
+            else if (vert <= 0)
                 CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
 
             // Minor gravity + additional downwards force if we're airborne
-            rb.gravityScale = 0.15f;
-            vel = new Vector2(horiz, vert*0.5f) * pMovement.acceleration * rb.mass;
-            vel += vel = Vector2.down * pMovement.acceleration * rb.mass / 4;
+            rb.gravityScale = 0.35f;
+            vel = new Vector2(horiz * 0.75f, Mathf.Clamp(vert, -0.25f, 0.75f)) * pMovement.acceleration * rb.mass;
+            vel.x /= 2;
+            //vel += vel = Vector2.down * pMovement.acceleration * rb.mass / 4;
         }
 
-        if ((pMovement.isGrounded && rb.velocity.magnitude < pMovement.groundSpeed) || (!pMovement.isGrounded && rb.velocity.magnitude < pMovement.airSpeed))
+        if ((pMovement.isGrounded && rb.velocity.magnitude < pMovement.groundSpeed))
         {
             // Slow robot down if we're grounded so we don't slide all over
             if (pMovement.isGrounded && vel.x == 0)
@@ -185,16 +208,25 @@ public class PlayerController : MonoBehaviour
 
             rb.AddForce(vel);
         }
+        else if (!pMovement.isGrounded)
+        {
+            if (rb.velocity.x < pMovement.airSpeed && rb.velocity.x > -pMovement.airSpeed)
+                rb.AddForce(Vector2.right * vel.x);
+            if (rb.velocity.y < pMovement.airSpeed && rb.velocity.y > -pMovement.airSpeed * 1.75f)
+                rb.AddForce(Vector2.up * vel.y);
+
+            //rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -pMovement.airSpeed * 1.75f, pMovement.airSpeed)), 0.1f);
+        }
     }
 
     void RotateArm()
     {
-        if (pAbilities.firingHarpoon || pAbilities.attacking)
+        if (pAbilities.firingHarpoon || pAbilities.swapToolDelayInProgress)
             return;
 
         bool lastAimState = pAbilities.aiming;
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !pAbilities.attacking && !pAbilities.attackDelayInProgress && pMovement.canMove)
         {
             pAbilities.aiming = true;
             CheckAndPlayClip(armsAnim, "Arm_Ready");
@@ -230,7 +262,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckButtonInputs()
     {
-        if (gm.gamePaused || gm.menuOpen)
+        if (!pMovement.canMove)
             return;
 
         if (pAbilities.aiming)
@@ -241,7 +273,9 @@ public class PlayerController : MonoBehaviour
                 pAbilities.firingHarpoon = true;
                 StartCoroutine(FireHarpoon());
             }
-
+        }
+        else
+        {
             // Attack
             if (pAbilities.activeAbility == 1 && Input.GetMouseButtonDown(0) && !pAbilities.attacking && !pAbilities.attackDelayInProgress)
             {
@@ -250,17 +284,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Swap current tool
-        if (Input.GetKeyDown(KeyCode.F) && !pAbilities.firingHarpoon && !pAbilities.swapToolDelayInProgress && !pAbilities.attackDelayInProgress)
+        // Swap current tool (when aiming vs not aiming)
+        if (!pAbilities.firingHarpoon && !pAbilities.swapToolDelayInProgress && !pAbilities.attackDelayInProgress)
         {
-            gm.PlaySFX(gm.sfx.playerSounds[1]);
-
-            pAbilities.activeAbility++;
-            if (pAbilities.activeAbility > 1)
-                pAbilities.activeAbility = 0;
-
-            gm.SwitchActiveToolHUD();
-            StartCoroutine(SwitchToolDelayCoroutine());
+            if (pAbilities.aiming && pAbilities.activeAbility == 1)
+                SetActiveAbility(0);
+            else if (!pAbilities.aiming && pAbilities.activeAbility == 0)
+                SetActiveAbility(1);
         }
 
         // Reload
@@ -274,11 +304,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void SetActiveAbility(int ability)
+    {
+        gm.PlaySFX(gm.sfx.playerSounds[1]);
+        gm.SwitchActiveToolHUD();
+        pAbilities.activeAbility = ability;
+        //StartCoroutine(SwitchToolDelayCoroutine());
+    }
+
     IEnumerator FireHarpoon()
     {
         harpoonEndpoint.color = Color.white;
         CheckAndPlayClip(armsAnim, "Arm_FireHarpoon");
-        pResources.harpoons--;
+        if (pResources.harpoons > 0)
+            pResources.harpoons--;
 
         // Fire harpoon and wait for hit
         // IF hit object: Pull object towards player
@@ -308,7 +347,7 @@ public class PlayerController : MonoBehaviour
             {
                 foreach (Collider2D col in cols)
                 {
-                    if (col.tag.Equals("Ground"))
+                    if (col.tag.Equals("Ground") || col.tag.Equals("Breakable"))
                     {
                         hitGroundPoint = col.ClosestPoint(harpoonEndpoint.transform.position);
                         pAbilities.beingPulledTowardsHarpoon = true;
@@ -330,18 +369,27 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         harpoonLoopingAudio.loop = true;
+
+        // Pull towards ground point
         if (hitGroundPoint != Vector3.zero)
         {
+            harpoonStartingGroundedState = CheckForGround();
             harpoonLoopingAudio.Play();
+            pMovement.isGrounded = false;
+            CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
+
             if (pAbilities.beingPulledTowardsHarpoon)
             {
                 float timePassed = 0;
-                while (timePassed < 1.75f && Vector2.Distance(transform.position, hitGroundPoint) > 3 && !pMovement.isGrounded)
+                while (timePassed < 1.75f && Vector2.Distance(transform.position, hitGroundPoint) > 3 && Input.GetMouseButton(0) && pAbilities.aiming && !pMovement.isGrounded)
                 {
                     harpoonLoopingAudio.pitch = 1.25f - (Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f));
                     harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
                     harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
                     harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
+
+                    if (harpoonStartingGroundedState)
+                        harpoonStartingGroundedState = CheckForGround();
 
                     if (rb.velocity.magnitude < pMovement.pulledSpeed)
                         rb.AddForce((hitGroundPoint - transform.position) * rb.mass * pMovement.pulledSpeed);
@@ -351,7 +399,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else if (hitObject != null && pMovement.isGrounded)
+        // Pull object towards player
+        else if (hitObject != null)
         {
             bodyAnim.SetFloat("WalkSpeed", 0);
             armsAnim.SetFloat("WalkSpeed", 0);
@@ -361,7 +410,7 @@ public class PlayerController : MonoBehaviour
             hitRb.angularVelocity = 0;
             float timePassed = 0;
             float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
-            while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3 && pMovement.isGrounded)
+            while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3)
             {
                 harpoonLoopingAudio.pitch = 1.25f - (Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f));
                 harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
@@ -380,6 +429,7 @@ public class PlayerController : MonoBehaviour
             pMovement.canMove = true;
         }
 
+        harpoonStartingGroundedState = false;
         harpoonEndpoint.transform.parent = null;
         harpoonLoopingAudio.loop = false;
         harpoonEndpoint.color = Color.clear;
@@ -392,8 +442,7 @@ public class PlayerController : MonoBehaviour
     bool CheckForGround()
     {
         bool grounded = false;
-        int mask = ~(1 << 8);
-        Debug.DrawRay(transform.position + Vector3.down * 2, Vector2.down*0.25f, Color.red, Time.fixedDeltaTime);
+        Debug.DrawRay(transform.position + Vector3.down * 2, Vector2.down * 0.25f, Color.red, Time.fixedDeltaTime);
         RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.down * 2, Vector2.down, 0.35f, mask);
         if (hit.transform != null && hit.transform.tag == "Ground")
             grounded = true;
@@ -404,7 +453,6 @@ public class PlayerController : MonoBehaviour
     bool CheckForCeiling()
     {
         bool ceilinged = false;
-        int mask = ~(1 << 8);
         Debug.DrawRay(transform.position + Vector3.up, Vector2.up * 0.25f, Color.red, Time.fixedDeltaTime);
         Collider2D[] cols = Physics2D.OverlapBoxAll(transform.position + Vector3.up * 1f, new Vector2(0.75f, 0.5f), 0, mask);
         foreach (Collider2D col in cols)
@@ -433,16 +481,34 @@ public class PlayerController : MonoBehaviour
         pAbilities.attackCharges--;
         CheckAndPlayClip(armsAnim, "Arm_Attack");
 
-        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2, 0.5f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
-        foreach(Collider2D c in cols)
+        /*if (armsSpr.transform.localScale.x == -1)
         {
-            if(c.tag == "Breakable")
+            armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
+            armsSpr.transform.localScale = new Vector2(1, -1);
+        }
+
+        Vector2 mouseDir = (Vector3)mouseWorldPos - transform.position;
+        float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
+        armsSpr.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        */
+        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2, 0.5f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
+        foreach (Collider2D c in cols)
+        {
+            if (c.tag == "Breakable")
             {
                 c.SendMessage("BreakApart");
             }
         }
 
         yield return new WaitForSeconds(pAbilities.attackDelayTime);
+        /*
+        if (armsSpr.transform.localScale.y == -1)
+        {
+            armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
+            armsSpr.transform.localScale = new Vector2(-1, 1);
+        }
+        armsSpr.transform.rotation = Quaternion.identity;*/
+        CheckAndPlayClip(armsAnim, "Arm_Walk");
         pAbilities.attacking = false;
         if (pAbilities.attackCharges == 0)
             StartCoroutine(RechargeAttack());
@@ -481,12 +547,14 @@ public class PlayerController : MonoBehaviour
 
     void AddWaterResistanceForce()
     {
-        rb.velocity -= rb.velocity.normalized * 0.05f;
+        rb.velocity -= new Vector2(rb.velocity.normalized.x * 0.05f, 0);
+        if (rb.velocity.y < -pMovement.airSpeed * 1.75f)
+            rb.velocity -= new Vector2(0, rb.velocity.normalized.y * 0.05f);
     }
 
     void UpdateSprite()
     {
-        if (pAbilities.firingHarpoon)
+        if (!pMovement.canMove || pAbilities.firingHarpoon || Mathf.Abs(mouseWorldPos.x - transform.position.x) <= 0.5f)
             return;
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

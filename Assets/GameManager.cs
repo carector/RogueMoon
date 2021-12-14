@@ -18,11 +18,16 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class GameDialogSettings
     {
-        public TextAsset JSONSource;
-        public TextData cachedTextData;
+        public TextAsset JSONSource; // Source file containing all dialog / dialog in this level
+        public TextData cachedTextData; // Deserialized version of JSONSource
         public bool isPrintingDialog;
-        public Sprite[] numbers;
         public Sprite[] portraits;
+    }
+
+    [System.Serializable]
+    public class GameSpriteReferences
+    {
+        public Sprite[] numbers;
     }
 
     // Stores data used in NPC interactions
@@ -48,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
 
         [System.Serializable]
-        public class Sentence
+        public class Sentence // Stores single line of text and its associated portrait sprite
         {
             public string text;
             public int portraitIndex;
@@ -66,7 +71,8 @@ public class GameManager : MonoBehaviour
     }
 
     public GameSoundEffects sfx;
-    public GameDialogSettings interactions;
+    public GameDialogSettings dialogSettings;
+    public GameSpriteReferences spriteRefs;
 
     public bool menuOpen;
     public bool gamePaused;
@@ -84,18 +90,24 @@ public class GameManager : MonoBehaviour
     Image numberIconOnes;
     Image currentToolIcon;
 
+    TextMeshProUGUI metalNumberText;
+    TextMeshProUGUI harpoonNumberText;
+    TextMeshProUGUI depthChargeNumberText;
+
     RectTransform textboxHolder;
-    RectTransform resourceMenuHolder;
+    RectTransform actionMenuHolder;
+    RectTransform[] actionMenuCategories = new RectTransform[3];
     TextMeshProUGUI dialogText;
     Image leftPortrait;
     Image rightPortrait;
     Image toolbarFill;
+    Image dialogAdvanceIcon;
 
     PlayerController ply;
 
     // used for when we unpause when the mech menu is already
     // open we don't fuck up our timescale
-    float pauseStoredTimescale;
+    float actionMenuStoredTimeScale;
 
     // Start is called before the first frame update
     void Start()
@@ -113,17 +125,23 @@ public class GameManager : MonoBehaviour
         currentToolIcon = toolbar.GetChild(3).GetComponent<Image>();
         textboxHolder = GameObject.Find("TextboxHolder").GetComponent<RectTransform>();
         dialogText = textboxHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        dialogAdvanceIcon = textboxHolder.GetChild(0).GetChild(1).GetComponent<Image>();
+        dialogAdvanceIcon.color = Color.clear;
         leftPortrait = textboxHolder.GetChild(1).GetComponent<Image>();
         rightPortrait = textboxHolder.GetChild(2).GetComponent<Image>();
-        resourceMenuHolder = GameObject.Find("ResourceMenu").GetComponent<RectTransform>();
+        actionMenuHolder = GameObject.Find("ActionMenu").GetComponent<RectTransform>();
+        for (int i = 0; i < 3; i++)
+            actionMenuCategories[i] = actionMenuHolder.GetChild(i).GetComponent<RectTransform>();
+
+        metalNumberText = actionMenuHolder.GetChild(3).GetComponent<TextMeshProUGUI>();
+        harpoonNumberText = actionMenuHolder.GetChild(4).GetComponent<TextMeshProUGUI>();
+        depthChargeNumberText = actionMenuHolder.GetChild(5).GetComponent<TextMeshProUGUI>();
 
         healthbarFill = GameObject.Find("HealthbarFill").GetComponent<Image>();
-
         ply = FindObjectOfType<PlayerController>();
 
         // Convert dialog from JSON file to nice, readable dialog
-        interactions.cachedTextData = DeserializeDialog(interactions.JSONSource);
-
+        dialogSettings.cachedTextData = DeserializeDialog(dialogSettings.JSONSource);
     }
 
     // Update is called once per frame
@@ -132,9 +150,9 @@ public class GameManager : MonoBehaviour
         UpdateHUD();
 
         // TEMP TEMP TEMP
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !interactions.isPrintingDialog)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !dialogSettings.isPrintingDialog)
         {
-            StartCoroutine(DisplayDialog(interactions.JSONSource, "tutorial_1"));
+            StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "tutorial_1"));
         }
 
         // Open mech menu
@@ -144,12 +162,13 @@ public class GameManager : MonoBehaviour
             if (menuOpen)
             {
                 Time.timeScale = 0;
-                resourceMenuHolder.anchoredPosition = Vector2.zero;
+                actionMenuHolder.anchoredPosition = Vector2.zero;
             }
             else
             {
                 Time.timeScale = 1;
-                resourceMenuHolder.anchoredPosition = new Vector2(0, -160);
+                actionMenuHolder.anchoredPosition = new Vector2(0, -160);
+                SwitchMenuScreen(4);
             }
         }
 
@@ -176,6 +195,14 @@ public class GameManager : MonoBehaviour
         healthbarFill.rectTransform.anchoredPosition = new Vector2(3 + 2.5f * ply.pResources.health, 0);
 
         UpdateHarpoonNumber();
+        UpdateActionMenuNumbers();
+    }
+
+    void UpdateActionMenuNumbers()
+    {
+        harpoonNumberText.text = ply.pResources.harpoons.ToString();
+        metalNumberText.text = ply.pResources.metal.ToString();
+        depthChargeNumberText.text = ply.pResources.depthCharges.ToString();
     }
 
     public void UpdateAttackBar()
@@ -222,12 +249,48 @@ public class GameManager : MonoBehaviour
             toolbarFill.color = Color.clear;
     }
 
+    public void SwitchMenuScreen(int screen)
+    {
+        // 0 = Synthesis
+        // 1 = Talk
+        // 2 = Map
+        // 3 = None
+        for (int i = 0; i < 3; i++)
+        {
+            if (i != screen)
+                actionMenuCategories[i].anchoredPosition = new Vector2(17, -250);
+            else
+                actionMenuCategories[i].anchoredPosition = new Vector2(17, -48);
+        }
+    }
+
+    public void CraftItem(int item)
+    {
+        // 0: Repair ship
+        // 1: Craft harpoon
+        // 2: Craft depth charge
+        PlaySFX(sfx.generalSounds[0]);
+        switch (item)
+        {
+            case (0):
+                ply.pResources.health = 8;
+                break;
+            case (1):
+                if (ply.pResources.harpoons < 99)
+                    ply.pResources.harpoons++;
+                break;
+            case (2):
+                ply.pResources.depthCharges++;
+                break;
+        }
+    }
+
     public void SwitchActiveToolHUD()
     {
         if (ply.pAbilities.activeAbility == 0)
-            currentToolIcon.sprite = interactions.numbers[10];
+            currentToolIcon.sprite = spriteRefs.numbers[10];
         else
-            currentToolIcon.sprite = interactions.numbers[11];
+            currentToolIcon.sprite = spriteRefs.numbers[11];
     }
 
     public void UpdateHarpoonNumber()
@@ -236,13 +299,13 @@ public class GameManager : MonoBehaviour
         {
             int ones = ply.pResources.harpoons % 10;
             int tens = ply.pResources.harpoons / 10;
-            numberIconOnes.sprite = interactions.numbers[ones];
-            numberIconTens.sprite = interactions.numbers[tens];
+            numberIconOnes.sprite = spriteRefs.numbers[ones];
+            numberIconTens.sprite = spriteRefs.numbers[tens];
         }
         else
         {
-            numberIconOnes.sprite = interactions.numbers[12];
-            numberIconTens.sprite = interactions.numbers[12];
+            numberIconOnes.sprite = spriteRefs.numbers[12];
+            numberIconTens.sprite = spriteRefs.numbers[12];
         }
     }
 
@@ -279,7 +342,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator DisplayDialog(TextAsset src, string id)
     {
-        interactions.isPrintingDialog = true;
+        dialogSettings.isPrintingDialog = true;
+        actionMenuStoredTimeScale = Time.timeScale;
+        Time.timeScale = 0;
 
         // Get references
         TextData t = DeserializeDialog(src);
@@ -288,8 +353,8 @@ public class GameManager : MonoBehaviour
         // Set initial portrait colors and sprites before moving textbox
         leftPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
         rightPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
-        leftPortrait.sprite = interactions.portraits[c.initialPortraits[0]];
-        rightPortrait.sprite = interactions.portraits[c.initialPortraits[1]];
+        leftPortrait.sprite = dialogSettings.portraits[c.initialPortraits[0]];
+        rightPortrait.sprite = dialogSettings.portraits[c.initialPortraits[1]];
 
         textboxHolder.anchoredPosition = new Vector2(0, -24f);
 
@@ -304,13 +369,13 @@ public class GameManager : MonoBehaviour
                 TextData.Sentence s = c.dialog[i].sentences[j];
                 if (c.dialog[i].portrait == 0)
                 {
-                    leftPortrait.sprite = interactions.portraits[s.portraitIndex];
+                    leftPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
                     leftPortrait.color = Color.white;
                     rightPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
                 }
                 else
                 {
-                    rightPortrait.sprite = interactions.portraits[s.portraitIndex];
+                    rightPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
                     rightPortrait.color = Color.white;
                     leftPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
                 }
@@ -332,13 +397,16 @@ public class GameManager : MonoBehaviour
                 dialogText.text = sentence;
                 dialogAudio.Stop();
                 dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
+                dialogAdvanceIcon.color = Color.white;
 
                 // Wait for key press to continue dialog
                 yield return WaitForKeyPress();
+                dialogAdvanceIcon.color = Color.clear;
             }
         }
 
-        interactions.isPrintingDialog = false;
+        Time.timeScale = actionMenuStoredTimeScale;
+        dialogSettings.isPrintingDialog = false;
         dialogText.text = "";
         textboxHolder.anchoredPosition = new Vector2(0, 40f);
     }
@@ -352,14 +420,14 @@ public class GameManager : MonoBehaviour
         }
 
         // No need to deserialize again if we've already cached it
-        if (t.name.Equals(interactions.cachedTextData.filename))
+        if (t.name.Equals(dialogSettings.cachedTextData.filename))
         {
             print("TextData already cached");
-            return interactions.cachedTextData;
+            return dialogSettings.cachedTextData;
         }
 
-        interactions.cachedTextData = JsonConvert.DeserializeObject<TextData>(t.text);
-        return interactions.cachedTextData;
+        dialogSettings.cachedTextData = JsonConvert.DeserializeObject<TextData>(t.text);
+        return dialogSettings.cachedTextData;
     }
 
     IEnumerator WaitForKeyPress()

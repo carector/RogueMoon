@@ -17,6 +17,7 @@ public class GibScript : MonoBehaviour
         spr.sprite = spritePool[Random.Range(0, spritePool.Length)];
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized * 6;
+        StartCoroutine(FadeOutAfterTime());
     }
 
     // Update is called once per frame
@@ -28,5 +29,17 @@ public class GibScript : MonoBehaviour
         }
         else
             reachedZero = true;
+    }
+
+    IEnumerator FadeOutAfterTime()
+    {
+        yield return new WaitForSeconds(6);
+        while(spr.color.a > 0)
+        {
+            spr.color -= new Color(0, 0, 0, 0.01f);
+            yield return new WaitForFixedUpdate();
+        }
+
+        Destroy(this.gameObject);
     }
 }
