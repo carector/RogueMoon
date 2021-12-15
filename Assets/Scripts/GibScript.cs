@@ -5,7 +5,7 @@ using UnityEngine;
 public class GibScript : MonoBehaviour
 {
     public Sprite[] spritePool;
-
+    public bool initializedByParent;
     bool reachedZero;
     SpriteRenderer spr;
     Rigidbody2D rb;
@@ -13,10 +13,23 @@ public class GibScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!initializedByParent)
+        {
+            spr = GetComponent<SpriteRenderer>();
+            rb = GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized * 6;
+            spr.sprite = spritePool[Random.Range(0, spritePool.Length)];
+            StartCoroutine(FadeOutAfterTime());
+        }
+    }
+
+    public void InitializeGib(Sprite s, float angularVelocity)
+    {
         spr = GetComponent<SpriteRenderer>();
-        spr.sprite = spritePool[Random.Range(0, spritePool.Length)];
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized * 6;
+        rb.angularVelocity = angularVelocity;
+        spr.sprite = s;
         StartCoroutine(FadeOutAfterTime());
     }
 

@@ -1452,11 +1452,11 @@ GameObject:
   - component: {fileID: 941080912}
   - component: {fileID: 941080915}
   - component: {fileID: 941080916}
-  - component: {fileID: 941080917}
   - component: {fileID: 941080918}
+  - component: {fileID: 941080914}
   m_Layer: 0
   m_Name: Fish1
-  m_TagString: Untagged
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1526,6 +1526,22 @@ Transform:
   m_Father: {fileID: 1987936697}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &941080914
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941080911}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.12654895}
+  m_Size: {x: 2.5095503, y: 0.73451936}
+  m_Direction: 1
 --- !u!95 &941080915
 Animator:
   serializedVersion: 3
@@ -1562,24 +1578,15 @@ MonoBehaviour:
     swimSpeed: 2
     inSwimBounds: 1
   swimAreaBounds: {fileID: 1987936698}
+  gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
+  goreBits:
+  - {fileID: 8610895968501457032, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
+  - {fileID: 1144253119143779311, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
+  - {fileID: 6831466389684399411, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
+  - {fileID: -2452382750879097800, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
+  - {fileID: 7059430609009587089, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
   animationPrefix: Fish1
   direction: {x: 0, y: 0}
---- !u!58 &941080917
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 941080911}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.119000435}
-  serializedVersion: 2
-  m_Radius: 0.47327328
 --- !u!50 &941080918
 Rigidbody2D:
   serializedVersion: 4
@@ -1840,6 +1847,8 @@ MonoBehaviour:
     swimSpeed: 3
     inSwimBounds: 1
   swimAreaBounds: {fileID: 1783623271}
+  gib: {fileID: 0}
+  goreBits: []
   animationPrefix: KissyFish
   direction: {x: 0, y: 0}
 --- !u!95 &1304256041
@@ -2251,7 +2260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652832345}
   m_LocalRotation: {x: -0, y: -0, z: -0.09831065, w: 0.9951558}
-  m_LocalPosition: {x: 8, y: 1.2, z: 0}
+  m_LocalPosition: {x: 11.48, y: -0.33, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2453,6 +2462,8 @@ MonoBehaviour:
     swimSpeed: 2
     inSwimBounds: 1
   swimAreaBounds: {fileID: 130337068}
+  gib: {fileID: 0}
+  goreBits: []
   animationPrefix: ClownFish
   direction: {x: 0, y: 0}
 --- !u!212 &1707515271

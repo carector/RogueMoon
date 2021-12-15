@@ -45,10 +45,12 @@ public class PlayerController : MonoBehaviour
         public float attackDelayTime = 0.25f;
         public float attackRecoveryTime = 3f;
         public float swapToolDelayTime = 0.35f;
+        public float damageImmuneTime = 0.75f;
         public bool jumpDelayInProgress = false;
         public bool impactDelayInProgress = false;
         public bool attackDelayInProgress = false;
         public bool swapToolDelayInProgress = false;
+        public bool damageDelayInProgress = false;
     }
 
     public PlayerMovementSettings pMovement;
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     float gravityScale;
     bool hasRetractedArm;
+    bool lastAttackState;
     float storedHoverTime;
     int mask = ~((1 << 8) | (1 << 10) | (1 << 9)); // Ground + ceiling raycast layermask
     bool harpoonStartingGroundedState;
@@ -243,14 +246,14 @@ public class PlayerController : MonoBehaviour
             armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), 0.15f);
             hasRetractedArm = false;
         }
-        else
+        else if (!pAbilities.attacking)
         {
             pAbilities.aiming = false;
             if (!hasRetractedArm)
                 CheckAndPlayClip(armsAnim, "Arm_Unready");
 
             // Same as above - If we were aiming in the previous frame, fix rotation and scale to prevent weird rotation visual
-            if (lastAimState && armsSpr.transform.localScale.y == -1)
+            if ((lastAimState || lastAttackState) && armsSpr.transform.localScale.y == -1)
             {
                 armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
                 armsSpr.transform.localScale = new Vector2(-1, 1);
@@ -258,10 +261,16 @@ public class PlayerController : MonoBehaviour
             armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.identity, 0.15f);
             hasRetractedArm = true;
         }
+
+        lastAttackState = pAbilities.attacking;
     }
 
     void CheckButtonInputs()
     {
+        // TEMP
+        if (Input.GetKeyDown(KeyCode.G))
+            TakeDamage();
+
         if (!pMovement.canMove)
             return;
 
@@ -357,8 +366,10 @@ public class PlayerController : MonoBehaviour
                     {
                         gm.PlaySFX(gm.sfx.playerSounds[0]);
                         hitObject = col.transform;
+                        hitObject.SendMessage("GetPulledByHarpoon");
                         harpoonEndpoint.transform.parent = col.transform;
                         hitRb = hitObject.GetComponent<Rigidbody2D>();
+                        hitRb.bodyType = RigidbodyType2D.Dynamic;
                         break;
                     }
                 }
@@ -481,33 +492,28 @@ public class PlayerController : MonoBehaviour
         pAbilities.attackCharges--;
         CheckAndPlayClip(armsAnim, "Arm_Attack");
 
-        /*if (armsSpr.transform.localScale.x == -1)
-        {
-            armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
-            armsSpr.transform.localScale = new Vector2(1, -1);
-        }
+        bool lastAimState = pAbilities.aiming;
+        lastAttackState = true;
+        float offset = 0;
+        // If we weren't aiming in the previous frame, fix rotation and scale to prevent weird rotation visual
+        if (armsSpr.transform.localScale.x == -1)
+            offset = 180;
 
         Vector2 mouseDir = (Vector3)mouseWorldPos - transform.position;
         float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-        armsSpr.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        */
-        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2, 0.5f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
+        armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle+offset)), 1f);
+
+        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2.25f, 0.75f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
         foreach (Collider2D c in cols)
         {
-            if (c.tag == "Breakable")
+            if (c.tag == "Breakable" || c.tag == "Harpoonable" || c.tag == "Fish")
             {
-                c.SendMessage("BreakApart");
+                c.SendMessage("BreakApart", SendMessageOptions.DontRequireReceiver);
             }
         }
 
         yield return new WaitForSeconds(pAbilities.attackDelayTime);
-        /*
-        if (armsSpr.transform.localScale.y == -1)
-        {
-            armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
-            armsSpr.transform.localScale = new Vector2(-1, 1);
-        }
-        armsSpr.transform.rotation = Quaternion.identity;*/
+
         CheckAndPlayClip(armsAnim, "Arm_Walk");
         pAbilities.attacking = false;
         if (pAbilities.attackCharges == 0)
@@ -554,7 +560,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateSprite()
     {
-        if (!pMovement.canMove || pAbilities.firingHarpoon || Mathf.Abs(mouseWorldPos.x - transform.position.x) <= 0.5f)
+        if (pAbilities.attacking || !pMovement.canMove || pAbilities.firingHarpoon || Mathf.Abs(mouseWorldPos.x - transform.position.x) <= 0.5f)
             return;
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -579,7 +585,46 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+        // Short immunity period after getting attacked
+        if (pAbilities.damageDelayInProgress)
+            return;
+
         pResources.health--;
+        gm.ScreenShake(7);
+        StartCoroutine(DamageFlashCoroutine());
+        StartCoroutine(DamageImmuneDelayCoroutine());
+    }
+
+    IEnumerator DamageFlashCoroutine()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            bodySpr.color = Color.red;
+            armsSpr.color = Color.red;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            bodySpr.color = Color.white;
+            armsSpr.color = Color.white;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            bodySpr.color = Color.red;
+            armsSpr.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            bodySpr.color = Color.white;
+            armsSpr.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator DamageImmuneDelayCoroutine()
+    {
+        pAbilities.damageDelayInProgress = true;
+        yield return new WaitForSeconds(pAbilities.damageImmuneTime);
+        pAbilities.damageDelayInProgress = false;
     }
 
     public void CheckAndPlayClip(Animator anim, string clipName)

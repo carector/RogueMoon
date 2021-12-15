@@ -136,6 +136,113 @@
                     ],
                 }
             ]
+        },
+        {
+            "conversationId": "tutorial_4",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Ah, my heart soars when you\\wreck the landscape so!",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Proceeding.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            "conversationId": "tutorial_5",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Now that's queer.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "The pile of metal?",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Go give it a whack from the\\pneumatic driver. I'd like to\\take a closer look.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                }
+            ]
+        },
+        {
+            "conversationId": "tutorial_6",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Hmm...",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Tungsten nickel iron alloy.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "The formation is peculiar, but\\it's not far off from what\\most of Hynobius is made\\of.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "So we could throw them in\\the mats printer in a pinch.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Expecting trouble, Abner?",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I wouldn't be pilot for this\\mission if I wasn't.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                }
+            ]
         }
     ]
 }

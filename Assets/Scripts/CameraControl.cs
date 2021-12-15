@@ -15,6 +15,11 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = Vector2.Lerp(transform.position, target.transform.position, 1);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, -10), 1f);
+    }
+
+    void ShakeScreen()
+    {
+
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FullscreenSwitch : MonoBehaviour
 {
-    public uint windowedX = 640;
-    public uint windowedY = 480;
+    public int windowedX = 640;
+    public int windowedY = 480;
 
 
     // Start is called before the first frame update
@@ -19,16 +19,25 @@ public class FullscreenSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            SetFullscreenMode(Screen.fullScreen);
+            StartCoroutine(SetFullscreenMode(Screen.fullScreen));
         }
     }
 
-    void SetFullscreenMode(bool isFullscreen)
+    IEnumerator SetFullscreenMode(bool isFullscreen)
     {
+        int w;
+        int h;
         if (isFullscreen)
-            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
+        {
+            w = Screen.width;
+            h = Screen.height;
+        }
         else
-            Screen.SetResolution((int)windowedX, (int)windowedY, false);
-        print("Pressed");
+        {
+            w = windowedX;
+            h = windowedY;
+        }
+        Screen.SetResolution(w, h, !isFullscreen);
+        yield return null;
     }
 }

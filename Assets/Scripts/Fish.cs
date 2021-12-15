@@ -14,6 +14,8 @@ public class Fish : MonoBehaviour
 
     public FishMovementSettings movementSettings;
     public Collider2D swimAreaBounds;
+    public GameObject gib;
+    public Sprite[] goreBits;
     public string animationPrefix = "Fish";
     public Vector2 direction;
 
@@ -38,6 +40,14 @@ public class Fish : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void BreakApart()
+    {
+        foreach (Sprite s in goreBits)
+            Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));
+
+        Destroy(this.gameObject);
     }
 
     // Can be overriden by any subclasses
