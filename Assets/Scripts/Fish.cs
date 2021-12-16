@@ -13,6 +13,8 @@ public class Fish : MonoBehaviour
         public bool inSwimBounds = true;
         public bool noticedPlayer;
         public float damageRadius;
+        public float noticeDistance;
+        public float attackDistance;
     }
 
     public FishMovementSettings movementSettings;
@@ -57,6 +59,16 @@ public class Fish : MonoBehaviour
             Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));
 
         Destroy(this.gameObject);
+    }
+
+    public bool CanSeePlayer()
+    {
+        bool inLOS = false;
+        int mask = ~(1 | 1 << 8);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - ply.transform.position), movementSettings.noticeDistance, mask);
+        if (hit.transform != null && hit.transform.tag == "Player")
+            inLOS = true;
+        return inLOS;
     }
 
     // Can be overriden by any subclasses

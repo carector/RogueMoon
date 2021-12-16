@@ -581,7 +581,7 @@ Transform:
   m_LocalScale: {x: 0.67929, y: 0.67929, z: 0.67929}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &283705890
 GameObject:
@@ -1185,7 +1185,7 @@ Transform:
   m_LocalScale: {x: 1.8511564, y: 1.8511564, z: 1.8511564}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &789949883
 BoxCollider2D:
@@ -1592,7 +1592,7 @@ PrefabInstance:
     - target: {fileID: 5201951791637557837, guid: 69b999c5cc130184db913b4762fa5403,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5201951791637557837, guid: 69b999c5cc130184db913b4762fa5403,
         type: 3}
@@ -2523,12 +2523,12 @@ PrefabInstance:
     - target: {fileID: 7203300704742377949, guid: ea29c2f0c2ace504593744d34245dcb3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: -92.6
       objectReference: {fileID: 0}
     - target: {fileID: 7203300704742377949, guid: ea29c2f0c2ace504593744d34245dcb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 77.8
       objectReference: {fileID: 0}
     - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
         type: 3}
@@ -2950,6 +2950,7 @@ GameObject:
   - component: {fileID: 8701057388837793288}
   - component: {fileID: 8701057388837793289}
   - component: {fileID: 8701057388837793290}
+  - component: {fileID: 8701057388837793291}
   m_Layer: 0
   m_Name: Pufferfish
   m_TagString: Fish
@@ -2991,13 +2992,20 @@ MonoBehaviour:
   movementSettings:
     acceleration: 100
     swimSpeed: 2
-    noticedPlayerSwimSpeed: 3
+    noticedPlayerSwimSpeed: 4
     inSwimBounds: 1
     noticedPlayer: 0
     damageRadius: 0.9
+    noticeDistance: 8
+    attackDistance: 3
   swimAreaBounds: {fileID: 262134596}
   gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
-  goreBits: []
+  goreBits:
+  - {fileID: 5034244947211406799, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
+  - {fileID: 2834507629396380315, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
+  - {fileID: -1013936286428886370, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
+  - {fileID: -6242482858019746574, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
+  - {fileID: -2172924103061219563, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   animationPrefix: Pufferfish
   direction: {x: 0, y: 0}
   rb: {fileID: 0}
@@ -3019,6 +3027,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.36}
   serializedVersion: 2
   m_Radius: 0.89
+--- !u!70 &8701057388837793291
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701057388837793287}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.032605663}
+  m_Size: {x: 1.6835451, y: 0.7257594}
+  m_Direction: 1
 --- !u!212 &8701057388837793304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3061,7 +3085,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -9098394080347696226, guid: f07836bfb0475ba49a6f0b91491195e4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4, y: 2}
@@ -3082,7 +3106,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8701057388837793310
 Rigidbody2D:
@@ -3100,7 +3124,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b710a28e48d70004fba1c4c4f3873e7d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: c0d9b4b51b3c59c479e0dcaf5b286bde, type: 3}
     - {fileID: 102900000, guid: 5210abf30b0896c4fb09192bd36ec757, type: 3}
-    totalSpriteSurfaceArea: 237860
+    totalSpriteSurfaceArea: 253220
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -128,6 +128,7 @@ SpriteAtlas:
   - {fileID: 7634412019114000045, guid: faf1d14b3fd335b408e8df92369d80cb, type: 3}
   - {fileID: 691213645215678097, guid: faf1d14b3fd335b408e8df92369d80cb, type: 3}
   - {fileID: 357647249283810612, guid: faf1d14b3fd335b408e8df92369d80cb, type: 3}
+  - {fileID: 21300000, guid: 2190054b533a4354996a2eced39c57d3, type: 3}
   - {fileID: 3322846547922050020, guid: ff11d86d26e5c9a40a7ababad4685dd2, type: 3}
   - {fileID: -1300234033351980969, guid: ff11d86d26e5c9a40a7ababad4685dd2, type: 3}
   - {fileID: -2974089548864479149, guid: ff11d86d26e5c9a40a7ababad4685dd2, type: 3}
@@ -294,6 +295,7 @@ SpriteAtlas:
   - Mech_Impact_1
   - Mech_Impact_2
   - Mech_Impact_3
+  - OceanTiles3
   - Arm_Ready_7
   - Arm_Ready_4
   - Arm_Ready_5

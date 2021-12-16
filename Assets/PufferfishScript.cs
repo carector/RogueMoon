@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PufferfishScript : Fish
 {
+    bool attacking;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,19 @@ public class PufferfishScript : Fish
     // Update is called once per frame
     void Update()
     {
-        movementSettings.noticedPlayer = (Vector2.Distance(transform.position, ply.transform.position) < 8);
+        movementSettings.noticedPlayer = CanSeePlayer();
+    }
+
+    public void BreakApart()
+    {
+        if (attacking)
+            foreach (Sprite s in goreBits)
+                Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));
+        else
+            for (int i = 0; i < 3; i++)
+                Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[i], Random.Range(-50, 50));
+
+        Destroy(this.gameObject);
     }
 
     public IEnumerator MovementCycle()
@@ -71,11 +85,13 @@ public class PufferfishScript : Fish
                     CheckAndPlayClip(animationPrefix + "_SwimLeft");
 
                 // Attack player if we're close enough to do so
-                if(Vector2.Distance(ply.transform.position, transform.position) < 4)
+                if (Vector2.Distance(ply.transform.position, transform.position) < movementSettings.attackDistance)
                 {
+                    attacking = true;
                     rb.velocity = Vector2.zero;
                     CheckAndPlayClip(animationPrefix + "_Attack");
                     yield return new WaitForSeconds(2);
+                    attacking = false;
                 }
             }
 
