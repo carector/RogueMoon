@@ -9,7 +9,10 @@ public class Fish : MonoBehaviour
     {
         public float acceleration = 10;
         public float swimSpeed = 3;
+        public float noticedPlayerSwimSpeed = 4;
         public bool inSwimBounds = true;
+        public bool noticedPlayer;
+        public float damageRadius;
     }
 
     public FishMovementSettings movementSettings;
@@ -19,8 +22,12 @@ public class Fish : MonoBehaviour
     public string animationPrefix = "Fish";
     public Vector2 direction;
 
-    Rigidbody2D rb;
-    Animator anim;
+    [HideInInspector]
+    public Rigidbody2D rb;
+    [HideInInspector]
+    public PlayerController ply;
+    [HideInInspector]
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +39,10 @@ public class Fish : MonoBehaviour
     // Called by any subclasses
     public void GetReferences()
     {
+        ply = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        anim.SetFloat("SwimSpeed", 1);
     }
 
     // Update is called once per frame
@@ -54,7 +63,7 @@ public class Fish : MonoBehaviour
     public IEnumerator MovementCycle()
     {
         // Default movement example
-        direction = (Vector3.right * Random.Range(-1, 1f) + (Vector3.up*Random.Range(-1, 1))).normalized;
+        direction = (Vector3.right * Random.Range(-1, 1f) + (Vector3.up * Random.Range(-1, 1))).normalized;
         if (direction.x > 0)
             CheckAndPlayClip(animationPrefix + "_SwimRight");
         else
@@ -82,7 +91,7 @@ public class Fish : MonoBehaviour
 
                 // Flip direction and add randomness
                 direction = (swimAreaBounds.bounds.center - transform.position);
-                direction += new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)*3);
+                direction += new Vector2(Random.Range(-1, 1), Random.Range(-1, 1) * 3);
                 direction.Normalize();
 
                 if (direction.x > 0)
@@ -102,6 +111,45 @@ public class Fish : MonoBehaviour
     {
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName(clipName))
             anim.Play(clipName, 0, 0);
+    }
+
+    public void DamagePlayer()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, movementSettings.damageRadius);
+        foreach (Collider2D c in cols)
+        {
+            if (c.tag == "Player")
+            {
+                ply.TakeDamage();
+                break;
+            }
+        }
+    }
+
+    public void BecomeHazardForTime(float time)
+    {
+        StartCoroutine(BecomeHazardForTimeCoroutine(time));
+    }
+
+    IEnumerator BecomeHazardForTimeCoroutine(float time)
+    {
+        while (time > 0)
+        {
+            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, movementSettings.damageRadius);
+            foreach (Collider2D c in cols)
+            {
+                if (c.tag == "Player")
+                {
+                    Collider2D col = GetComponent<Collider2D>();
+                    Rigidbody2D prb = ply.GetComponent<Rigidbody2D>();
+                    prb.velocity = (ply.transform.position - (Vector3)col.ClosestPoint(ply.transform.position)).normalized * 4;
+                    ply.TakeDamage();
+                    break;
+                }
+            }
+            time -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

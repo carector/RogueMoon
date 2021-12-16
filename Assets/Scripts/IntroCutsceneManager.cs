@@ -38,7 +38,7 @@ public class IntroCutsceneManager : MonoBehaviour
             yield return null;
 
         yield return new WaitForSecondsRealtime(0.75f);
-        //yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "tutorial_1"); TEMP
+        yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "tutorial_1"); TEMP
         ply.pMovement.canMove = true;
     }
 }
