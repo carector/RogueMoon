@@ -28,13 +28,13 @@ AnimationClip:
     - time: 0.1
       value: {fileID: -7111261801108071560, guid: f07836bfb0475ba49a6f0b91491195e4,
         type: 3}
-    - time: 0.46666667
+    - time: 1
       value: {fileID: 7478407674237482187, guid: f07836bfb0475ba49a6f0b91491195e4,
         type: 3}
-    - time: 0.6666667
+    - time: 1.1333333
       value: {fileID: 2758892428433715691, guid: f07836bfb0475ba49a6f0b91491195e4,
         type: 3}
-    - time: 0.81666666
+    - time: 1.35
       value: {fileID: 2758892428433715691, guid: f07836bfb0475ba49a6f0b91491195e4,
         type: 3}
     attribute: m_Sprite
@@ -67,7 +67,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8333333
+    m_StopTime: 1.3666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -91,6 +91,6 @@ AnimationClip:
     functionName: BecomeHazardForTime
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.45
+    floatParameter: 1
     intParameter: 0
     messageOptions: 0

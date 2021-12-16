@@ -19,7 +19,7 @@ public class IntroCutsceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ply.pResources.metal > 0 && !showedMetalDialog)
+        if (ply.pResources.metal > 0 && !showedMetalDialog)
         {
             showedMetalDialog = true;
             StartCoroutine(MetalPickupDialog());
@@ -38,7 +38,7 @@ public class IntroCutsceneManager : MonoBehaviour
             yield return null;
 
         yield return new WaitForSecondsRealtime(0.75f);
-       //yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "tutorial_1");
+        //yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "tutorial_1");
         ply.pMovement.canMove = true;
     }
 }

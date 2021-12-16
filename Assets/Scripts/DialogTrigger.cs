@@ -16,7 +16,6 @@ public class DialogTrigger : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            print("yeah");
             gm.StartCoroutine(gm.DisplayDialog(gm.dialogSettings.JSONSource, conversationId));
             Destroy(this.gameObject);
         }

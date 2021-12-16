@@ -15,6 +15,7 @@ public class Fish : MonoBehaviour
         public float damageRadius;
         public float noticeDistance;
         public float attackDistance;
+        public LayerMask playerLayermask;
     }
 
     public FishMovementSettings movementSettings;
@@ -64,10 +65,14 @@ public class Fish : MonoBehaviour
     public bool CanSeePlayer()
     {
         bool inLOS = false;
-        int mask = ~(1 | 1 << 8);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, (transform.position - ply.transform.position), movementSettings.noticeDistance, mask);
+        int mask = ~(1 | (1 << 8));
+        Vector2 dir = (ply.transform.position - transform.position).normalized;
+        Debug.DrawRay(transform.position, dir * movementSettings.noticeDistance, Color.red, Time.deltaTime);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, movementSettings.noticeDistance, movementSettings.playerLayermask);
         if (hit.transform != null && hit.transform.tag == "Player")
+        {
             inLOS = true;
+        }
         return inLOS;
     }
 

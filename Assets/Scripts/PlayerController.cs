@@ -372,6 +372,11 @@ public class PlayerController : MonoBehaviour
                         hitRb.bodyType = RigidbodyType2D.Dynamic;
                         break;
                     }
+                    else if(col.tag.Equals("Fish"))
+                    {
+                        col.SendMessage("BreakApart");
+                        break;
+                    }
                 }
             }
             if (hitGroundPoint != Vector3.zero || hitObject != null)

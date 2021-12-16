@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PufferfishScript : Fish
 {
-    bool attacking;
+    public bool attacking;
+    public Sprite[] fishGibsSmall;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +23,11 @@ public class PufferfishScript : Fish
     public void BreakApart()
     {
         if (attacking)
-            foreach (Sprite s in goreBits)
-                Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));
+            for(int i = 0; i < goreBits.Length / 2; i++)
+                Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[Random.Range(0, goreBits.Length)], Random.Range(-50, 50));
         else
-            for (int i = 0; i < 3; i++)
-                Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[i], Random.Range(-50, 50));
+            foreach (Sprite s in fishGibsSmall)
+                Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));
 
         Destroy(this.gameObject);
     }
@@ -90,7 +91,7 @@ public class PufferfishScript : Fish
                     attacking = true;
                     rb.velocity = Vector2.zero;
                     CheckAndPlayClip(animationPrefix + "_Attack");
-                    yield return new WaitForSeconds(2);
+                    yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
                     attacking = false;
                 }
             }
