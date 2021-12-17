@@ -94,7 +94,7 @@ public class Fish : MonoBehaviour
             anim.SetFloat("SwimSpeed", 1);
 
             // Flip if we're outside the bounds of the swim area
-            if (!movementSettings.inSwimBounds)
+            if (!movementSettings.inSwimBounds || ShouldReturnToHitZone())
             {
                 rb.velocity = Vector2.zero;
 
@@ -142,6 +142,13 @@ public class Fish : MonoBehaviour
             }
         }
     }
+
+    public bool ShouldReturnToHitZone()
+    {
+        bool state = Vector2.Distance(transform.position, swimAreaBounds.ClosestPoint(transform.position)) > 10;
+        return state;
+    }
+
 
     public void BecomeHazardForTime(float time)
     {

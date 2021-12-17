@@ -46,7 +46,7 @@ public class GibScript : MonoBehaviour
 
     IEnumerator FadeOutAfterTime()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3);
         while(spr.color.a > 0)
         {
             spr.color -= new Color(0, 0, 0, 0.01f);

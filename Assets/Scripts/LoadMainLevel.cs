@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using TMPro;
 
 public class LoadMainLevel : MonoBehaviour
 {
-    Text focusText;
+    TextMeshProUGUI focusText;
     VideoPlayer vp;
 
     // Start is called before the first frame update
     void Start()
     {
-        focusText = FindObjectOfType<Text>();
+        focusText = FindObjectOfType<TextMeshProUGUI>();
         vp = FindObjectOfType<VideoPlayer>();
         //focusText.color = Color.clear;
         StartCoroutine(WaitAndLoad());

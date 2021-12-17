@@ -55,27 +55,30 @@ public class SpitterScript : MonoBehaviour
     {
         while (true)
         {
-            if (ply.transform.position.x < transform.position.x && storedDir != -1)
+            if (ply.pResources.health > 0)
             {
-                CheckAndPlayClip(spitterAnim, "SpitterBody_TurnLeft");
-                yield return new WaitForSeconds(0.5f);
-            }
-            else if (ply.transform.position.x > transform.position.x && storedDir != 1)
-            {
-                CheckAndPlayClip(spitterAnim, "SpitterBody_TurnRight");
-                yield return new WaitForSeconds(0.5f);
-            }
+                if (ply.transform.position.x < transform.position.x && storedDir != -1)
+                {
+                    CheckAndPlayClip(spitterAnim, "SpitterBody_TurnLeft");
+                    yield return new WaitForSeconds(0.5f);
+                }
+                else if (ply.transform.position.x > transform.position.x && storedDir != 1)
+                {
+                    CheckAndPlayClip(spitterAnim, "SpitterBody_TurnRight");
+                    yield return new WaitForSeconds(0.5f);
+                }
 
-            CheckAndPlayClip(bodyAnim, "Spitter_Shoot");
-            if (storedDir == -1)
-            {
-                CheckAndPlayClip(spitterAnim, "SpitterBody_ShootLeft");
-                yield return new WaitForSeconds(0.5f);
-            }
-            else
-            {
-                CheckAndPlayClip(spitterAnim, "SpitterBody_ShootRight");
-                yield return new WaitForSeconds(0.5f);
+                CheckAndPlayClip(bodyAnim, "Spitter_Shoot");
+                if (storedDir == -1)
+                {
+                    CheckAndPlayClip(spitterAnim, "SpitterBody_ShootLeft");
+                    yield return new WaitForSeconds(0.5f);
+                }
+                else
+                {
+                    CheckAndPlayClip(spitterAnim, "SpitterBody_ShootRight");
+                    yield return new WaitForSeconds(0.5f);
+                }
             }
             yield return new WaitForSeconds(1f);
         }

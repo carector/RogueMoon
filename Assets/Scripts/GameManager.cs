@@ -94,10 +94,16 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI metalNumberText;
     TextMeshProUGUI harpoonNumberText;
     TextMeshProUGUI depthChargeNumberText;
+    TextMeshProUGUI gameOverText;
+    RectTransform[] gameOverButtons;
+    RectTransform gameOverPanel;
 
+    RectTransform hudHolder;
     RectTransform textboxHolder;
     RectTransform actionMenuHolder;
     RectTransform[] actionMenuCategories = new RectTransform[3];
+    RectTransform depthArrow;
+    TextMeshProUGUI depthText;
     TextMeshProUGUI dialogText;
     Image leftPortrait;
     Image rightPortrait;
@@ -108,6 +114,8 @@ public class GameManager : MonoBehaviour
     PlayerController ply;
     Transform cam;
 
+    bool gameOverInProgress;
+
     // used for when we unpause when the mech menu is already
     // open we don't fuck up our timescale
     float actionMenuStoredTimeScale;
@@ -115,6 +123,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         sfxSource = transform.GetChild(0).GetComponent<AudioSource>();
         stoppableSfxSource = transform.GetChild(0).GetComponent<AudioSource>();
         musicSource = transform.GetChild(2).GetComponent<AudioSource>();
@@ -146,6 +155,15 @@ public class GameManager : MonoBehaviour
         ply = FindObjectOfType<PlayerController>();
         cam = FindObjectOfType<CameraControl>().transform.GetChild(0);
 
+        depthArrow = GameObject.Find("DepthArrow").GetComponent<RectTransform>();
+        depthText = depthArrow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        hudHolder = GameObject.Find("HUDHolder").GetComponent<RectTransform>();
+        gameOverText = GameObject.Find("GameOverText").GetComponent<TextMeshProUGUI>();
+        gameOverPanel = gameOverText.transform.parent.GetComponent<RectTransform>();
+        gameOverButtons = new RectTransform[2];
+        for (int i = 0; i < 2; i++)
+            gameOverButtons[i] = gameOverPanel.transform.GetChild(i + 1).GetComponent<RectTransform>();
+
         // Convert dialog from JSON file to nice, readable dialog
         dialogSettings.cachedTextData = DeserializeDialog(dialogSettings.JSONSource);
     }
@@ -155,32 +173,85 @@ public class GameManager : MonoBehaviour
     {
         UpdateHUD();
 
-        // Open mech menu
-        if (Input.GetKeyDown(KeyCode.Tab) && !dialogSettings.isPrintingDialog)
+        if (ply.pResources.health > 0)
         {
-            menuOpen = !menuOpen;
-            if (menuOpen)
+            // Open mech menu
+            if (Input.GetKeyDown(KeyCode.Tab) && !dialogSettings.isPrintingDialog)
             {
-                Time.timeScale = 0;
-                actionMenuHolder.anchoredPosition = Vector2.zero;
+                menuOpen = !menuOpen;
+                if (menuOpen)
+                {
+                    Time.timeScale = 0;
+                    actionMenuHolder.anchoredPosition = Vector2.zero;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    actionMenuHolder.anchoredPosition = new Vector2(0, -160);
+                    SwitchMenuScreen(4);
+                }
             }
-            else
+
+            // Open pause menu
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Time.timeScale = 1;
-                actionMenuHolder.anchoredPosition = new Vector2(0, -160);
-                SwitchMenuScreen(4);
+                gamePaused = !gamePaused;
+                if (gamePaused)
+                    Time.timeScale = 0;
+                else
+                    Time.timeScale = 1;
             }
         }
 
-        // Open pause menu
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Game over if health < 0
+        if (ply.pResources.health <= 0 && !gameOverInProgress)
         {
-            gamePaused = !gamePaused;
-            if (gamePaused)
-                Time.timeScale = 0;
-            else
-                Time.timeScale = 1;
+            gameOverInProgress = true;
+            StartCoroutine(GameOverSequence());
         }
+    }
+
+    IEnumerator GameOverSequence()
+    {
+        hudHolder.anchoredPosition = new Vector2(0, 1000);
+        StartCoroutine(ply.Die());
+        yield return new WaitForSeconds(4);
+        Time.timeScale = 0;
+
+        gameOverPanel.anchoredPosition = Vector2.zero;
+        // Show game over text
+        string t = "Mission failure";
+        int sentenceLength = t.Length;
+
+        for (int k = 0; k < sentenceLength; k++)
+        {
+            if (k % 2 == 0)
+            {
+                dialogAudio.Stop();
+                dialogAudio.PlayOneShot(sfx.dialogVoices[Random.Range(0, sfx.dialogVoices.Length - 1)]);
+            }
+            gameOverText.text = t.Substring(0, k);
+            yield return new WaitForSecondsRealtime(0.025f);
+        }
+
+        gameOverText.text = t;
+        dialogAudio.Stop();
+        dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        for (int i = 0; i < 2; i++)
+            gameOverButtons[i].anchoredPosition = new Vector2(0, gameOverButtons[i].anchoredPosition.y);
+
+    }
+
+    public void QuitToTitle()
+    {
+        Application.LoadLevel(1);
+    }
+
+    public void RestartFromCheckpoint()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     private void FixedUpdate()
@@ -206,6 +277,12 @@ public class GameManager : MonoBehaviour
         // Update healthbar
         healthbarFill.rectTransform.sizeDelta = new Vector2(5 * ply.pResources.health, 6);
         healthbarFill.rectTransform.anchoredPosition = new Vector2(3 + 2.5f * ply.pResources.health, 0);
+
+        // Update depth arrow + depth text
+        float lowestDepth = 400;
+        int depthMultiplier = 5;
+        depthText.text = Mathf.Clamp(-Mathf.RoundToInt(ply.transform.position.y*depthMultiplier), 0, lowestDepth*depthMultiplier).ToString() + " m";
+        depthArrow.anchoredPosition = new Vector2(4, 80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150);
 
         UpdateHarpoonNumber();
         UpdateActionMenuNumbers();

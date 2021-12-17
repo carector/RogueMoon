@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         public bool attackDelayInProgress = false;
         public bool swapToolDelayInProgress = false;
         public bool damageDelayInProgress = false;
+        public GameObject explosion;
     }
 
     public PlayerMovementSettings pMovement;
@@ -107,47 +108,53 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        bool lastGroundedState = pMovement.isGrounded;
-        pMovement.isGrounded = (CheckForGround() && !harpoonStartingGroundedState);
-        pMovement.isTouchingCeiling = CheckForCeiling();
-
-        // Play impact animation if we just hit the ground
-        if (lastGroundedState != pMovement.isGrounded)
+        if (pResources.health > 0)
         {
-            if (!pAbilities.impactDelayInProgress && !pAbilities.jumpDelayInProgress)
+            bool lastGroundedState = pMovement.isGrounded;
+            pMovement.isGrounded = (CheckForGround() && !harpoonStartingGroundedState);
+            pMovement.isTouchingCeiling = CheckForCeiling();
+
+            // Play impact animation if we just hit the ground
+            if (lastGroundedState != pMovement.isGrounded)
             {
-                if (pMovement.isGrounded)
+                if (!pAbilities.impactDelayInProgress && !pAbilities.jumpDelayInProgress)
                 {
-                    StartCoroutine(ImpactDelayCoroutine());
+                    if (pMovement.isGrounded)
+                    {
+                        StartCoroutine(ImpactDelayCoroutine());
+                    }
+                    else
+                        CheckAndPlayClip(bodyAnim, "Mech_Midair");
                 }
-                else
-                    CheckAndPlayClip(bodyAnim, "Mech_Midair");
             }
+
+            if (pMovement.isGrounded)
+                rb.sharedMaterial = pMovement.groundedMaterial;
+            else
+                rb.sharedMaterial = pMovement.airMaterial;
+
+            if (Time.timeScale == 0)
+                return;
+
+            MovePlayer();
+            AddWaterResistanceForce();
+            UpdateSprite();
         }
-
-        if (pMovement.isGrounded)
-            rb.sharedMaterial = pMovement.groundedMaterial;
-        else
-            rb.sharedMaterial = pMovement.airMaterial;
-
-        if (Time.timeScale == 0)
-            return;
-
-        MovePlayer();
-        AddWaterResistanceForce();
-        UpdateSprite();
     }
 
     private void Update()
     {
-        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        lineTEMP.SetPositions(new Vector3[2] { transform.position, transform.position });
+        if (pResources.health > 0)
+        {
+            mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            lineTEMP.SetPositions(new Vector3[2] { transform.position, transform.position });
 
-        if (Time.timeScale == 0)
-            return;
+            if (Time.timeScale == 0)
+                return;
 
-        RotateArm();
-        CheckButtonInputs();
+            RotateArm();
+            CheckButtonInputs();
+        }
     }
 
     void MovePlayer()
@@ -368,7 +375,7 @@ public class PlayerController : MonoBehaviour
                         hitRb.bodyType = RigidbodyType2D.Dynamic;
                         break;
                     }
-                    else if(col.tag.Equals("Fish"))
+                    else if(col.tag.Equals("Fish") || col.tag.Equals("Bubble"))
                     {
                         col.SendMessage("BreakApart");
                         break;
@@ -507,7 +514,7 @@ public class PlayerController : MonoBehaviour
         Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2.25f, 0.75f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
         foreach (Collider2D c in cols)
         {
-            if (c.tag == "Breakable" || c.tag == "Harpoonable" || c.tag == "Fish")
+            if (c.tag == "Breakable" || c.tag == "Harpoonable" || c.tag == "Fish" || c.tag == "Bubble")
             {
                 c.SendMessage("BreakApart", SendMessageOptions.DontRequireReceiver);
             }
@@ -587,12 +594,14 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         // Short immunity period after getting attacked
-        if (pAbilities.damageDelayInProgress)
+        if (pAbilities.damageDelayInProgress || pResources.health <= 0)
             return;
 
         pResources.health--;
         gm.ScreenShake(7);
-        StartCoroutine(DamageFlashCoroutine());
+        if(pResources.health > 0)
+            StartCoroutine(DamageFlashCoroutine());
+
         StartCoroutine(DamageImmuneDelayCoroutine());
     }
 
@@ -632,5 +641,29 @@ public class PlayerController : MonoBehaviour
     {
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName(clipName))
             anim.Play(clipName, 0, 0);
+    }
+
+    public IEnumerator Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector2.zero;
+        float timer = 1.75f;
+        while(timer > 0)
+        {
+            bodySpr.color = Color.red;
+            armsSpr.color = Color.red;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            bodySpr.color = Color.white;
+            armsSpr.color = Color.white;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            timer -= Time.fixedDeltaTime * 4;
+        }
+
+        Instantiate(pAbilities.explosion, transform.position, Quaternion.identity);
+        CheckAndPlayClip(armsAnim, "Arm_Invisible");
+        CheckAndPlayClip(bodyAnim, "Mech_Invisible");
     }
 }

@@ -11,7 +11,6 @@ public class SpitterProjectileScript : MonoBehaviour
         ply = FindObjectOfType<PlayerController>();
         Vector2 dir = ply.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        print(angle);
         if (parentDir == 1)
             angle = Mathf.Clamp(angle, -45, 20);
         else

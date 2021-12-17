@@ -23,7 +23,7 @@ public class PufferfishScript : Fish
     public void BreakApart()
     {
         if (attacking)
-            for(int i = 0; i < goreBits.Length / 2; i++)
+            for (int i = 0; i < goreBits.Length / 2; i++)
                 Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[Random.Range(0, goreBits.Length)], Random.Range(-50, 50));
         else
             foreach (Sprite s in fishGibsSmall)
@@ -42,14 +42,14 @@ public class PufferfishScript : Fish
 
         while (true)
         {
-            if (!movementSettings.noticedPlayer)
+            if (!movementSettings.noticedPlayer || ply.pResources.health <= 0)
             {
                 // Move in one direction until we leave the swim area
                 rb.AddForce(direction * movementSettings.acceleration);
                 rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.swimSpeed), 0.1f);
 
                 // Flip if we're outside the bounds of the swim area
-                if (!movementSettings.inSwimBounds)
+                if (!movementSettings.inSwimBounds || ShouldReturnToHitZone())
                 {
                     rb.velocity = Vector2.zero;
 
@@ -91,6 +91,7 @@ public class PufferfishScript : Fish
                     attacking = true;
                     rb.velocity = Vector2.zero;
                     CheckAndPlayClip(animationPrefix + "_Attack");
+
                     yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
                     attacking = false;
                 }
