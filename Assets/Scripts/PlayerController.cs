@@ -267,10 +267,6 @@ public class PlayerController : MonoBehaviour
 
     void CheckButtonInputs()
     {
-        // TEMP
-        if (Input.GetKeyDown(KeyCode.G))
-            TakeDamage();
-
         if (!pMovement.canMove)
             return;
 
