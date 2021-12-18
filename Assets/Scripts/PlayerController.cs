@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
         public bool swapToolDelayInProgress = false;
         public bool damageDelayInProgress = false;
         public GameObject explosion;
+        public GameObject bubble;
     }
 
     public PlayerMovementSettings pMovement;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
     float gravityScale;
     bool hasRetractedArm;
     bool lastAttackState;
+    bool invisible;
     float storedHoverTime;
     int mask = ~((1 << 8) | (1 << 10) | (1 << 9)); // Ground + ceiling raycast layermask
     bool harpoonStartingGroundedState;
@@ -108,7 +110,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (pResources.health > 0)
+        if (pResources.health > 0 || invisible)
         {
             bool lastGroundedState = pMovement.isGrounded;
             pMovement.isGrounded = (CheckForGround() && !harpoonStartingGroundedState);
@@ -159,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        if (pAbilities.beingPulledTowardsHarpoon || pAbilities.impactDelayInProgress)
+        if (pAbilities.beingPulledTowardsHarpoon || pAbilities.impactDelayInProgress || invisible)
             return;
 
         bodyAnim.SetFloat("WalkSpeed", Mathf.Clamp(rb.velocity.magnitude / 3, 0, pMovement.groundSpeed / 3f));
@@ -520,6 +522,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < 4; i++)
+            Instantiate(pAbilities.bubble, damageStartPoint.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(3, BubbleScript.BubbleSize.small);
+
         yield return new WaitForSeconds(pAbilities.attackDelayTime);
 
         CheckAndPlayClip(armsAnim, "Arm_Walk");
@@ -568,7 +573,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateSprite()
     {
-        if (pAbilities.attacking || !pMovement.canMove || pAbilities.firingHarpoon || Mathf.Abs(mouseWorldPos.x - transform.position.x) <= 0.5f)
+        if (invisible || pAbilities.attacking || !pMovement.canMove || pAbilities.firingHarpoon || Mathf.Abs(mouseWorldPos.x - transform.position.x) <= 0.5f)
             return;
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -591,12 +596,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void GetCrushed()
+    {
+        invisible = true;
+        GetComponent<Collider2D>().enabled = false;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector2.zero;
+        CheckAndPlayClip(armsAnim, "Arm_Invisible");
+        CheckAndPlayClip(bodyAnim, "Mech_Invisible");
+
+        for (int i = 0; i < 10; i++)
+            Instantiate(pAbilities.bubble, transform.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(3, BubbleScript.BubbleSize.random);
+    }
+
     public void TakeDamage()
     {
         // Short immunity period after getting attacked
         if (pAbilities.damageDelayInProgress || pResources.health <= 0)
             return;
 
+        for (int i = 0; i < 4; i++)
+            Instantiate(pAbilities.bubble, damageStartPoint.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(4, BubbleScript.BubbleSize.random);
         pResources.health--;
         gm.ScreenShake(7);
         if(pResources.health > 0)
@@ -663,6 +683,10 @@ public class PlayerController : MonoBehaviour
         }
 
         Instantiate(pAbilities.explosion, transform.position, Quaternion.identity);
+
+        for (int i = 0; i < 6; i++)
+            Instantiate(pAbilities.bubble, transform.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(3, BubbleScript.BubbleSize.random);
+
         CheckAndPlayClip(armsAnim, "Arm_Invisible");
         CheckAndPlayClip(bodyAnim, "Mech_Invisible");
     }

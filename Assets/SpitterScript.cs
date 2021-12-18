@@ -43,9 +43,9 @@ public class SpitterScript : MonoBehaviour
 
     public void BreakApart()
     {
-        Instantiate(gib, transform.position + Vector3.down*1.35f, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[0], Random.Range(-50, 50));
-        Instantiate(gib, transform.position + Vector3.down * 2.24f + Vector3.right*storedDir*0.7f, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[1], Random.Range(-50, 50));
-        Instantiate(gib, transform.position + Vector3.down * 1.85f + Vector3.right*storedDir*0.6f, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[2], Random.Range(-50, 50));
+        Instantiate(gib, transform.position + Vector3.down * 1.35f, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[0], Random.Range(-50, 50));
+        Instantiate(gib, transform.position + Vector3.down * 2.24f + Vector3.right * storedDir * 0.7f, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[1], Random.Range(-50, 50));
+        Instantiate(gib, transform.position + Vector3.down * 1.85f + Vector3.right * storedDir * 0.6f, Quaternion.identity).GetComponent<GibScript>().InitializeGib(goreBits[2], Random.Range(-50, 50));
 
         Destroy(this.gameObject);
     }
@@ -55,7 +55,7 @@ public class SpitterScript : MonoBehaviour
     {
         while (true)
         {
-            if (ply.pResources.health > 0)
+            if (ply.pResources.health > 0 && Vector2.Distance(transform.position, ply.transform.position) < 15 && ply.transform.position.y < transform.position.y + 2)
             {
                 if (ply.transform.position.x < transform.position.x && storedDir != -1)
                 {

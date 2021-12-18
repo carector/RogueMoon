@@ -213,6 +213,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOverSequence()
     {
+        musicSource.Stop();
         hudHolder.anchoredPosition = new Vector2(0, 1000);
         StartCoroutine(ply.Die());
         yield return new WaitForSeconds(4);
@@ -403,6 +404,11 @@ public class GameManager : MonoBehaviour
     {
         sfxSource.pitch = 1;
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void StopSFX()
+    {
+        sfxSource.Stop();
     }
 
     public void PlaySFX(AudioClip clip, float pitch)

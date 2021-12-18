@@ -50,7 +50,7 @@
                     "sentences": [
                         {
                             "text": "Seems that problem with the\\joint lockup won't be a pain in\\our cornholes today!",
-                            "portraitIndex": 1
+                            "portraitIndex": 4
                         }
                     ],
                 },
@@ -131,7 +131,7 @@
                     "sentences": [
                         {
                             "text": "Oh boy!",
-                            "portraitIndex": 1
+                            "portraitIndex": 4
                         }
                     ],
                 }
@@ -139,14 +139,14 @@
         },
         {
             "conversationId": "tutorial_4",
-            "initialPortraits": [0, 1],
+            "initialPortraits": [0, 4],
             "dialog": [
                 {
                     "portrait": 1,
                     "sentences": [
                         {
                             "text": "Ah, my heart soars when you\\wreck the landscape so!",
-                            "portraitIndex": 1
+                            "portraitIndex": 4
                         }
                     ],
                 },

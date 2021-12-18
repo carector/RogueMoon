@@ -1,0 +1,4169 @@
+fileFormatVersion: 2
+guid: 34a0db249c251a040a97f52159cfe451
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6743816140393479978
+    second: OceanTiles6_0
+  - first:
+      213: 8384430820218180250
+    second: OceanTiles6_1
+  - first:
+      213: -1988788807971131982
+    second: OceanTiles6_2
+  - first:
+      213: -6379661116637050044
+    second: OceanTiles6_3
+  - first:
+      213: 7688951862320201765
+    second: OceanTiles6_4
+  - first:
+      213: 2776269130591091454
+    second: OceanTiles6_5
+  - first:
+      213: 1592838332765786056
+    second: OceanTiles6_6
+  - first:
+      213: -7900537343203433623
+    second: OceanTiles6_7
+  - first:
+      213: -4644647917858830947
+    second: OceanTiles6_8
+  - first:
+      213: -11282407986752204
+    second: OceanTiles6_9
+  - first:
+      213: 4706550350968744092
+    second: OceanTiles6_10
+  - first:
+      213: -5655132410637222483
+    second: OceanTiles6_11
+  - first:
+      213: -3027770963107074497
+    second: OceanTiles6_12
+  - first:
+      213: -4394693749025732918
+    second: OceanTiles6_13
+  - first:
+      213: -7483171114065590038
+    second: OceanTiles6_14
+  - first:
+      213: 2285173784561037117
+    second: OceanTiles6_15
+  - first:
+      213: 4122553547940069268
+    second: OceanTiles6_16
+  - first:
+      213: 7170341793704101151
+    second: OceanTiles6_17
+  - first:
+      213: 5209356471406852420
+    second: OceanTiles6_18
+  - first:
+      213: 2970999906396075667
+    second: OceanTiles6_19
+  - first:
+      213: -9044880598341633839
+    second: OceanTiles6_20
+  - first:
+      213: 6569086575060064893
+    second: OceanTiles6_21
+  - first:
+      213: -6794840820602695167
+    second: OceanTiles6_22
+  - first:
+      213: 9174129799414762352
+    second: OceanTiles6_23
+  - first:
+      213: -3834783879444148030
+    second: OceanTiles6_24
+  - first:
+      213: -1186168192381827043
+    second: OceanTiles6_25
+  - first:
+      213: -4867499594041162062
+    second: OceanTiles6_26
+  - first:
+      213: 2497186087368251395
+    second: OceanTiles6_27
+  - first:
+      213: -2004747252074958101
+    second: OceanTiles6_28
+  - first:
+      213: 7534171370412130485
+    second: OceanTiles6_29
+  - first:
+      213: 3944067042899782688
+    second: OceanTiles6_30
+  - first:
+      213: -4145369787978378477
+    second: OceanTiles6_31
+  - first:
+      213: -34219816780813746
+    second: OceanTiles6_32
+  - first:
+      213: -8407854193515565192
+    second: OceanTiles6_33
+  - first:
+      213: 2587835108485784768
+    second: OceanTiles6_34
+  - first:
+      213: -8340863079707755755
+    second: OceanTiles6_35
+  - first:
+      213: -5155792055587521029
+    second: OceanTiles6_36
+  - first:
+      213: 5081857485945718218
+    second: OceanTiles6_37
+  - first:
+      213: -6721753623193099936
+    second: OceanTiles6_38
+  - first:
+      213: -5560107080434636955
+    second: OceanTiles6_39
+  - first:
+      213: -9173748921075505074
+    second: OceanTiles6_40
+  - first:
+      213: 6409718829676779142
+    second: OceanTiles6_41
+  - first:
+      213: 8397388094438325354
+    second: OceanTiles6_42
+  - first:
+      213: -7336075422516422221
+    second: OceanTiles6_43
+  - first:
+      213: -3509734862216934539
+    second: OceanTiles6_44
+  - first:
+      213: 2310794586682343029
+    second: OceanTiles6_45
+  - first:
+      213: -8135067574199924652
+    second: OceanTiles6_46
+  - first:
+      213: 7098117432753398040
+    second: OceanTiles6_47
+  - first:
+      213: 866303051901538686
+    second: OceanTiles6_48
+  - first:
+      213: 2487246535912328654
+    second: OceanTiles6_49
+  - first:
+      213: -6093844001949971534
+    second: OceanTiles6_50
+  - first:
+      213: 8003821272350869655
+    second: OceanTiles6_51
+  - first:
+      213: -8759791103187545434
+    second: OceanTiles6_52
+  - first:
+      213: 4961728452071838090
+    second: OceanTiles6_53
+  - first:
+      213: -5293609699379525466
+    second: OceanTiles6_54
+  - first:
+      213: -8042669066894493301
+    second: OceanTiles6_55
+  - first:
+      213: -4251133365625351795
+    second: OceanTiles6_56
+  - first:
+      213: 9135820748327897642
+    second: OceanTiles6_57
+  - first:
+      213: -3744157131153237255
+    second: OceanTiles6_58
+  - first:
+      213: 7805720073580850436
+    second: OceanTiles6_59
+  - first:
+      213: 2018840302397830756
+    second: OceanTiles6_60
+  - first:
+      213: 6651760707974524938
+    second: OceanTiles6_61
+  - first:
+      213: 1209374744706511163
+    second: OceanTiles6_62
+  - first:
+      213: -7088266209565128286
+    second: OceanTiles6_63
+  - first:
+      213: -1724954907159313304
+    second: OceanTiles6_64
+  - first:
+      213: 8456467197286179830
+    second: OceanTiles6_65
+  - first:
+      213: 1215553522861642555
+    second: OceanTiles6_66
+  - first:
+      213: -8868654841839746360
+    second: OceanTiles6_67
+  - first:
+      213: -4119385302011480947
+    second: OceanTiles6_68
+  - first:
+      213: -3048108384351777881
+    second: OceanTiles6_69
+  - first:
+      213: 7847933808962485720
+    second: OceanTiles6_70
+  - first:
+      213: -8328233394441331695
+    second: OceanTiles6_71
+  - first:
+      213: 8645404389437421866
+    second: OceanTiles6_72
+  - first:
+      213: -672448437399940288
+    second: OceanTiles6_73
+  - first:
+      213: 4672164970556870892
+    second: OceanTiles6_74
+  - first:
+      213: 8170147150119482626
+    second: OceanTiles6_75
+  - first:
+      213: -1460822440312630417
+    second: OceanTiles6_76
+  - first:
+      213: -3921836746761214146
+    second: OceanTiles6_77
+  - first:
+      213: 5927446855986973528
+    second: OceanTiles6_78
+  - first:
+      213: 5300283652557538373
+    second: OceanTiles6_79
+  - first:
+      213: -2718858552800095188
+    second: OceanTiles6_80
+  - first:
+      213: 5643407607124004391
+    second: OceanTiles6_81
+  - first:
+      213: 6470197547635784457
+    second: OceanTiles6_82
+  - first:
+      213: -5968721635896563484
+    second: OceanTiles6_83
+  - first:
+      213: -961404935337146071
+    second: OceanTiles6_84
+  - first:
+      213: 979052658491639518
+    second: OceanTiles6_85
+  - first:
+      213: 8278936415343184849
+    second: OceanTiles6_86
+  - first:
+      213: 4199855023396730323
+    second: OceanTiles6_87
+  - first:
+      213: 4676965794384678364
+    second: OceanTiles6_88
+  - first:
+      213: 1747056499489449642
+    second: OceanTiles6_89
+  - first:
+      213: -2576502792262083300
+    second: OceanTiles6_90
+  - first:
+      213: 2701903349855376859
+    second: OceanTiles6_91
+  - first:
+      213: -2230279475939697385
+    second: OceanTiles6_92
+  - first:
+      213: 1011120587214245203
+    second: OceanTiles6_93
+  - first:
+      213: -7434608259510807481
+    second: OceanTiles6_94
+  - first:
+      213: 4528137396675568317
+    second: OceanTiles6_95
+  - first:
+      213: -5960831555544158583
+    second: OceanTiles6_96
+  - first:
+      213: 8174407324126281919
+    second: OceanTiles6_97
+  - first:
+      213: 1909544369155163792
+    second: OceanTiles6_98
+  - first:
+      213: -7943502159329724634
+    second: OceanTiles6_99
+  - first:
+      213: 3650177870177483265
+    second: OceanTiles6_100
+  - first:
+      213: 2932900360918788453
+    second: OceanTiles6_101
+  - first:
+      213: -982911035566775118
+    second: OceanTiles6_102
+  - first:
+      213: 315436239933839149
+    second: OceanTiles6_103
+  - first:
+      213: -2113659503056251631
+    second: OceanTiles6_104
+  - first:
+      213: 6127857937308873686
+    second: OceanTiles6_105
+  - first:
+      213: 7233086959099259615
+    second: OceanTiles6_106
+  - first:
+      213: 2155311042931464313
+    second: OceanTiles6_107
+  - first:
+      213: -6413841996814749043
+    second: OceanTiles6_108
+  - first:
+      213: 2002377358863780543
+    second: OceanTiles6_109
+  - first:
+      213: 355456537043857834
+    second: OceanTiles6_110
+  - first:
+      213: 5580655819901593137
+    second: OceanTiles6_111
+  - first:
+      213: -685746747536616896
+    second: OceanTiles6_112
+  - first:
+      213: -6569781000249248141
+    second: OceanTiles6_113
+  - first:
+      213: 321988985419370237
+    second: OceanTiles6_114
+  - first:
+      213: -8816344010211012294
+    second: OceanTiles6_115
+  - first:
+      213: -6723654197036583866
+    second: OceanTiles6_116
+  - first:
+      213: 5438883317971390855
+    second: OceanTiles6_117
+  - first:
+      213: -8159022450174992818
+    second: OceanTiles6_118
+  - first:
+      213: 4690597729919152621
+    second: OceanTiles6_119
+  - first:
+      213: -2314891706557246874
+    second: OceanTiles6_120
+  - first:
+      213: -1448335369127546751
+    second: OceanTiles6_121
+  - first:
+      213: 6149070885258818778
+    second: OceanTiles6_122
+  - first:
+      213: -566152819213484202
+    second: OceanTiles6_123
+  - first:
+      213: -3793469349922729674
+    second: OceanTiles6_124
+  - first:
+      213: -7522539699279525406
+    second: OceanTiles6_125
+  - first:
+      213: -4299932432170921167
+    second: OceanTiles6_126
+  - first:
+      213: 5312854818809664909
+    second: OceanTiles6_127
+  - first:
+      213: -8493545161071117286
+    second: OceanTiles6_128
+  - first:
+      213: 2516719127150004303
+    second: OceanTiles6_129
+  - first:
+      213: 6582994608762755273
+    second: OceanTiles6_130
+  - first:
+      213: 3117132229711079545
+    second: OceanTiles6_131
+  - first:
+      213: 1546620952089653432
+    second: OceanTiles6_132
+  - first:
+      213: 4882385307731537193
+    second: OceanTiles6_133
+  - first:
+      213: -7097924375565601486
+    second: OceanTiles6_134
+  - first:
+      213: -707515153495613846
+    second: OceanTiles6_135
+  - first:
+      213: 7427821844523567066
+    second: OceanTiles6_136
+  - first:
+      213: 6194229483126082969
+    second: OceanTiles6_137
+  - first:
+      213: 5885651294595892398
+    second: OceanTiles6_138
+  - first:
+      213: 5016091470706088242
+    second: OceanTiles6_139
+  - first:
+      213: -8744297444707057544
+    second: OceanTiles6_140
+  - first:
+      213: -5218966536604264089
+    second: OceanTiles6_141
+  - first:
+      213: 4675417409309926602
+    second: OceanTiles6_142
+  - first:
+      213: -6002457669387267731
+    second: OceanTiles6_143
+  - first:
+      213: 4509688409849050899
+    second: OceanTiles6_144
+  - first:
+      213: -526260900455388157
+    second: OceanTiles6_145
+  - first:
+      213: 8213682152945080241
+    second: OceanTiles6_146
+  - first:
+      213: 1758590177804919069
+    second: OceanTiles6_0
+  - first:
+      213: 4752477413493822289
+    second: OceanTiles6_1
+  - first:
+      213: -7228668056889233799
+    second: OceanTiles6_2
+  - first:
+      213: 8409665236563289722
+    second: OceanTiles6_3
+  - first:
+      213: -2622561506005651920
+    second: OceanTiles6_4
+  - first:
+      213: -5638681871000950812
+    second: OceanTiles6_5
+  - first:
+      213: 3653615332352464088
+    second: OceanTiles6_6
+  - first:
+      213: -5473529965713976110
+    second: OceanTiles6_7
+  - first:
+      213: -8970002222843244118
+    second: OceanTiles6_8
+  - first:
+      213: -3912377114600086441
+    second: OceanTiles6_9
+  - first:
+      213: -1351228447374941019
+    second: OceanTiles6_10
+  - first:
+      213: -1008570212115275416
+    second: OceanTiles6_11
+  - first:
+      213: 6006816514329107820
+    second: OceanTiles6_12
+  - first:
+      213: -235418599342535558
+    second: OceanTiles6_13
+  - first:
+      213: -1011423439044306977
+    second: OceanTiles6_14
+  - first:
+      213: 1727532901832262542
+    second: OceanTiles6_15
+  - first:
+      213: -8844421121042508379
+    second: OceanTiles6_16
+  - first:
+      213: -3761251458614998765
+    second: OceanTiles6_17
+  - first:
+      213: -551172875591459926
+    second: OceanTiles6_18
+  - first:
+      213: 6164881585095523181
+    second: OceanTiles6_19
+  - first:
+      213: -6243424761304562278
+    second: OceanTiles6_20
+  - first:
+      213: -475006424322476022
+    second: OceanTiles6_21
+  - first:
+      213: 7033546118177123541
+    second: OceanTiles6_22
+  - first:
+      213: 1476258502602971150
+    second: OceanTiles6_23
+  - first:
+      213: -6300280019259086585
+    second: OceanTiles6_24
+  - first:
+      213: -6089834173654246216
+    second: OceanTiles6_25
+  - first:
+      213: 5791253839219215038
+    second: OceanTiles6_26
+  - first:
+      213: 1689242941466831579
+    second: OceanTiles6_27
+  - first:
+      213: 4493754169837186218
+    second: OceanTiles6_28
+  - first:
+      213: 8635230058664183203
+    second: OceanTiles6_29
+  - first:
+      213: 320371863167867006
+    second: OceanTiles6_30
+  - first:
+      213: -6011591907620300683
+    second: OceanTiles6_31
+  - first:
+      213: 6524242020828270224
+    second: OceanTiles6_32
+  - first:
+      213: -5824968156378497315
+    second: OceanTiles6_33
+  - first:
+      213: 2809684852142261077
+    second: OceanTiles6_34
+  - first:
+      213: 6963874679677664043
+    second: OceanTiles6_35
+  - first:
+      213: 3248016055478468320
+    second: OceanTiles6_36
+  - first:
+      213: 4170511387074488854
+    second: OceanTiles6_37
+  - first:
+      213: -3722455498267885392
+    second: OceanTiles6_38
+  - first:
+      213: -1955076958522129876
+    second: OceanTiles6_39
+  - first:
+      213: 5622547219776702315
+    second: OceanTiles6_40
+  - first:
+      213: -692003681382479953
+    second: OceanTiles6_41
+  - first:
+      213: 2638912731254143002
+    second: OceanTiles6_42
+  - first:
+      213: 8546896288935008406
+    second: OceanTiles6_43
+  - first:
+      213: 3289661408170721690
+    second: OceanTiles6_44
+  - first:
+      213: 3673756858087126320
+    second: OceanTiles6_45
+  - first:
+      213: -8688232127170281253
+    second: OceanTiles6_46
+  - first:
+      213: 3178142113827701409
+    second: OceanTiles6_47
+  - first:
+      213: -901556885403343495
+    second: OceanTiles6_48
+  - first:
+      213: -2808308817619360948
+    second: OceanTiles6_49
+  - first:
+      213: -7308525930115439464
+    second: OceanTiles6_50
+  - first:
+      213: 5596287362458845350
+    second: OceanTiles6_51
+  - first:
+      213: 4608340490331305715
+    second: OceanTiles6_52
+  - first:
+      213: 1305049412579676895
+    second: OceanTiles6_53
+  - first:
+      213: 8291353138743246456
+    second: OceanTiles6_54
+  - first:
+      213: 7070538514080652174
+    second: OceanTiles6_55
+  - first:
+      213: 1342732235481235251
+    second: OceanTiles6_56
+  - first:
+      213: 6664122400297220547
+    second: OceanTiles6_57
+  - first:
+      213: -1358164610302434700
+    second: OceanTiles6_58
+  - first:
+      213: 6246538218541882909
+    second: OceanTiles6_59
+  - first:
+      213: -4230919031596488359
+    second: OceanTiles6_60
+  - first:
+      213: -6039209201602704142
+    second: OceanTiles6_61
+  - first:
+      213: -1717009473676163581
+    second: OceanTiles6_62
+  - first:
+      213: 7491026392339454664
+    second: OceanTiles6_63
+  - first:
+      213: -3624487272332192160
+    second: OceanTiles6_64
+  - first:
+      213: 6861851449517621341
+    second: OceanTiles6_65
+  - first:
+      213: 8609146416566113561
+    second: OceanTiles6_66
+  - first:
+      213: 6225823354435206350
+    second: OceanTiles6_67
+  - first:
+      213: 5349967544093765464
+    second: OceanTiles6_68
+  - first:
+      213: -6595194665841133755
+    second: OceanTiles6_69
+  - first:
+      213: 6216660681438183861
+    second: OceanTiles6_70
+  - first:
+      213: 1925021510475678222
+    second: OceanTiles6_71
+  - first:
+      213: 1046865112221188803
+    second: OceanTiles6_72
+  - first:
+      213: 1039882745386598098
+    second: OceanTiles6_73
+  - first:
+      213: 2177622759439824774
+    second: OceanTiles6_74
+  - first:
+      213: -7633307397770211577
+    second: OceanTiles6_75
+  - first:
+      213: -7551398746238156252
+    second: OceanTiles6_76
+  - first:
+      213: -1389967361898124773
+    second: OceanTiles6_77
+  - first:
+      213: 3739852676439273359
+    second: OceanTiles6_78
+  - first:
+      213: 3344622352511259461
+    second: OceanTiles6_79
+  - first:
+      213: -4132220039506659813
+    second: OceanTiles6_80
+  - first:
+      213: -1467632884936160575
+    second: OceanTiles6_81
+  - first:
+      213: -7353918196487132457
+    second: OceanTiles6_82
+  - first:
+      213: 2982127619532946697
+    second: OceanTiles6_83
+  - first:
+      213: -2292721933215422173
+    second: OceanTiles6_84
+  - first:
+      213: 8652232454734885404
+    second: OceanTiles6_85
+  - first:
+      213: -842008810273664139
+    second: OceanTiles6_86
+  - first:
+      213: -4267489152315417921
+    second: OceanTiles6_87
+  - first:
+      213: 2938740364279830757
+    second: OceanTiles6_88
+  - first:
+      213: 5461712133246683065
+    second: OceanTiles6_89
+  - first:
+      213: -7806192260499678164
+    second: OceanTiles6_90
+  - first:
+      213: 3586175901254123484
+    second: OceanTiles6_91
+  - first:
+      213: 5472571155853944115
+    second: OceanTiles6_92
+  - first:
+      213: -3234988644488930129
+    second: OceanTiles6_93
+  - first:
+      213: -8808506910916538699
+    second: OceanTiles6_94
+  - first:
+      213: 2661447583681823593
+    second: OceanTiles6_95
+  - first:
+      213: -4829212140940111848
+    second: OceanTiles6_96
+  - first:
+      213: 1521716647593782085
+    second: OceanTiles6_97
+  - first:
+      213: -8555962374499374938
+    second: OceanTiles6_98
+  - first:
+      213: -1544187472942115406
+    second: OceanTiles6_99
+  - first:
+      213: 8646075913744869878
+    second: OceanTiles6_100
+  - first:
+      213: 6340038118961362328
+    second: OceanTiles6_101
+  - first:
+      213: 3539399147860126613
+    second: OceanTiles6_102
+  - first:
+      213: 7798631941354161319
+    second: OceanTiles6_103
+  - first:
+      213: 3196352547879879777
+    second: OceanTiles6_104
+  - first:
+      213: -2602449547884042106
+    second: OceanTiles6_105
+  - first:
+      213: -244611419686777778
+    second: OceanTiles6_106
+  - first:
+      213: -7872720745548669324
+    second: OceanTiles6_107
+  - first:
+      213: -8928679298217803860
+    second: OceanTiles6_108
+  - first:
+      213: 6747324569333543784
+    second: OceanTiles6_109
+  - first:
+      213: -3183906262754137934
+    second: OceanTiles6_110
+  - first:
+      213: 273662251261141980
+    second: OceanTiles6_111
+  - first:
+      213: 1472833720949462540
+    second: OceanTiles6_112
+  - first:
+      213: 4589501635757921627
+    second: OceanTiles6_113
+  - first:
+      213: -8282182746451831838
+    second: OceanTiles6_114
+  - first:
+      213: -6959928638159277303
+    second: OceanTiles6_115
+  - first:
+      213: 3752383163517396389
+    second: OceanTiles6_116
+  - first:
+      213: -7164376580093713255
+    second: OceanTiles6_117
+  - first:
+      213: -7350507580671393336
+    second: OceanTiles6_118
+  - first:
+      213: 1562657422355748707
+    second: OceanTiles6_119
+  - first:
+      213: -1873355791847105125
+    second: OceanTiles6_120
+  - first:
+      213: -5709034004634725237
+    second: OceanTiles6_121
+  - first:
+      213: 9187696285065857377
+    second: OceanTiles6_122
+  - first:
+      213: -4333650400664134603
+    second: OceanTiles6_123
+  - first:
+      213: 2781530306516807243
+    second: OceanTiles6_124
+  - first:
+      213: -8059885859809141280
+    second: OceanTiles6_125
+  - first:
+      213: 2844663079840603374
+    second: OceanTiles6_126
+  - first:
+      213: -3095689084861539817
+    second: OceanTiles6_127
+  - first:
+      213: -1760891357894788075
+    second: OceanTiles6_128
+  - first:
+      213: -5848699254984480425
+    second: OceanTiles6_129
+  - first:
+      213: 1383099266281615761
+    second: OceanTiles6_130
+  - first:
+      213: -7852820937645836965
+    second: OceanTiles6_131
+  - first:
+      213: -6110216134727595675
+    second: OceanTiles6_132
+  - first:
+      213: -4107590527103137794
+    second: OceanTiles6_133
+  - first:
+      213: -4672390439573566575
+    second: OceanTiles6_134
+  - first:
+      213: -8988592165841090960
+    second: OceanTiles6_135
+  - first:
+      213: 306728650362840912
+    second: OceanTiles6_136
+  - first:
+      213: -3012353469437418224
+    second: OceanTiles6_137
+  - first:
+      213: 2898914432569288530
+    second: OceanTiles6_138
+  - first:
+      213: -2960608723730345589
+    second: OceanTiles6_139
+  - first:
+      213: 1475320581281428660
+    second: OceanTiles6_140
+  - first:
+      213: 8487641666999231452
+    second: OceanTiles6_141
+  - first:
+      213: 9173801001302618341
+    second: OceanTiles6_142
+  - first:
+      213: -8165672743057136215
+    second: OceanTiles6_143
+  - first:
+      213: -886059469049212929
+    second: OceanTiles6_144
+  - first:
+      213: -727342337303041559
+    second: OceanTiles6_145
+  - first:
+      213: 7126522998527976359
+    second: OceanTiles6_146
+  - first:
+      213: 9048025582575105846
+    second: OceanTiles6_147
+  - first:
+      213: 1057845597192131429
+    second: OceanTiles6_148
+  - first:
+      213: 7719701629115280416
+    second: OceanTiles6_149
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OceanTiles6_0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11ad850374c76810800000000000000
+      internalID: 1758590177804919069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153dd52270134f140800000000000000
+      internalID: 4752477413493822289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e67ed83bc9eab90800000000000000
+      internalID: -7228668056889233799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a766e41f9f125b470800000000000000
+      internalID: 8409665236563289722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03e6be8843aca9bd0800000000000000
+      internalID: -2622561506005651920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e7ad8d96b06fb1b0800000000000000
+      internalID: -5638681871000950812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d41ace79cf34b230800000000000000
+      internalID: 3653615332352464088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d499260f7d1a04b0800000000000000
+      internalID: -5473529965713976110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa1d6f0e086248380800000000000000
+      internalID: -8970002222843244118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754e4e03eb174b9c0800000000000000
+      internalID: -3912377114600086441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a460dfd2e87f3de0800000000000000
+      internalID: -1351228447374941019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86124d75cb6d002f0800000000000000
+      internalID: -1008570212115275416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_12
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d59875bcf7c5350800000000000000
+      internalID: 6006816514329107820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_13
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c0bacf700abbcf0800000000000000
+      internalID: -235418599342535558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7924eadb3b6f1f0800000000000000
+      internalID: -1011423439044306977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e830387750e69f710800000000000000
+      internalID: 1727532901832262542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a59c44a9dd424580800000000000000
+      internalID: -8844421121042508379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3194552f9b95dcbc0800000000000000
+      internalID: -3761251458614998765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aab5a8c9037d958f0800000000000000
+      internalID: -551172875591459926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b37f1832f0e8550800000000000000
+      internalID: 6164881585095523181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9540983246ea59a0800000000000000
+      internalID: -6243424761304562278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_21
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a08fa3c7c207869f0800000000000000
+      internalID: -475006424322476022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dc664dddec2c9160800000000000000
+      internalID: 7033546118177123541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_23
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08dc4c5949bc7410800000000000000
+      internalID: 1476258502602971150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_24
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 709229ae3b8e098a0800000000000000
+      internalID: -6300280019259086585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_25
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bcdd4a95109c7ba0800000000000000
+      internalID: -6089834173654246216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba47c2feaaae5050800000000000000
+      internalID: 5791253839219215038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda67795185617710800000000000000
+      internalID: 1689242941466831579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_28
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac6319cb950d5e30800000000000000
+      internalID: 4493754169837186218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_29
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a54478acff76d770800000000000000
+      internalID: 8635230058664183203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_30
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78962c1380327400800000000000000
+      internalID: 320371863167867006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 578dda3c209829ca0800000000000000
+      internalID: -6011591907620300683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_32
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e45201d83ca8a50800000000000000
+      internalID: 6524242020828270224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddef813e25e892fa0800000000000000
+      internalID: -5824968156378497315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_34
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5534cb69c710ef620800000000000000
+      internalID: 2809684852142261077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_35
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b368eff17a4a060800000000000000
+      internalID: 6963874679677664043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_36
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee3f8bc465431d20800000000000000
+      internalID: 3248016055478468320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_37
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61aeb4e9202a0e930800000000000000
+      internalID: 4170511387074488854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_38
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b00b8d527e275cc0800000000000000
+      internalID: -3722455498267885392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c22ccba5ddb2ed4e0800000000000000
+      internalID: -1955076958522129876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_40
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6786a728ec470e40800000000000000
+      internalID: 5622547219776702315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_41
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa74fe371528566f0800000000000000
+      internalID: -692003681382479953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_42
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18b8a3c52d4f9420800000000000000
+      internalID: 2638912731254143002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_43
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698531234ecac9670800000000000000
+      internalID: 8546896288935008406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_44
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a91c3511f9937ad20800000000000000
+      internalID: 3289661408170721690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_45
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0353075e56ecbf230800000000000000
+      internalID: 3673756858087126320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_46
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd001ed99e23d6780800000000000000
+      internalID: -8688232127170281253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_47
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2c86cf9670b1c20800000000000000
+      internalID: 3178142113827701409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_48
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975e9b41ac60d73f0800000000000000
+      internalID: -901556885403343495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_49
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43633a6202e609d0800000000000000
+      internalID: -2808308817619360948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_50
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 894ecb78366e29a90800000000000000
+      internalID: -7308525930115439464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_51
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a00e5ca4b10aad40800000000000000
+      internalID: 5596287362458845350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_52
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f63f3a824d14ff30800000000000000
+      internalID: 4608340490331305715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_53
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd2d42bb6877c1210800000000000000
+      internalID: 1305049412579676895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_54
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87e7c1e00cdc01370800000000000000
+      internalID: 8291353138743246456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_55
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8bde7631599f1260800000000000000
+      internalID: 7070538514080652174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_56
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33f3354aad752a210800000000000000
+      internalID: 1342732235481235251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_57
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c97079d308bb7c50800000000000000
+      internalID: 6664122400297220547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_58
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 472aa689b74d62de0800000000000000
+      internalID: -1358164610302434700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_59
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e17180a6920b650800000000000000
+      internalID: 6246538218541882909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_60
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9596040ae81c845c0800000000000000
+      internalID: -4230919031596488359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_61
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc433e6a3b603ca0800000000000000
+      internalID: -6039209201602704142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_62
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3064d851bf4fb28e0800000000000000
+      internalID: -1717009473676163581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_63
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca187e80d875f760800000000000000
+      internalID: 7491026392339454664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_64
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06617b7770c33bdc0800000000000000
+      internalID: -3624487272332192160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_65
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d504ff5a9813a3f50800000000000000
+      internalID: 6861851449517621341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_66
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91510ca7d05d97770800000000000000
+      internalID: 8609146416566113561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_67
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccf073ea51966650800000000000000
+      internalID: 6225823354435206350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_68
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85fe391d227ee3a40800000000000000
+      internalID: 5349967544093765464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_69
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547fcfde4692974a0800000000000000
+      internalID: -6595194665841133755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_70
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1c246d3f3064650800000000000000
+      internalID: 6216660681438183861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_71
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0283e45ddc07ba10800000000000000
+      internalID: 1925021510475678222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_72
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c281b5e546378e00800000000000000
+      internalID: 1046865112221188803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_73
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2de73dee8d76e6e00800000000000000
+      internalID: 1039882745386598098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_74
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6877737bc58783e10800000000000000
+      internalID: 2177622759439824774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_75
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f8b8e5d5b011690800000000000000
+      internalID: -7633307397770211577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_76
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 422052d69da043790800000000000000
+      internalID: -7551398746238156252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_77
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1aeca87c08d5bce0800000000000000
+      internalID: -1389967361898124773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_78
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8fe473d130a6e330800000000000000
+      internalID: 3739852676439273359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_79
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543d34d1f4c7a6e20800000000000000
+      internalID: 3344622352511259461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_80
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b16747b74c767a6c0800000000000000
+      internalID: -4132220039506659813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_81
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cac2b0caabe1abe0800000000000000
+      internalID: -1467632884936160575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_82
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da6a1fec52a1f990800000000000000
+      internalID: -7353918196487132457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_83
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90d742d1545a26920800000000000000
+      internalID: 2982127619532946697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_84
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329a2f19c8d9e20e0800000000000000
+      internalID: -2292721933215422173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_85
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c12349a7397e21870800000000000000
+      internalID: 8652232454734885404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_86
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57393edb2759054f0800000000000000
+      internalID: -842008810273664139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_87
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba1861e935d6c4c0800000000000000
+      internalID: -4267489152315417921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_88
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e8500c8ac088c820800000000000000
+      internalID: 2938740364279830757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_89
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b70c9f6f36ebcb40800000000000000
+      internalID: 5461712133246683065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_90
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2c53808f75daa390800000000000000
+      internalID: -7806192260499678164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_91
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf71585bf7a4c130800000000000000
+      internalID: 3586175901254123484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_92
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33529b8a87a72fb40800000000000000
+      internalID: 5472571155853944115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_93
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac90d0b7f20b13d0800000000000000
+      internalID: -3234988644488930129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_94
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be0f3d42a5e1c580800000000000000
+      internalID: -8808506910916538699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_95
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9634da5f97c5fe420800000000000000
+      internalID: 2661447583681823593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_96
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810d242e4213bfcb0800000000000000
+      internalID: -4829212140940111848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_97
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b20a48a393e1510800000000000000
+      internalID: 1521716647593782085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_98
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a86b544d8d134980800000000000000
+      internalID: -8555962374499374938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_99
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b55da0cca1f19ae0800000000000000
+      internalID: -1544187472942115406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_100
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f9e2d31c380df770800000000000000
+      internalID: 8646075913744869878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_101
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895b02704175cf750800000000000000
+      internalID: 6340038118961362328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_102
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59be58eb5c87e1130800000000000000
+      internalID: 3539399147860126613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_103
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a40e668e6e4a3c60800000000000000
+      internalID: 7798631941354161319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_104
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1648b4115b9bb5c20800000000000000
+      internalID: 3196352547879879777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_105
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688ee70bced32ebd0800000000000000
+      internalID: -2602449547884042106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_106
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4cc095b537fa9cf0800000000000000
+      internalID: -244611419686777778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_107
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e19b1813a7eb290800000000000000
+      internalID: -7872720745548669324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_108
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caff7540c75f61480800000000000000
+      internalID: -8928679298217803860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_109
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863346b62ff43ad50800000000000000
+      internalID: 6747324569333543784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_110
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b8e5628f1e70d3d0800000000000000
+      internalID: -3183906262754137934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_111
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd3aada1e5e3cc300800000000000000
+      internalID: 273662251261141980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_112
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06d86e377e807410800000000000000
+      internalID: 1472833720949462540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_113
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55dc67eb6f21bf30800000000000000
+      internalID: 4589501635757921627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_114
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e39ed84ca6cf0d80800000000000000
+      internalID: -8282182746451831838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_115
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 903b27467cd596f90800000000000000
+      internalID: -6959928638159277303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_116
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a56c923b94231430800000000000000
+      internalID: 3752383163517396389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_117
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994e26a7575039c90800000000000000
+      internalID: -7164376580093713255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_118
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c1044fcc40cdf990800000000000000
+      internalID: -7350507580671393336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_119
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 367542575acafa510800000000000000
+      internalID: 1562657422355748707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d580135d08006e0800000000000000
+      internalID: -1873355791847105125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_121
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b841f1f02df65c0b0800000000000000
+      internalID: -5709034004634725237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_122
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 169c68fb711418f70800000000000000
+      internalID: 9187696285065857377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_123
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c5fa7dbe7cbd3c0800000000000000
+      internalID: -4333650400664134603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_124
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4eeaeb931bf99620800000000000000
+      internalID: 2781530306516807243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_125
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0edd1eb7388852090800000000000000
+      internalID: -8059885859809141280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_126
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec519bdff54a7720800000000000000
+      internalID: 2844663079840603374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_127
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71a16c1dd27e905d0800000000000000
+      internalID: -3095689084861539817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_128
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51c30acb3ae0097e0800000000000000
+      internalID: -1760891357894788075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_129
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 759ee8ce30f35dea0800000000000000
+      internalID: -5848699254984480425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_130
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 191b1d76471c13310800000000000000
+      internalID: 1383099266281615761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_131
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55bed696fc250390800000000000000
+      internalID: -7852820937645836965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_132
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56983bc7cc6243ba0800000000000000
+      internalID: -6110216134727595675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_133
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef70245bd28eef6c0800000000000000
+      internalID: -4107590527103137794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_134
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b494d86a5582fb0800000000000000
+      internalID: -4672390439573566575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_135
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076ce2c7c0b124380800000000000000
+      internalID: -8988592165841090960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_136
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057ef471518b14400800000000000000
+      internalID: 306728650362840912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_137
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015644cca78f136d0800000000000000
+      internalID: -3012353469437418224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_138
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257ab8b31530b3820800000000000000
+      internalID: 2898914432569288530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_139
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b81512f3d0ec9e6d0800000000000000
+      internalID: -2960608723730345589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_140
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b43a198044697410800000000000000
+      internalID: 1475320581281428660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_141
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd32b4e60292ac570800000000000000
+      internalID: 8487641666999231452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_142
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0f3c2e763ef4f70800000000000000
+      internalID: 9173801001302618341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_143
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a56dfd57e3bdae80800000000000000
+      internalID: -8165672743057136215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_144
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff43718b9514b3f0800000000000000
+      internalID: -886059469049212929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_145
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e923f27ff5f7e5f0800000000000000
+      internalID: -727342337303041559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_146
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a369e2c8ee76e260800000000000000
+      internalID: 7126522998527976359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_147
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6373900345b019d70800000000000000
+      internalID: 9048025582575105846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_148
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56319d747f83eae00800000000000000
+      internalID: 1057845597192131429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OceanTiles6_149
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02cab6f1bb3e12b60800000000000000
+      internalID: 7719701629115280416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
