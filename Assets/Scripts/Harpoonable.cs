@@ -70,6 +70,6 @@ public class Harpoonable : MonoBehaviour
         if (darknessBlockers[0] == null)
             return;
         foreach (PathDarkness p in darknessBlockers)
-            p.FadeOut();
+            p.Fade();
     }
 }

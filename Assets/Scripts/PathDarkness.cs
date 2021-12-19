@@ -4,28 +4,47 @@ using UnityEngine;
 
 public class PathDarkness : MonoBehaviour
 {
+    public bool invertFade;
+
     private void Start()
     {
         GetComponent<Renderer>().sharedMaterial = new Material(GetComponent<Renderer>().sharedMaterial);
         Material mat = GetComponent<Renderer>().sharedMaterial;
-        mat.color = Color.black;
+        if (!invertFade)
+            mat.color = Color.black;
+        else
+            mat.color = Color.clear;
     }
 
-    public void FadeOut()
+    public void Fade()
     {
-        StartCoroutine(FadeOutCoroutine());
+        StartCoroutine(FadeCoroutine());
     }
 
-    IEnumerator FadeOutCoroutine()
+    IEnumerator FadeCoroutine()
     {
         Material mat = GetComponent<Renderer>().sharedMaterial;
-        while(mat.color.a > 0)
+
+        if (!invertFade)
         {
-            Color col = mat.color;
-            col -= new Color(0, 0, 0, 0.02f);
-            mat.color = col;
-            yield return new WaitForFixedUpdate();
+            while (mat.color.a > 0)
+            {
+                Color col = mat.color;
+                col -= new Color(0, 0, 0, 0.02f);
+                mat.color = col;
+                yield return new WaitForFixedUpdate();
+            }
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        else
+        {
+            while (mat.color.a < 1)
+            {
+                Color col = mat.color;
+                col += new Color(0, 0, 0, 0.02f);
+                mat.color = col;
+                yield return new WaitForFixedUpdate();
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroCutsceneManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class IntroCutsceneManager : MonoBehaviour
 
     IEnumerator Intro()
     {
+        SceneManager.LoadScene(3, LoadSceneMode.Additive);
         while (!ply.pMovement.isGrounded)
             yield return null;
 

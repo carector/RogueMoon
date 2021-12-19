@@ -57,6 +57,13 @@ AnimationClip:
     path: 
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: FantasiaEye
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -78,12 +85,20 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 3579800949
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 1682647590792400377, guid: c348f86c5b43dc643a7f207f228ce0e1, type: 3}
     - {fileID: 4111204044463095393, guid: c348f86c5b43dc643a7f207f228ce0e1, type: 3}
     - {fileID: -333553967377094446, guid: c348f86c5b43dc643a7f207f228ce0e1, type: 3}
     - {fileID: 8846392172683869458, guid: c348f86c5b43dc643a7f207f228ce0e1, type: 3}
     - {fileID: 1682647590792400377, guid: c348f86c5b43dc643a7f207f228ce0e1, type: 3}
+    - {fileID: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

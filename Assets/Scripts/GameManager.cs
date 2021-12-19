@@ -282,7 +282,7 @@ public class GameManager : MonoBehaviour
         // Update depth arrow + depth text
         float lowestDepth = 400;
         int depthMultiplier = 5;
-        depthText.text = Mathf.Clamp(-Mathf.RoundToInt(ply.transform.position.y*depthMultiplier), 0, lowestDepth*depthMultiplier).ToString() + " m";
+        depthText.text = Mathf.Clamp(-Mathf.RoundToInt(ply.transform.position.y * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
         depthArrow.anchoredPosition = new Vector2(4, 80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150);
 
         UpdateHarpoonNumber();
@@ -357,6 +357,9 @@ public class GameManager : MonoBehaviour
 
     public void CraftItem(int item)
     {
+        if (ply.pResources.metal <= 0)
+            return;
+
         // 0: Repair ship
         // 1: Craft harpoon
         // 2: Craft depth charge
@@ -465,14 +468,21 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < dialogLength; j++)
             {
                 TextData.Sentence s = c.dialog[i].sentences[j];
+                bool creepyPortrait = false;
                 if (c.dialog[i].portrait == 0)
                 {
+                    if (s.portraitIndex == -5)
+                        creepyPortrait = true;
+
                     leftPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
                     leftPortrait.color = Color.white;
                     rightPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
                 }
                 else
                 {
+                    if (s.portraitIndex == 5)
+                        creepyPortrait = true;
+
                     rightPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
                     rightPortrait.color = Color.white;
                     leftPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
@@ -482,24 +492,36 @@ public class GameManager : MonoBehaviour
                 int sentenceLength = s.text.Length;
                 string sentence = InsertLineBreaks(s.text);
 
-                for (int k = 0; k < sentenceLength; k++)
+                if (!creepyPortrait)
                 {
-                    if (k % 2 == 0)
+                    for (int k = 0; k < sentenceLength; k++)
                     {
-                        dialogAudio.Stop();
-                        dialogAudio.PlayOneShot(sfx.dialogVoices[Random.Range(0, sfx.dialogVoices.Length - 1)]);
+                        if (k % 2 == 0)
+                        {
+                            dialogAudio.Stop();
+                            dialogAudio.PlayOneShot(sfx.dialogVoices[Random.Range(0, sfx.dialogVoices.Length - 1)]);
+                        }
+                        dialogText.text = sentence.Substring(0, k);
+                        yield return new WaitForSecondsRealtime(0.025f);
                     }
-                    dialogText.text = sentence.Substring(0, k);
-                    yield return new WaitForSecondsRealtime(0.025f);
+
+                    dialogText.text = sentence;
+                    dialogAudio.Stop();
+                    dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
                 }
-                dialogText.text = sentence;
-                dialogAudio.Stop();
-                dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
+                else
+                {
+                    dialogText.text = "";
+                    dialogAudio.Play();
+                    yield return new WaitForSecondsRealtime(2f);
+                }
+
                 dialogAdvanceIcon.color = Color.white;
 
                 // Wait for key press to continue dialog
                 yield return WaitForKeyPress();
                 dialogAdvanceIcon.color = Color.clear;
+                dialogAudio.Stop();
             }
         }
 

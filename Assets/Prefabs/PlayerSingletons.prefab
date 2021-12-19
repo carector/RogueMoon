@@ -1256,7 +1256,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7203300706045132180}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2466194378268286081
 MonoBehaviour:
@@ -2287,6 +2287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7203300705733197210}
+  - {fileID: 7203300705788900045}
   m_Father: {fileID: 7203300706045132180}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3794,13 +3795,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7203300705788900044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7203300706356068123}
   - {fileID: 7203300706458392538}
-  m_Father: {fileID: 7203300706045132180}
-  m_RootOrder: 5
+  m_Father: {fileID: 7203300704803449802}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7203300705788900035
 Camera:
@@ -4042,7 +4043,6 @@ Transform:
   - {fileID: 7203300706409957167}
   - {fileID: 7203300706050119977}
   - {fileID: 7203300704803449802}
-  - {fileID: 7203300705788900045}
   - {fileID: 90997012718629320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4123,6 +4123,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 74429eac934f44c48b1f78a9b2fbc4ae, type: 3}
     - {fileID: -8055215949289480878, guid: 8302d2347ca744c4a8585b31d3c26a09, type: 3}
     - {fileID: 3100723546155348868, guid: 8302d2347ca744c4a8585b31d3c26a09, type: 3}
+    - {fileID: 21300000, guid: 479165c8a39208848a1ba2ac962ea528, type: 3}
   spriteRefs:
     numbers:
     - {fileID: 8942507987426923049, guid: e13bd05ae4de8fe4e88936d749017b4e, type: 3}
@@ -15088,11 +15089,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: f5569a0077fcf884ca13ae989fbd52f0, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

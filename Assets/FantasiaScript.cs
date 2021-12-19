@@ -59,11 +59,12 @@ public class FantasiaScript : Fish
                 if (plyDirection.x < 0)
                 {
                     spr.flipY = true;
+                    transform.GetChild(0).localScale = new Vector2(-1, 1);
                     transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 180);
                 }
 
                 // Rotate towards player before charging
-                float timer = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+                float timer = anim.GetCurrentAnimatorClipInfo(0)[0].clip.length + 0.25f;
                 while (timer > 0)
                 {
                     Vector2 dir = ply.transform.position - transform.position;
@@ -74,7 +75,7 @@ public class FantasiaScript : Fish
                     timer -= Time.fixedDeltaTime;
                     yield return new WaitForFixedUpdate();
                 }
-                rb.velocity = plyDirection * 18;
+                rb.velocity = plyDirection * 14;
                 BecomeHazardForTime(1.5f);
                 yield return new WaitForSeconds(1.5f);
                 transform.rotation = Quaternion.identity;

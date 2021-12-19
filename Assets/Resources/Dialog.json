@@ -243,6 +243,57 @@
                     ],
                 }
             ]
+        },
+        {
+            "conversationId": "tutorial_7",
+            "initialPortraits": [0, 4],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "so sad steve jobs died of\\ligma",
+                            "portraitIndex": 4
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Who the hell is Steve Jobs?",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "",
+                            "portraitIndex": 5
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "MS Scrander? Bo?",
+                            "portraitIndex": 3
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "",
+                            "portraitIndex": 5
+                        }
+                    ],
+                }
+            ]
         }
     ]
 }
