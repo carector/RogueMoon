@@ -14,6 +14,7 @@ public class DamagePlayerOnCollide : MonoBehaviour
     void Start()
     {
         col = GetComponent<Collider2D>();
+        col.isTrigger = true;
         ply = FindObjectOfType<PlayerController>();
         prb = ply.GetComponent<Rigidbody2D>();
     }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         public AudioClip[] playerSounds;
         public AudioClip[] generalSounds;
         public AudioClip[] dialogVoices;
+        public AudioClip[] music;
     }
 
     [System.Serializable]
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
         public TextData cachedTextData; // Deserialized version of JSONSource
         public bool isPrintingDialog;
         public Sprite[] portraits;
+        public TMP_FontAsset normalFont;
+        public TMP_FontAsset fuckedFont;
     }
 
     [System.Serializable]
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
     Image numberIconTens;
     Image numberIconOnes;
     Image currentToolIcon;
+    Image darknessOverlay;
 
     TextMeshProUGUI metalNumberText;
     TextMeshProUGUI harpoonNumberText;
@@ -148,6 +152,7 @@ public class GameManager : MonoBehaviour
         metalNumberText = actionMenuHolder.GetChild(3).GetComponent<TextMeshProUGUI>();
         harpoonNumberText = actionMenuHolder.GetChild(4).GetComponent<TextMeshProUGUI>();
         depthChargeNumberText = actionMenuHolder.GetChild(5).GetComponent<TextMeshProUGUI>();
+        darknessOverlay = GameObject.Find("DarknessOverlay").GetComponent<Image>();
 
         warningScreenAnimator = GameObject.Find("WarningScreen").GetComponent<Animator>();
         healthbarFill = GameObject.Find("HealthbarFill").GetComponent<Image>();
@@ -237,7 +242,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.text = t;
         dialogAudio.Stop();
-        dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
+        //dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
         yield return new WaitForSecondsRealtime(0.5f);
 
         for (int i = 0; i < 2; i++)
@@ -280,13 +285,23 @@ public class GameManager : MonoBehaviour
         healthbarFill.rectTransform.anchoredPosition = new Vector2(3 + 2.5f * ply.pResources.health, 0);
 
         // Update depth arrow + depth text
-        float lowestDepth = 400;
+        float lowestDepth = 640;
         int depthMultiplier = 5;
         depthText.text = Mathf.Clamp(-Mathf.RoundToInt(ply.transform.position.y * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
-        depthArrow.anchoredPosition = new Vector2(4, 80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150);
+        depthArrow.anchoredPosition = new Vector2(4, Mathf.Round(80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150));
 
         UpdateHarpoonNumber();
         UpdateActionMenuNumbers();
+
+        // Update darkness overlay
+        if(ply.transform.position.y < -400 && ply.transform.position.y > -614)
+        {
+            darknessOverlay.color = Color.Lerp(darknessOverlay.color, new Color(0, 0, 0, Mathf.Clamp(Mathf.Abs(ply.transform.position.y + 400)/175, 0, 0.95f)), 0.05f);
+        }
+        else
+        {
+            darknessOverlay.color = Color.Lerp(darknessOverlay.color, Color.clear, 0.05f);
+        }
     }
 
     void UpdateActionMenuNumbers()
@@ -439,11 +454,137 @@ public class GameManager : MonoBehaviour
         priorityStoppableSfxSource.Stop();
     }
 
+    public IEnumerator TransitionMusic(AudioClip newMusic)
+    {
+        while(musicSource.volume > 0)
+        {
+            musicSource.volume -= 0.01f;
+            yield return new WaitForEndOfFrame();
+        }
+
+        musicSource.Stop();
+        if(newMusic != null)
+            StartCoroutine(PlayMusic(newMusic));
+    }
+
+    public IEnumerator PlayMusic(AudioClip music)
+    {
+        musicSource.volume = 0;
+        musicSource.clip = music;
+        musicSource.Play();
+
+        while (musicSource.volume < 1)
+        {
+            musicSource.volume += 0.01f;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public IEnumerator DisplayDialog(TextAsset src, string id)
     {
         dialogSettings.isPrintingDialog = true;
         actionMenuStoredTimeScale = Time.timeScale;
         Time.timeScale = 0;
+        bool harpoonPlaying = harpoonLoopingAudio.isPlaying;
+        harpoonLoopingAudio.Stop();
+
+
+        // Get references
+        TextData t = DeserializeDialog(src);
+        TextData.Conversation c = t.GetConversationFromID(id);
+
+        // Set initial portrait colors and sprites before moving textbox
+        leftPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        rightPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        leftPortrait.sprite = dialogSettings.portraits[c.initialPortraits[0]];
+        rightPortrait.sprite = dialogSettings.portraits[c.initialPortraits[1]];
+
+        textboxHolder.anchoredPosition = new Vector2(0, -24f);
+
+        // Dialog loop
+        for (int i = 0; i < c.dialog.Length; i++)
+        {
+            // Sentence loop
+            int dialogLength = c.dialog[i].sentences.Length;
+
+            for (int j = 0; j < dialogLength; j++)
+            {
+                TextData.Sentence s = c.dialog[i].sentences[j];
+                bool creepyPortrait = false;
+                if (c.dialog[i].portrait == 0)
+                {
+                    if (s.portraitIndex == 5)
+                        creepyPortrait = true;
+
+                    leftPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
+                    leftPortrait.color = Color.white;
+                    rightPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                }
+                else
+                {
+                    if (s.portraitIndex == 5)
+                        creepyPortrait = true;
+
+                    rightPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
+                    rightPortrait.color = Color.white;
+                    leftPortrait.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                }
+
+                if (s.portraitIndex == 2)
+                    dialogText.font = dialogSettings.fuckedFont;
+                else
+                    dialogText.font = dialogSettings.normalFont;
+
+
+                // Char loop
+                int sentenceLength = s.text.Length;
+                string sentence = InsertLineBreaks(s.text);
+
+                if (!creepyPortrait)
+                {
+                    for (int k = 0; k < sentenceLength; k++)
+                    {
+                        if (k % 2 == 0)
+                        {
+                            dialogAudio.Stop();
+                            dialogAudio.PlayOneShot(sfx.dialogVoices[Random.Range(0, sfx.dialogVoices.Length - 1)]);
+                        }
+                        dialogText.text = sentence.Substring(0, k);
+                        yield return new WaitForSecondsRealtime(0.025f);
+                    }
+
+                    dialogText.text = sentence;
+                    //dialogAudio.Stop();
+                    //dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
+                }
+                else
+                {
+                    dialogText.text = "";
+                    musicSource.Stop();
+                    dialogAudio.Play();
+                    yield return new WaitForSecondsRealtime(2f);
+                }
+
+                dialogAdvanceIcon.color = Color.white;
+
+                // Wait for key press to continue dialog
+                yield return WaitForKeyPress();
+                dialogAdvanceIcon.color = Color.clear;
+                dialogAudio.Stop();
+            }
+        }
+
+        if (harpoonPlaying)
+            harpoonLoopingAudio.Play();
+        Time.timeScale = actionMenuStoredTimeScale;
+        dialogSettings.isPrintingDialog = false;
+        dialogText.text = "";
+        textboxHolder.anchoredPosition = new Vector2(0, 40f);
+    }
+
+    public IEnumerator DisplayDialogAutoAdvance(TextAsset src, string id)
+    {
+        dialogSettings.isPrintingDialog = true;
         bool harpoonPlaying = harpoonLoopingAudio.isPlaying;
         harpoonLoopingAudio.Stop();
 
@@ -471,7 +612,7 @@ public class GameManager : MonoBehaviour
                 bool creepyPortrait = false;
                 if (c.dialog[i].portrait == 0)
                 {
-                    if (s.portraitIndex == -5)
+                    if (s.portraitIndex == 5)
                         creepyPortrait = true;
 
                     leftPortrait.sprite = dialogSettings.portraits[s.portraitIndex];
@@ -506,12 +647,13 @@ public class GameManager : MonoBehaviour
                     }
 
                     dialogText.text = sentence;
-                    dialogAudio.Stop();
-                    dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
+                    //dialogAudio.Stop();
+                    //dialogAudio.PlayOneShot(sfx.dialogVoices[4]);
                 }
                 else
                 {
                     dialogText.text = "";
+                    musicSource.Stop();
                     dialogAudio.Play();
                     yield return new WaitForSecondsRealtime(2f);
                 }
@@ -519,15 +661,11 @@ public class GameManager : MonoBehaviour
                 dialogAdvanceIcon.color = Color.white;
 
                 // Wait for key press to continue dialog
-                yield return WaitForKeyPress();
                 dialogAdvanceIcon.color = Color.clear;
                 dialogAudio.Stop();
             }
         }
 
-        if (harpoonPlaying)
-            harpoonLoopingAudio.Play();
-        Time.timeScale = actionMenuStoredTimeScale;
         dialogSettings.isPrintingDialog = false;
         dialogText.text = "";
         textboxHolder.anchoredPosition = new Vector2(0, 40f);

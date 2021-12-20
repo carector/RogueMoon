@@ -607,6 +607,7 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
             Instantiate(pAbilities.bubble, transform.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(3, BubbleScript.BubbleSize.random);
+        rb.velocity = Vector2.zero;
     }
 
     public void TakeDamage()

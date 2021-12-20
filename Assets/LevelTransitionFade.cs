@@ -22,8 +22,9 @@ public class LevelTransitionFade : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            dark[0].Fade();
-            dark[1].Fade();
+            for (int i = 0; i < dark.Length; i++)
+                dark[i].Fade();
+
             this.enabled = false;
         }
     }

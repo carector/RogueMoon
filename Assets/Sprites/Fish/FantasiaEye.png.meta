@@ -17,6 +17,18 @@ TextureImporter:
   - first:
       213: -1548273477115927305
     second: FantasiaEye_4
+  - first:
+      213: -7223692417480315218
+    second: FantasiaEye_0
+  - first:
+      213: -2147457700455008722
+    second: FantasiaEye_1
+  - first:
+      213: -6677922344625201610
+    second: FantasiaEye_2
+  - first:
+      213: -4136932889912664956
+    second: FantasiaEye_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,8 +143,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 8
+        width: 112
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8583ca3baab0d0090800000000000000
-      internalID: -8066778529763936168
+      spriteID: eae2761e40a40cb90800000000000000
+      internalID: -7223692417480315218
       vertices: []
       indices: 
       edges: []
@@ -150,10 +162,10 @@ TextureImporter:
       name: FantasiaEye_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 112
         y: 0
-        width: 16
-        height: 8
+        width: 112
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e35f6c608004e530800000000000000
-      internalID: 3883229330275259365
+      spriteID: e26b3326992b232e0800000000000000
+      internalID: -2147457700455008722
       vertices: []
       indices: 
       edges: []
@@ -171,10 +183,10 @@ TextureImporter:
       name: FantasiaEye_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 224
         y: 0
-        width: 16
-        height: 8
+        width: 112
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef909047286633cc0800000000000000
-      internalID: -3732526955681478146
+      spriteID: 63e98fa32014353a0800000000000000
+      internalID: -6677922344625201610
       vertices: []
       indices: 
       edges: []
@@ -192,10 +204,10 @@ TextureImporter:
       name: FantasiaEye_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 336
         y: 0
-        width: 16
-        height: 8
+        width: 112
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,29 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67fb015154d63e5c0800000000000000
-      internalID: -4187383085050839178
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FantasiaEye_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f4a855c97d638ae0800000000000000
-      internalID: -1548273477115927305
+      spriteID: 48c102d7479a696c0800000000000000
+      internalID: -4136932889912664956
       vertices: []
       indices: 
       edges: []

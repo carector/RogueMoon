@@ -245,23 +245,14 @@
             ]
         },
         {
-            "conversationId": "tutorial_7",
-            "initialPortraits": [0, 4],
+            "conversationId": "level3_entrance",
+            "initialPortraits": [0, 1],
             "dialog": [
-                {
-                    "portrait": 1,
-                    "sentences": [
-                        {
-                            "text": "so sad steve jobs died of\\ligma",
-                            "portraitIndex": 4
-                        }
-                    ],
-                },
                 {
                     "portrait": 0,
                     "sentences": [
                         {
-                            "text": "Who the hell is Steve Jobs?",
+                            "text": "Seems we're out of the reef.",
                             "portraitIndex": 0
                         }
                     ],
@@ -270,8 +261,8 @@
                     "portrait": 1,
                     "sentences": [
                         {
-                            "text": "",
-                            "portraitIndex": 5
+                            "text": "I wonder why?",
+                            "portraitIndex": 1
                         }
                     ],
                 },
@@ -279,8 +270,168 @@
                     "portrait": 0,
                     "sentences": [
                         {
-                            "text": "MS Scrander? Bo?",
-                            "portraitIndex": 3
+                            "text": "Were you starting to get\\comfortable?",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Watching you twitch at every\\corner, perhaps.",
+                            "portraitIndex": 4
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Hmph.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Still, it seems arbitrary. This\\coral functions without\\sunlight.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "The temperature difference at\\this depth means microbial life\\wouldn't continue to thrive as\\it did in the layer above.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "And if it was the pressure,\\the Hynobius would be\\impacted significantly.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Yet here we are, still in\\optimal performance range.",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "The reef is a fence.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "We're being told to stay out.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Quite the assumption,\\Pilot Abner.",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "No more absurd than your\\own.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Haha! True, true. Still, say it is\\a kind of intentional barrier...",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "That just gets me more\\excited to see what's being\\hidden down here.",
+                            "portraitIndex": 4
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I don't like this, Scrander.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "I don't either. Let's get a basic\\idea of this layer's structure\\then head back.",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Aye aye.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "conversationId": "level3_bo_gone",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Strange... There's some kind\\of atypical electromagnetic\\activity down here.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Will it impact performance?",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "With the shielding over the\\Hynobius' electronic systems,\\it shouldn't be a problem\\at all.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "To be expected of the\\vanguard unit for the Europan\\expeditions.",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "We might as well be\\untouchable in that regard!",
+                            "portraitIndex": 4
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Don't jinx it, MS Scrander.\\There's already been too\\many surprises on this\\mission.",
+                            "portraitIndex": 6
                         }
                     ],
                 },
@@ -290,10 +441,399 @@
                         {
                             "text": "",
                             "portraitIndex": 5
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "He's not... He's not back\\there.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "Shit. Shit shit shit.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "He wouldn't be harebrained\\enough to take off into the\\waters. So where did he...?",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "...The waste ejection closet,\\maybe?",
+                            "portraitIndex": 3
+                        },
+
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "",
+                            "portraitIndex": 5
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Damn it.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "What the hell is going on?",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "Out in the waters then. He's got to be out there, I can't think of anything else.",
+                            "portraitIndex": 3
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "conversationId": "level3_phantasia_appear",
+            "initialPortraits": [0, 5],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "What?",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "They're coming out of the walls!...",
+                            "portraitIndex": 3
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "conversationId": "level3_phantasia_done",
+            "initialPortraits": [0, 5],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Too close.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "Those things... If they can phase through matter, did one of them get Bo?",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "No, I can't think like that yet.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "They're right in my damn way back. But they aren't pursuing any longer...",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "...",
+                            "portraitIndex": 3
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "It shouldn't be that much\\deeper. There might be a\\tunnel back if I just keep\\moving.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "The pneumatic driver should\\be able to get through the\\surface ice if I keep striking it.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "...",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "Damn it, Scrander.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "You better be alive. What am I supposed to tell your family otherwise?",
+                            "portraitIndex": 3
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "conversationId": "endcutscene_1",
+            "initialPortraits": [0, 5],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Th-that's not possible. No. No way.",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "A hallucination! That's it, a\\stress hallucination. I'm just\\finally losing my cool!",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "That's why this looks like\\home! There's no place like\\home, right? Except there's no\\fucking ruby slippers!!!",
+                            "portraitIndex": 3
+                        },
+                        {
+                            "text": "Where the hell are you, Bo?!?",
+                            "portraitIndex": 3
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "conversationId": "endcutscene_2",
+            "initialPortraits": [0, 5],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "This has to be a nightmare",
+                            "portraitIndex": 3
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            "conversationId": "pilot_convo_1",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Another amphious mech.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "We should be the first ones\\here.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "The joints are ruined...\\It's a sitting duck.",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Maybe the Empirians beat us\\here?",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Doesn't look like their colors,\\though.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Whoever they are, they're\\hailing us through comms.",
+                            "portraitIndex": 1
                         }
                     ],
-                }
-            ]
-        }
+                },
+            ],
+        },
+        {
+            "conversationId": "pilot_convo_2",
+            "initialPortraits": [0, 2],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "This is Pilot Maria Abner of\\the Federation of Autonomous\\States Space Force.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Who is commanding that\\machine?",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "You two again.",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "How many times will I be made to watch this farce?",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "You can't even understand my words.",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "Yet I must\\continue to\\try.",
+                            "portraitIndex": 2
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "What?",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "The translation software is\\tying itelf in a knot, Abner.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "I can't make heads or tails of\\it.",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Turn back.",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "If you will not\\turn back, then\\abandon hope\\of escape.",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "It will be less\\cruel that way.",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "There is no\\above to this\\below.",
+                            "portraitIndex": 2
+                        },
+                        {
+                            "text": "It is simply\\an echo of what\\will come to\\pass.",
+                            "portraitIndex": 2
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I can't understand you, sir.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "...",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Damn it. He closed the\\transmission.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "He's not picking back up either. Nothing more we can\\do.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Are you saying we should just leave him here?",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "We can't retrive that machine\\without support from the\\surface team.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Even if we did get their\\support, we'd need approval\\from planetside to begin\\retrieval.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Would we even have the\\time?",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "The integrity of that machine's\\life support systems is fine\\from what can be observed\\on sensors.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "And that pilot isn't sending a\\distress signal.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "So yes. Though that's a\\pending answer.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "...We'll be back for you,\\whoever you are.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "However long that might take.",
+                            "portraitIndex": 0
+                        },
+                    ],
+                },
+            ],
+        },
     ]
 }

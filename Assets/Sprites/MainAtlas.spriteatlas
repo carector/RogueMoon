@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: c0d9b4b51b3c59c479e0dcaf5b286bde, type: 3}
     - {fileID: 102900000, guid: 5210abf30b0896c4fb09192bd36ec757, type: 3}
-    totalSpriteSurfaceArea: 324900
+    totalSpriteSurfaceArea: 326180
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: -4862684688284582800, guid: dede1323ed2a12f4881ff2ffc205057e, type: 3}
   - {fileID: -4775485730333583723, guid: dede1323ed2a12f4881ff2ffc205057e, type: 3}
   - {fileID: 2727758098876955820, guid: dede1323ed2a12f4881ff2ffc205057e, type: 3}
+  - {fileID: 21300000, guid: 44b1b253e9c29e540b5d45a6ebe50c2b, type: 3}
   - {fileID: 8645404389437421866, guid: 34a0db249c251a040a97f52159cfe451, type: 3}
   - {fileID: -672448437399940288, guid: 34a0db249c251a040a97f52159cfe451, type: 3}
   - {fileID: 7847933808962485720, guid: 34a0db249c251a040a97f52159cfe451, type: 3}
@@ -278,6 +279,10 @@ SpriteAtlas:
   - {fileID: 6801060027243991825, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
   - {fileID: 1182466829096509011, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
   - {fileID: 6025004880761047051, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
+  - {fileID: 944610816118238216, guid: 924e45d82d480eb4cbd49d9a2af7462a, type: 3}
+  - {fileID: -4619683623273286969, guid: 924e45d82d480eb4cbd49d9a2af7462a, type: 3}
+  - {fileID: -4905234774877871657, guid: 924e45d82d480eb4cbd49d9a2af7462a, type: 3}
+  - {fileID: -2068169851142922837, guid: 924e45d82d480eb4cbd49d9a2af7462a, type: 3}
   - {fileID: 3844345261808442080, guid: 45ae9ce819a5d5e44a8ed0c1cc751619, type: 3}
   - {fileID: -6405656253788768853, guid: 45ae9ce819a5d5e44a8ed0c1cc751619, type: 3}
   - {fileID: -8237757737121267706, guid: 45ae9ce819a5d5e44a8ed0c1cc751619, type: 3}
@@ -725,6 +730,7 @@ SpriteAtlas:
   - Arm_PileBunker_0
   - Arm_PileBunker_1
   - Arm_PileBunker_2
+  - CityFill
   - OceanTiles6_72
   - OceanTiles6_73
   - OceanTiles6_70
@@ -906,6 +912,10 @@ SpriteAtlas:
   - Ferns1_15
   - Ferns1_16
   - Ferns1_17
+  - CityCorners_1
+  - CityCorners_0
+  - CityCorners_3
+  - CityCorners_2
   - Coral2_10
   - Coral2_11
   - Coral2_12

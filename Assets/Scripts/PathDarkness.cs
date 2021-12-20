@@ -5,6 +5,7 @@ using UnityEngine;
 public class PathDarkness : MonoBehaviour
 {
     public bool invertFade;
+    public bool dontDestroyWhenDone;
 
     private void Start()
     {
@@ -34,7 +35,8 @@ public class PathDarkness : MonoBehaviour
                 mat.color = col;
                 yield return new WaitForFixedUpdate();
             }
-            Destroy(this.gameObject);
+            if(!dontDestroyWhenDone)
+                Destroy(this.gameObject);
         }
         else
         {
