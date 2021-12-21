@@ -7,7 +7,6 @@ public class ShrimpScript : Fish
     public bool attacking;
     bool canAttack = true;
 
-    SpriteRenderer spr;
     // Start is called before the first frame update
     void Start()
     {
@@ -114,6 +113,30 @@ public class ShrimpScript : Fish
                     spr.flipY = false;
                     attacking = false;
                     StartCoroutine(AttackCooldown());
+
+                    // Move back into bounds
+                    while(!movementSettings.inSwimBounds)
+                    {
+                        direction = (swimAreaBounds.bounds.center - transform.position).normalized;
+                        rb.AddForce(direction * movementSettings.acceleration);
+                        if (direction.x > 0)
+                            CheckAndPlayClip(animationPrefix + "_SwimRight");
+                        else
+                            CheckAndPlayClip(animationPrefix + "_SwimLeft");
+                        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.swimSpeed), 0.1f);
+
+                        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 4.5f);
+                        foreach (Collider2D c in cols)
+                        {
+                            print(c.name);
+                            if (c == swimAreaBounds)
+                            {
+                                movementSettings.inSwimBounds = true;
+                                break;
+                            }
+                        }
+                        yield return null;
+                    }
                 }
             }
 

@@ -7,6 +7,7 @@ public class Fish : MonoBehaviour
     [System.Serializable]
     public class FishMovementSettings
     {
+        public int health = 1;
         public float acceleration = 10;
         public float swimSpeed = 3;
         public float noticedPlayerSwimSpeed = 4;
@@ -31,6 +32,8 @@ public class Fish : MonoBehaviour
     public PlayerController ply;
     [HideInInspector]
     public Animator anim;
+    [HideInInspector]
+    public SpriteRenderer spr;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,7 @@ public class Fish : MonoBehaviour
     // Called by any subclasses
     public void GetReferences()
     {
+        spr = GetComponent<SpriteRenderer>();
         ply = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -52,6 +56,27 @@ public class Fish : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void TakeDamage(int damage)
+    {
+        movementSettings.health -= damage;
+        StartCoroutine(DamageFlashCoroutine());
+        if (movementSettings.health <= 0)
+            BreakApart();
+    }
+
+    IEnumerator DamageFlashCoroutine()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            spr.color = Color.red;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            spr.color = Color.white;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public void BreakApart()

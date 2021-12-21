@@ -2329,7 +2329,7 @@ MonoBehaviour:
     acceleration: 20
     groundSpeed: 4
     airSpeed: 3
-    pulledSpeed: 8
+    pulledSpeed: 6.5
     groundedMaterial: {fileID: 6200000, guid: 3d4c8df6144dd6b4a8ad182cb10780c8, type: 2}
     airMaterial: {fileID: 6200000, guid: 322dad9edb8c93545a0d6dba3812b0aa, type: 2}
   pResources:
@@ -2468,7 +2468,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 1
   Mute: 0
   Spatialize: 0

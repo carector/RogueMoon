@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpitterScript : MonoBehaviour
+public class SpitterScript : Fish
 {
     Animator bodyAnim;
     Animator spitterAnim;
-    PlayerController ply;
     Transform bulletSpawnPos;
 
     public float noticeDistance = 10;
-    public GameObject gib;
-    public Sprite[] goreBits;
     public GameObject projectile;
 
     int storedDir = -1;
@@ -25,6 +22,8 @@ public class SpitterScript : MonoBehaviour
         ply = FindObjectOfType<PlayerController>();
         bulletSpawnPos = spitterAnim.transform.GetChild(0);
         StartCoroutine(ShootCycle());
+        GetReferences();
+        spr = spitterAnim.GetComponent<SpriteRenderer>();
     }
 
     public void ShootProjectile()

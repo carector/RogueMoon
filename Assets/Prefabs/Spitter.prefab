@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2319729187459088690}
   - component: {fileID: 2319729187459088695}
   - component: {fileID: 2319729187459088694}
-  - component: {fileID: 2319729187459088693}
+  - component: {fileID: 113822593245818008}
   m_Layer: 11
   m_Name: Spitter
   m_TagString: Fish
@@ -128,12 +128,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d4a91b36baccc47a8eca844250d0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noticeDistance: 10
+  movementSettings:
+    health: 3
+    acceleration: 10
+    swimSpeed: 0
+    noticedPlayerSwimSpeed: 0
+    inSwimBounds: 1
+    noticedPlayer: 0
+    damageRadius: 0
+    noticeDistance: 0
+    attackDistance: 0
+    playerLayermask:
+      serializedVersion: 2
+      m_Bits: 0
+  swimAreaBounds: {fileID: 0}
   gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
   goreBits:
   - {fileID: -3698588567167375063, guid: 805ee532384e08c47a5405835eca6446, type: 3}
   - {fileID: -3680407053393327396, guid: 805ee532384e08c47a5405835eca6446, type: 3}
   - {fileID: -4525595511408401560, guid: 805ee532384e08c47a5405835eca6446, type: 3}
+  animationPrefix: Spitter
+  direction: {x: 0, y: 0}
+  rb: {fileID: 0}
+  ply: {fileID: 0}
+  anim: {fileID: 0}
+  spr: {fileID: 0}
+  noticeDistance: 10
   projectile: {fileID: 7868246175916610328, guid: 67477ef962b01aa45b0829a2bd215074,
     type: 3}
 --- !u!95 &2319729187459088694
@@ -155,8 +175,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &2319729187459088693
-CircleCollider2D:
+--- !u!70 &113822593245818008
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,9 +188,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.83}
-  serializedVersion: 2
-  m_Radius: 1.5
+  m_Offset: {x: 0, y: -1.1150894}
+  m_Size: {x: 2.0569806, y: 3.2901306}
+  m_Direction: 0
 --- !u!1 &2319729188142772454
 GameObject:
   m_ObjectHideFlags: 0

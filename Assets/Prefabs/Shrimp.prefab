@@ -121,7 +121,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.36}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.89
 --- !u!70 &1922439669428563351
@@ -137,8 +137,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.032605663}
-  m_Size: {x: 1.6835451, y: 0.7257594}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.03, y: 0.77}
   m_Direction: 1
 --- !u!95 &1922439669428563354
 Animator:
@@ -172,9 +172,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    health: 5
     acceleration: 100
-    swimSpeed: 3
-    noticedPlayerSwimSpeed: 3
+    swimSpeed: 5
+    noticedPlayerSwimSpeed: 7
     inSwimBounds: 1
     noticedPlayer: 0
     damageRadius: 1
@@ -195,4 +196,5 @@ MonoBehaviour:
   rb: {fileID: 0}
   ply: {fileID: 0}
   anim: {fileID: 0}
+  spr: {fileID: 0}
   attacking: 0

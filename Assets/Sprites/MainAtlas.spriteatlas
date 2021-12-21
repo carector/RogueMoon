@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: c0d9b4b51b3c59c479e0dcaf5b286bde, type: 3}
     - {fileID: 102900000, guid: 5210abf30b0896c4fb09192bd36ec757, type: 3}
-    totalSpriteSurfaceArea: 326180
+    totalSpriteSurfaceArea: 330020
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -532,6 +532,21 @@ SpriteAtlas:
   - {fileID: 4051281221030417845, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
   - {fileID: 7135510106612867387, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
   - {fileID: 6697915092173370042, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
+  - {fileID: -162908896851303010, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -820929986640298190, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -3850922526409367079, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: 8403440332877023196, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: 2133894634611221711, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -529784228208976962, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -8982492926411977554, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: 4455017841521671853, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: 3690212062766893956, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: 2648307549315158137, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -3644511712140322106, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -3339737988681347398, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: 3873013277845469757, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -7603891488806316721, guid: 4854e14f7e66272438692f4bff230780, type: 3}
+  - {fileID: -3401384779072680849, guid: 4854e14f7e66272438692f4bff230780, type: 3}
   - {fileID: -5400652910543111180, guid: 37516baf407a40c4486a5689ba591398, type: 3}
   - {fileID: -8009822642637324240, guid: 37516baf407a40c4486a5689ba591398, type: 3}
   - {fileID: -6465852012056972974, guid: 37516baf407a40c4486a5689ba591398, type: 3}
@@ -1165,6 +1180,21 @@ SpriteAtlas:
   - OceanTiles1_7
   - OceanTiles1_4
   - OceanTiles1_5
+  - GreenCoral_8
+  - GreenCoral_9
+  - GreenCoral_2
+  - GreenCoral_3
+  - GreenCoral_0
+  - GreenCoral_1
+  - GreenCoral_6
+  - GreenCoral_7
+  - GreenCoral_4
+  - GreenCoral_5
+  - GreenCoral_11
+  - GreenCoral_10
+  - GreenCoral_13
+  - GreenCoral_12
+  - GreenCoral_14
   - OceanTiles2_5
   - OceanTiles2_4
   - OceanTiles2_7
