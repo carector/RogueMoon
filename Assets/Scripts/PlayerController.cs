@@ -356,12 +356,12 @@ public class PlayerController : MonoBehaviour
         Vector2 previousPointPos = harpoonStartPoint.position;
         while (pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, pos) > 1 && !pAbilities.beingPulledTowardsHarpoon)
         {
-            harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, pos, 0.75f);
+            harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, pos, 1f);
             harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
             harpoonChain.transform.position = (harpoonEndpoint.transform.position + harpoonStartPoint.position) / 2;
             harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
 
-            Collider2D[] cols = Physics2D.OverlapBoxAll(harpoonEndpoint.transform.position - harpoonEndpoint.transform.right * 0.25f, new Vector2(1f, 0.25f), harpoonEndpoint.transform.eulerAngles.z);
+            Collider2D[] cols = Physics2D.OverlapBoxAll(harpoonEndpoint.transform.position - harpoonEndpoint.transform.right * 0.25f, new Vector2(1.5f, 0.25f), harpoonEndpoint.transform.eulerAngles.z);
             if (cols.Length > 0)
             {
                 foreach (Collider2D col in cols)
@@ -385,7 +385,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else if (col.tag.Equals("Fish"))
                     {
-                        col.GetComponent<Fish>().TakeDamage(2);
+                        col.GetComponent<Fish>().TakeDamage(1);
                         if (col != null)
                         {
                             hitGroundTransform = col.transform;
@@ -531,12 +531,13 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
         armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle + offset)), 1f);
 
-        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(2.25f, 0.75f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
+        Collider2D[] cols = Physics2D.OverlapCapsuleAll(damageStartPoint.position, new Vector2(3f, 0.75f), CapsuleDirection2D.Horizontal, armsAnim.transform.rotation.eulerAngles.z);
         foreach (Collider2D c in cols)
         {
             if (c.tag == "Fish")
             {
-                c.GetComponent<Fish>().TakeDamage(1);
+                c.GetComponent<Fish>().TakeDamage(2);
+                break;
             }
             else if (c.tag == "Breakable" || c.tag == "Harpoonable" || c.tag == "Fish" || c.tag == "Bubble")
             {

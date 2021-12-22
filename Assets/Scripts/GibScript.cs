@@ -36,12 +36,8 @@ public class GibScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Mathf.Abs(rb.velocity.x) > 0.05f && !reachedZero)
-        {
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.025f);
-        }
-        else
-            reachedZero = true;
+        rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, rb.velocity.y), 0.025f);
+        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -3, 3));
     }
 
     IEnumerator FadeOutAfterTime()

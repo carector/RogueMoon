@@ -2468,7 +2468,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.5
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -4227,7 +4227,7 @@ MonoBehaviour:
     dialogVoices:
     - {fileID: 8300000, guid: fb8bde0024a76af498960fe7856bc81b, type: 3}
     music:
-    - {fileID: 8300000, guid: ee18f986671c6a94aab7d57c0c3a0ac9, type: 3}
+    - {fileID: 8300000, guid: 760dad5fde7c7b94ab9a3846cba11987, type: 3}
     - {fileID: 8300000, guid: b381f69b6dedd2f419f359fe449c0a5a, type: 3}
     - {fileID: 8300000, guid: dbd5b9b323a66ea48b74ced605b5db57, type: 3}
   dialogSettings:

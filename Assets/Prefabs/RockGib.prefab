@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 0, g: 0.85274386, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   spritePool:
   - {fileID: -5091828049805951605, guid: ff8e73037a67cab4a99af99fc1b0e102, type: 3}
   - {fileID: -4209556597541047147, guid: ff8e73037a67cab4a99af99fc1b0e102, type: 3}
+  initializedByParent: 0

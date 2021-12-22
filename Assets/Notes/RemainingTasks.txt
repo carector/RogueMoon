@@ -1,3 +1,9 @@
+- Mandatory shit:
+  - Pause menu
+  - Checkpoints
+  - Sound effects
+  - Healing via metal
+
 - General notes
   - Add pause menu (Resume, last checkpoint, and quit should be enough - options if we have time)
   - ADD SOUND EFFECTS FOR IMPORTANT GAMEPLAY BITS (ex: enemies getting hit, picking up metal, etc.)
@@ -8,10 +14,10 @@
   - Overshooting terrain target causes you to not always move towards the hook
   - Should be able to release a grapple from grabbing a rock
   - Chain sometimes gets separated from hook
-  - Applying knockback to enemies could help combat a little as well (do this to pile bunker as well)
+  // Applying knockback to enemies could help combat a little as well (do this to pile bunker as well)
   - Limit range of harpoon so you can't shoot it forever
   - Would be a good idea to add a very slight delay before you can shoot your harpoon again
-  - Ditch harpoon counter + harpoon being removed by dealing damage
+  // Ditch harpoon counter + harpoon being removed by dealing damage
   - Breaking up rocks you hit instead of pulling them close might be better since thats the only way the mechanic is used right now
 
 - Enemy placement
@@ -31,9 +37,3 @@
 - Dialog pacing + mood
   - Avoid overloading an area with dialog, put plenty of actual gameplay between (not too much of an issue right now but could stand to be tweaked)
   - Need to do a VC to crank out the city properly
-
------------------- UNSURE / OPEN TO SUGGESTIONS ------------------ 
-
-- Metal usage
-  - Only real purpose right now is to heal self
-  - Could have metal auto-heal you in small increments

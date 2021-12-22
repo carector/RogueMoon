@@ -44,7 +44,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: c0d9b4b51b3c59c479e0dcaf5b286bde, type: 3}
     - {fileID: 102900000, guid: 5210abf30b0896c4fb09192bd36ec757, type: 3}
-    totalSpriteSurfaceArea: 330020
+    totalSpriteSurfaceArea: 335396
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -254,6 +254,27 @@ SpriteAtlas:
   - {fileID: 2618990693341204918, guid: 6ea4cdc46163f41419c6b5494a7a8f9f, type: 3}
   - {fileID: 21300000, guid: 543eeee432221744d89f2a19f75cf5de, type: 3}
   - {fileID: 21300000, guid: 1f78a726f83e25440869d7941fe3ff61, type: 3}
+  - {fileID: -350553114308983885, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 870866070014496447, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 7871731977349607954, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -2766454865222904168, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 8719358175646518364, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -4432832648170462397, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 7163310602812790321, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -6027023037910516088, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -5329401737062202122, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 8231328713193818250, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 365252589253855386, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 4254631961076985598, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 1476662290784931361, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -5986440658814426424, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 5581778018956167662, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -1792181749761119792, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: 7169796080864607714, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -1965381689130632847, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -7895458355587258311, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -8435868360750100078, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
+  - {fileID: -5645798841460017791, guid: f0a7a64600f3a374885cfba59cbad8ab, type: 3}
   - {fileID: 2015251408547019362, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
   - {fileID: 2169843907722520194, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
   - {fileID: -1559261996769870291, guid: bddeb4b606d54cd42b12bcd13da341c0, type: 3}
@@ -902,6 +923,27 @@ SpriteAtlas:
   - Mech_Arm_1
   - Harpoon
   - Mech_NoThrust
+  - RedTiles_11
+  - RedTiles_10
+  - RedTiles_13
+  - RedTiles_12
+  - RedTiles_15
+  - RedTiles_14
+  - RedTiles_17
+  - RedTiles_16
+  - RedTiles_19
+  - RedTiles_18
+  - RedTiles_8
+  - RedTiles_9
+  - RedTiles_2
+  - RedTiles_3
+  - RedTiles_0
+  - RedTiles_1
+  - RedTiles_6
+  - RedTiles_7
+  - RedTiles_4
+  - RedTiles_5
+  - RedTiles_20
   - Ferns1_21
   - Ferns1_20
   - Ferns1_23

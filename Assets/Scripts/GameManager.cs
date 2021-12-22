@@ -119,6 +119,8 @@ public class GameManager : MonoBehaviour
     Transform cam;
 
     bool gameOverInProgress;
+    bool skippedText;
+    IEnumerator textSkipCoroutine;
 
     // used for when we unpause when the mech menu is already
     // open we don't fuck up our timescale
@@ -296,7 +298,7 @@ public class GameManager : MonoBehaviour
         // Update darkness overlay
         if(ply.transform.position.y < -400 && ply.transform.position.y > -614)
         {
-            darknessOverlay.color = Color.Lerp(darknessOverlay.color, new Color(0, 0, 0, Mathf.Clamp(Mathf.Abs(ply.transform.position.y + 400)/175, 0, 0.95f)), 0.05f);
+            darknessOverlay.color = Color.Lerp(darknessOverlay.color, new Color(0, 0, 0, Mathf.Clamp(Mathf.Abs(ply.transform.position.y + 400)/150, 0, 0.98f)), 0.05f);
         }
         else
         {
@@ -539,10 +541,14 @@ public class GameManager : MonoBehaviour
                 // Char loop
                 int sentenceLength = s.text.Length;
                 string sentence = InsertLineBreaks(s.text);
-
+                if (textSkipCoroutine != null)
+                    StopCoroutine(textSkipCoroutine);
+                textSkipCoroutine = WaitForTextSkip();
+                StartCoroutine(textSkipCoroutine);
                 if (!creepyPortrait)
                 {
-                    for (int k = 0; k < sentenceLength; k++)
+                    int k = 0;
+                    while(k < sentenceLength && !skippedText)
                     {
                         if (k % 2 == 0)
                         {
@@ -551,6 +557,7 @@ public class GameManager : MonoBehaviour
                         }
                         dialogText.text = sentence.Substring(0, k);
                         yield return new WaitForSecondsRealtime(0.025f);
+                        k++;
                     }
 
                     dialogText.text = sentence;
@@ -580,6 +587,17 @@ public class GameManager : MonoBehaviour
         dialogSettings.isPrintingDialog = false;
         dialogText.text = "";
         textboxHolder.anchoredPosition = new Vector2(0, 40f);
+    }
+
+    IEnumerator WaitForTextSkip()
+    {
+        skippedText = false;
+        while (Input.GetKey(KeyCode.E))
+            yield return null;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return WaitForKeyPress();
+        skippedText = true;
     }
 
     public IEnumerator DisplayDialogAutoAdvance(TextAsset src, string id)

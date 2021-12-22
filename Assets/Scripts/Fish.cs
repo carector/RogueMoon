@@ -35,6 +35,8 @@ public class Fish : MonoBehaviour
     [HideInInspector]
     public SpriteRenderer spr;
 
+    Transform harpoonEndpoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,7 @@ public class Fish : MonoBehaviour
     // Called by any subclasses
     public void GetReferences()
     {
+        harpoonEndpoint = GameObject.Find("HarpoonEndpoint").transform;
         spr = GetComponent<SpriteRenderer>();
         ply = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
@@ -61,6 +64,11 @@ public class Fish : MonoBehaviour
     public void TakeDamage(int damage)
     {
         movementSettings.health -= damage;
+        if (rb != null)
+        {
+            Vector2 dir = (transform.position - harpoonEndpoint.position).normalized;
+            rb.velocity = dir * 10;
+        }
         StartCoroutine(DamageFlashCoroutine());
         if (movementSettings.health <= 0)
             BreakApart();

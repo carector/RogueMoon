@@ -10,6 +10,7 @@ public class MetalGibScript : MonoBehaviour
     Rigidbody2D rb;
     PlayerController ply;
     GameManager gm;
+    Transform healthbar;
 
     float lastFrameYVel;
     bool delayPassed;
@@ -24,6 +25,7 @@ public class MetalGibScript : MonoBehaviour
         spr.sprite = spritePool[Random.Range(0, spritePool.Length)];
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized * 6;
+        healthbar = GameObject.Find("Healthbar").transform;
         StartCoroutine(InitialDropDelay());
     }
 
@@ -46,6 +48,14 @@ public class MetalGibScript : MonoBehaviour
             if (Vector2.Distance(transform.position, ply.transform.position) < 2.15f)
             {
                 ply.pResources.metal++;
+                if (ply.pResources.metal >= 2)
+                {
+                    ply.pResources.metal -= 2;
+                    ply.pResources.health = Mathf.Clamp(ply.pResources.health + 1, 0, 8);
+                }
+
+                gameObject.layer = 5;
+                spr.sortingLayerName = "UI";
                 beingPickedUp = true;
                 StartCoroutine(Pickup());
             }
@@ -57,10 +67,10 @@ public class MetalGibScript : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
         //gm.PlaySFX(gm.sfx.generalSounds[0], Random.Range(0.85f, 1.15f));
-        transform.parent = ply.transform;
+        transform.parent = healthbar;
         while(Vector2.Distance(transform.localPosition, Vector2.zero) > 0.05f)
         {
-            transform.localPosition = Vector2.Lerp(transform.localPosition, Vector2.zero, 0.25f);
+            transform.localPosition = Vector2.Lerp(transform.localPosition, Vector2.zero, 0.15f);
             yield return new WaitForFixedUpdate();
         }
 
