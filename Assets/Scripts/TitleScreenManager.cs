@@ -21,7 +21,7 @@ public class TitleScreenManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartGame()
@@ -32,7 +32,12 @@ public class TitleScreenManager : MonoBehaviour
     IEnumerator StartGameCoroutine()
     {
         yield return FadeOutScreen();
-        SceneManager.LoadScene(2);
+        PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", -1);
+        PlayerPrefs.SetInt("FLOE_LAST_MUSIC", 0);
+        PlayerPrefs.SetFloat("FLOE_LAST_MUSIC_PITCH", 1);
+        PlayerPrefs.SetInt("FLOE_LAST_AMBIENCE", -1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(6);
     }
 
     IEnumerator FadeInScreen()
@@ -62,9 +67,14 @@ public class TitleScreenManager : MonoBehaviour
         activeIndex = index;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     private void FixedUpdate()
     {
-        for(int i = 0; i < screens.Length; i++)
+        for (int i = 0; i < screens.Length; i++)
         {
             if (i != activeIndex)
                 screens[i].anchoredPosition = new Vector2(80, 0);

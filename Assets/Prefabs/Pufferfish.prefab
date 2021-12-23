@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    health: 4
     acceleration: 100
     swimSpeed: 2
     noticedPlayerSwimSpeed: 3.25
@@ -164,6 +165,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   ply: {fileID: 0}
   anim: {fileID: 0}
+  spr: {fileID: 0}
   attacking: 0
   fishGibsSmall:
   - {fileID: 1972425479664355406, guid: 7e71c4a836c935f4283c7df81c691adc, type: 3}

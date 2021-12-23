@@ -340,7 +340,7 @@ public class PlayerController : MonoBehaviour
         // IF hit object: Pull object towards player
         // IF hit terrain: Pull player towards point
         Vector3 dir = (Vector3)mouseWorldPos - harpoonStartPoint.position;
-        Vector2 pos = harpoonStartPoint.position + dir * pAbilities.harpoonRange;
+        Vector2 pos = harpoonStartPoint.position + (dir * pAbilities.harpoonRange);
 
         harpoonEndpoint.transform.position = harpoonStartPoint.position;
         Vector2 mouseDir = (Vector3)mouseWorldPos - transform.position;
@@ -354,7 +354,7 @@ public class PlayerController : MonoBehaviour
         bool hitFish = false;
 
         Vector2 previousPointPos = harpoonStartPoint.position;
-        while (pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, pos) > 1 && !pAbilities.beingPulledTowardsHarpoon)
+        while (pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, transform.position) < pAbilities.harpoonRange && !pAbilities.beingPulledTowardsHarpoon)
         {
             harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, pos, 1f);
             harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
@@ -449,7 +449,7 @@ public class PlayerController : MonoBehaviour
             hitRb.angularVelocity = 0;
             float timePassed = 0;
             float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
-            while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3)
+            while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3 && Input.GetMouseButton(0) && pAbilities.aiming)
             {
                 harpoonLoopingAudio.pitch = 1.25f - (Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f));
                 harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
@@ -628,7 +628,7 @@ public class PlayerController : MonoBehaviour
         CheckAndPlayClip(armsAnim, "Arm_Invisible");
         CheckAndPlayClip(bodyAnim, "Mech_Invisible");
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
             Instantiate(pAbilities.bubble, transform.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(3, BubbleScript.BubbleSize.random);
         rb.velocity = Vector2.zero;
     }
@@ -651,6 +651,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DamageFlashCoroutine()
     {
+        gm.PlaySFX(gm.sfx.playerSounds[3]);
         for (int i = 0; i < 3; i++)
         {
             bodySpr.color = Color.red;
@@ -706,6 +707,7 @@ public class PlayerController : MonoBehaviour
             timer -= Time.fixedDeltaTime * 4;
         }
 
+        gm.PlaySFX(gm.sfx.playerSounds[4]);
         Instantiate(pAbilities.explosion, transform.position, Quaternion.identity);
 
         for (int i = 0; i < 6; i++)

@@ -45,7 +45,7 @@ public class MetalGibScript : MonoBehaviour
             if (!delayPassed)
                 return;
 
-            if (Vector2.Distance(transform.position, ply.transform.position) < 2.15f)
+            if (Vector2.Distance(transform.position, ply.transform.position) < 3f)
             {
                 ply.pResources.metal++;
                 if (ply.pResources.metal >= 2)
@@ -54,6 +54,7 @@ public class MetalGibScript : MonoBehaviour
                     ply.pResources.health = Mathf.Clamp(ply.pResources.health + 1, 0, 8);
                 }
 
+                GetComponent<Collider2D>().enabled = false;
                 gameObject.layer = 5;
                 spr.sortingLayerName = "UI";
                 beingPickedUp = true;
@@ -68,7 +69,7 @@ public class MetalGibScript : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         //gm.PlaySFX(gm.sfx.generalSounds[0], Random.Range(0.85f, 1.15f));
         transform.parent = healthbar;
-        while(Vector2.Distance(transform.localPosition, Vector2.zero) > 0.05f)
+        while(Vector2.Distance(transform.localPosition, Vector2.zero) > 0.15f)
         {
             transform.localPosition = Vector2.Lerp(transform.localPosition, Vector2.zero, 0.15f);
             yield return new WaitForFixedUpdate();

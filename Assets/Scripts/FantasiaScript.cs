@@ -21,7 +21,7 @@ public class FantasiaScript : Fish
     private void Update()
     {
         movementSettings.noticedPlayer = CanSeePlayer();
-        playerOutOfBounds = (ply.transform.position.x <= 267.5 && ply.transform.position.y <= -590);
+        playerOutOfBounds = (ply.transform.position.x <= 236 && ply.transform.position.y <= -594);
 
     }
 
@@ -44,17 +44,25 @@ public class FantasiaScript : Fish
         {
             Vector2 plyDirection;
             if (playerOutOfBounds)
+            {
+                if (transform.position.x < 237)
+                    transform.position = new Vector2(256, -595);
+                rb.velocity = Vector2.zero;
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(239, -598), 0.1f);
                 plyDirection = (new Vector3(267, -597) - transform.position).normalized;
-            else
-                plyDirection = (ply.transform.position - transform.position).normalized;
-            rb.AddForce(plyDirection * movementSettings.acceleration);
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.noticedPlayerSwimSpeed), 0.1f);
-
-            if (plyDirection.x > 0)
-                CheckAndPlayClip(animationPrefix + "_SwimRight");
-            else
                 CheckAndPlayClip(animationPrefix + "_SwimLeft");
+            }
+            else
+            {
+                plyDirection = (ply.transform.position - transform.position).normalized;
+                rb.AddForce(plyDirection * movementSettings.acceleration);
+                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.noticedPlayerSwimSpeed), 0.1f);
 
+                if (plyDirection.x > 0)
+                    CheckAndPlayClip(animationPrefix + "_SwimRight");
+                else
+                    CheckAndPlayClip(animationPrefix + "_SwimLeft");
+            }
 
             if (!playerOutOfBounds)
             {

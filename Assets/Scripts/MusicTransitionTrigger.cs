@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MusicTransitionTrigger : MonoBehaviour
 {
-    public AudioClip newMusic;
-
+    public int newMusic;
+    public float pitch = 1;
     GameManager gm;
 
     // Start is called before the first frame update
@@ -16,9 +16,9 @@ public class MusicTransitionTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag == "Player" && enabled)
         {
-            gm.StartCoroutine(gm.TransitionMusic(newMusic));
+            gm.StartCoroutine(gm.TransitionMusic(newMusic, pitch));
             this.enabled = false;
         }
     }

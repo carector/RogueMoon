@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class BoDisappearCutscene : MonoBehaviour
 {
     public Sprite reference;
+    public Sprite reference2;
     Image portrait;
     TextMeshProUGUI dialogText;
     Animator phantasiaAnim;
     GameManager gm;
+    public AudioClip ambience;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,11 @@ public class BoDisappearCutscene : MonoBehaviour
 
         print("Here");
         phantasiaAnim.Play("FantasiaSilhouetteAttack");
+
+        while (portrait.sprite != reference2)
+            yield return null;
+
+        gm.PlayAmbience(0);
         this.enabled = false;
     }
 }

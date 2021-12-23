@@ -301,7 +301,11 @@
                             "portraitIndex": 1
                         },
                         {
-                            "text": "The temperature difference at\\this depth is insignificant. Microbial life\\should continue to thrive as\\it did in the layer above.",
+                            "text": "The temperature difference at\\this depth is insignificant.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Microbial life should continue to thrive as it did in the layer above.",
                             "portraitIndex": 1
                         },
                         {
@@ -453,7 +457,7 @@
                         },
                         {
                             "text": "Shit. Shit shit shit.",
-                            "portraitIndex": 3
+                            "portraitIndex": 7
                         },
                         {
                             "text": "He wouldn't be harebrained\\enough to take off into the\\waters. So where did he...?",
@@ -487,7 +491,7 @@
                             "portraitIndex": 3
                         },
                         {
-                            "text": "Out in the waters then. He's got to be out there, I can't think of anything else.",
+                            "text": "Out in the waters then. He's got to be out there, I can't\\think of anything else.",
                             "portraitIndex": 3
                         },
                     ],
@@ -767,7 +771,7 @@
                     "portrait": 1,
                     "sentences": [
                         {
-                            "text": "He's not picking back up either. Nothing more we can\\do.",
+                            "text": "He's not picking back up\\either. Nothing more we can\\do.",
                             "portraitIndex": 1
                         }
                     ],

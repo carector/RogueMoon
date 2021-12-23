@@ -89,10 +89,10 @@ public class PufferfishScript : Fish
                 if (Vector2.Distance(ply.transform.position, transform.position) < movementSettings.attackDistance)
                 {
                     attacking = true;
-                    rb.velocity = Vector2.zero;
+                    rb.velocity = plyDirection * 3;
                     CheckAndPlayClip(animationPrefix + "_Attack");
 
-                    yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+                    yield return new WaitForSeconds(1.75f);
                     attacking = false;
                 }
             }

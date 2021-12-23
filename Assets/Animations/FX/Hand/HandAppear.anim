@@ -30,7 +30,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.95
+        time: 4.15
         value: 1
         inSlope: 0
         outSlope: 0
@@ -50,25 +50,25 @@ AnimationClip:
     - time: 0
       value: {fileID: -1581343086942607035, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 2.9833333
+    - time: 4.1833334
       value: {fileID: -1581343086942607035, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 3.3333333
+    - time: 4.5333333
       value: {fileID: 8044223966387669677, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 3.7166667
+    - time: 4.9166665
       value: {fileID: -157362069285402617, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 4.0833335
+    - time: 5.2833333
       value: {fileID: 4623490181776969992, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 4.45
+    - time: 5.65
       value: {fileID: 2568708096644046474, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 4.8166666
+    - time: 6.016667
       value: {fileID: -7953195005291524238, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
-    - time: 5.05
+    - time: 6.25
       value: {fileID: -7953195005291524238, guid: 3da07a1c9daced447ae462edf1a4c4f5,
         type: 3}
     attribute: m_Sprite
@@ -110,7 +110,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 5.066667
+    m_StopTime: 6.266667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -139,7 +139,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 2.95
+        time: 4.15
         value: 1
         inSlope: 0
         outSlope: 0
@@ -157,4 +157,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

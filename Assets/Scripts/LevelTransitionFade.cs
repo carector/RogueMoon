@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelTransitionFade : MonoBehaviour
 {
     public PathDarkness[] dark;
+    public int blockerToEnableIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class LevelTransitionFade : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            FindObjectOfType<GameManager>().checkpointRefs.blockers[blockerToEnableIndex].enabled = true;
             for (int i = 0; i < dark.Length; i++)
                 dark[i].Fade();
 

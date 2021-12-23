@@ -18,6 +18,7 @@ public class GibScript : MonoBehaviour
             spr = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized * 6;
+            rb.gravityScale = 0.5f;
             spr.sprite = spritePool[Random.Range(0, spritePool.Length)];
             StartCoroutine(FadeOutAfterTime());
         }

@@ -14,10 +14,10 @@ public class DialogTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && enabled)
         {
             gm.StartCoroutine(gm.DisplayDialog(gm.dialogSettings.JSONSource, conversationId));
-            Destroy(this.gameObject);
+            this.enabled = false;
         }
     }
 }

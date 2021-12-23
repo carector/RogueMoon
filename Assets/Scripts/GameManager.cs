@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
         public AudioClip[] generalSounds;
         public AudioClip[] dialogVoices;
         public AudioClip[] music;
+        public AudioClip[] ambience;
     }
 
     [System.Serializable]
@@ -31,6 +33,17 @@ public class GameManager : MonoBehaviour
     public class GameSpriteReferences
     {
         public Sprite[] numbers;
+    }
+
+    [System.Serializable]
+    public class GameCheckpointReferences
+    {
+        public Transform[] checkpoints;
+        public Collider2D[] blockers;
+        public int currentCheckpoint = 0;
+        public int lastMusicIndex = -1;
+        public int lastAmbienceIndex = -1;
+        public float lastMusicPitch = 1;
     }
 
     // Stores data used in NPC interactions
@@ -76,6 +89,7 @@ public class GameManager : MonoBehaviour
     public GameSoundEffects sfx;
     public GameDialogSettings dialogSettings;
     public GameSpriteReferences spriteRefs;
+    public GameCheckpointReferences checkpointRefs;
 
     public bool menuOpen;
     public bool gamePaused;
@@ -94,6 +108,7 @@ public class GameManager : MonoBehaviour
     Image numberIconOnes;
     Image currentToolIcon;
     Image darknessOverlay;
+    RectTransform darknessMask;
 
     TextMeshProUGUI metalNumberText;
     TextMeshProUGUI harpoonNumberText;
@@ -113,6 +128,7 @@ public class GameManager : MonoBehaviour
     Image rightPortrait;
     Image toolbarFill;
     Image dialogAdvanceIcon;
+    Image screenBlackout;
     Animator warningScreenAnimator;
 
     PlayerController ply;
@@ -125,6 +141,14 @@ public class GameManager : MonoBehaviour
     // used for when we unpause when the mech menu is already
     // open we don't fuck up our timescale
     float actionMenuStoredTimeScale;
+
+    /* PlayerPrefs reference
+     * Last checkpoint position index: FLOE_LAST_CHECKPOINT
+     * Last played music clip index: FLOW_LAST_MUSIC
+     * Last played ambience clip index: FLOE_LAST_AMBIENCE
+     * 
+     * 
+     */
 
     // Start is called before the first frame update
     void Start()
@@ -155,6 +179,7 @@ public class GameManager : MonoBehaviour
         harpoonNumberText = actionMenuHolder.GetChild(4).GetComponent<TextMeshProUGUI>();
         depthChargeNumberText = actionMenuHolder.GetChild(5).GetComponent<TextMeshProUGUI>();
         darknessOverlay = GameObject.Find("DarknessOverlay").GetComponent<Image>();
+        darknessMask = GameObject.Find("DarknessMask").GetComponent<RectTransform>();
 
         warningScreenAnimator = GameObject.Find("WarningScreen").GetComponent<Animator>();
         healthbarFill = GameObject.Find("HealthbarFill").GetComponent<Image>();
@@ -162,6 +187,8 @@ public class GameManager : MonoBehaviour
         ply = FindObjectOfType<PlayerController>();
         cam = FindObjectOfType<CameraControl>().transform.GetChild(0);
 
+        screenBlackout = GameObject.Find("ScreenBlackout").GetComponent<Image>();
+        screenBlackout.color = Color.black;
         depthArrow = GameObject.Find("DepthArrow").GetComponent<RectTransform>();
         depthText = depthArrow.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         hudHolder = GameObject.Find("HUDHolder").GetComponent<RectTransform>();
@@ -173,6 +200,74 @@ public class GameManager : MonoBehaviour
 
         // Convert dialog from JSON file to nice, readable dialog
         dialogSettings.cachedTextData = DeserializeDialog(dialogSettings.JSONSource);
+
+        StartCoroutine(LoadIntoLevel());
+    }
+
+    IEnumerator LoadIntoLevel()
+    {
+        if (!PlayerPrefs.HasKey("FLOE_LAST_CHECKPOINT"))
+        {
+            print("Playerprefs weren't found");
+            PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", -1);
+            PlayerPrefs.SetInt("FLOE_LAST_MUSIC", 0);
+            PlayerPrefs.SetFloat("FLOE_LAST_MUSIC_PITCH", 1);
+            PlayerPrefs.SetInt("FLOE_LAST_AMBIENCE", -1);
+            PlayerPrefs.Save();
+        }
+
+        int checkpoint = PlayerPrefs.GetInt("FLOE_LAST_CHECKPOINT");
+        int lastMusic = PlayerPrefs.GetInt("FLOE_LAST_MUSIC");
+        float lastPitch = PlayerPrefs.GetFloat("FLOE_LAST_MUSIC_PITCH");
+        int lastAmbience = PlayerPrefs.GetInt("FLOE_LAST_AMBIENCE");
+        int loadedLevelIndex = 3;
+
+        if (checkpoint >= 1 && checkpoint < 3)
+        {
+            checkpointRefs.blockers[0].enabled = true;
+            loadedLevelIndex = 4;
+        }
+        else if (checkpoint >= 3)
+        {
+            checkpointRefs.blockers[1].enabled = true;
+            loadedLevelIndex = 5;
+        }
+
+        if (checkpoint >= 0)
+        {
+            ply.transform.position = checkpointRefs.checkpoints[checkpoint].position;
+            checkpointRefs.currentCheckpoint = checkpoint;
+        }
+
+        SceneManager.LoadSceneAsync(loadedLevelIndex, LoadSceneMode.Additive);
+        while (!SceneManager.GetActiveScene().isLoaded)
+            yield return null;
+
+        if (checkpoint == 1)
+            Destroy(GameObject.Find("Level2Dither"));
+
+        // Fade in black screen
+        yield return FadeInScreen();
+
+        if (lastMusic > -1)
+            StartCoroutine(PlayMusic(lastMusic, lastPitch));
+        if (lastAmbience > -1)
+            PlayAmbience(lastAmbience);
+
+        if (checkpoint > -1)
+            ply.pMovement.canMove = true;
+    }
+
+    IEnumerator FadeInScreen()
+    {
+        while (screenBlackout.color.a > 0)
+        {
+            screenBlackout.color = new Color(0, 0, 0, screenBlackout.color.a - 0.075f);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+        }
+        screenBlackout.rectTransform.anchoredPosition = new Vector2(0, -3000);
+
     }
 
     // Update is called once per frame
@@ -182,6 +277,7 @@ public class GameManager : MonoBehaviour
 
         if (ply.pResources.health > 0)
         {
+            /*
             // Open mech menu
             if (Input.GetKeyDown(KeyCode.Tab) && !dialogSettings.isPrintingDialog)
             {
@@ -197,7 +293,7 @@ public class GameManager : MonoBehaviour
                     actionMenuHolder.anchoredPosition = new Vector2(0, -160);
                     SwitchMenuScreen(4);
                 }
-            }
+            }*/
 
             // Open pause menu
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -259,7 +355,9 @@ public class GameManager : MonoBehaviour
 
     public void RestartFromCheckpoint()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", checkpointRefs.currentCheckpoint);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(2);
     }
 
     private void FixedUpdate()
@@ -293,16 +391,23 @@ public class GameManager : MonoBehaviour
         depthArrow.anchoredPosition = new Vector2(4, Mathf.Round(80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150));
 
         UpdateHarpoonNumber();
-        UpdateActionMenuNumbers();
+        //UpdateActionMenuNumbers();
 
         // Update darkness overlay
-        if(ply.transform.position.y < -400 && ply.transform.position.y > -614)
+        if (ply.transform.position.y < -400 && ply.transform.position.y > -625)
         {
-            darknessOverlay.color = Color.Lerp(darknessOverlay.color, new Color(0, 0, 0, Mathf.Clamp(Mathf.Abs(ply.transform.position.y + 400)/150, 0, 0.98f)), 0.05f);
+            darknessOverlay.color = Color.Lerp(darknessOverlay.color, new Color(0, 0, 0, Mathf.Clamp(Mathf.Abs(ply.transform.position.y + 400) / 100, 0, 0.98f)), 0.05f);
         }
         else
         {
             darknessOverlay.color = Color.Lerp(darknessOverlay.color, Color.clear, 0.05f);
+        }
+
+        if (Time.timeScale != 0)
+        {
+            Vector2 mouseDir = (Vector3)Camera.main.ScreenToWorldPoint(Input.mousePosition) - ply.transform.position;
+            float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
+            darknessMask.transform.rotation = Quaternion.Lerp(darknessMask.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), 0.5f);
         }
     }
 
@@ -315,46 +420,40 @@ public class GameManager : MonoBehaviour
 
     public void UpdateAttackBar()
     {
-        if (ply.pAbilities.activeAbility == 1)
+        toolbarFill.color = Color.white;
+        Vector2 fillPos = Vector2.zero;
+        Vector2 fillSize = Vector2.zero;
+
+        // 14 units between edges
+        if (!ply.pAbilities.attackDelayInProgress)
         {
-            toolbarFill.color = Color.white;
-            Vector2 fillPos = Vector2.zero;
-            Vector2 fillSize = Vector2.zero;
-
-            // 14 units between edges
-            if (!ply.pAbilities.attackDelayInProgress)
+            switch (ply.pAbilities.attackCharges)
             {
-                switch (ply.pAbilities.attackCharges)
-                {
-                    case 2:
-                        fillPos = new Vector2(-31, -8);
-                        fillSize = new Vector2(0, 16);
-                        break;
-                    case 1:
-                        fillPos = new Vector2(-23.5f, -8);
-                        fillSize = new Vector2(15, 16);
-                        break;
-                    case 0:
-                        fillPos = new Vector2(-16f, -8);
-                        fillSize = new Vector2(30, 16);
-                        break;
-                }
+                case 2:
+                    fillPos = new Vector2(-31, -8);
+                    fillSize = new Vector2(0, 16);
+                    break;
+                case 1:
+                    fillPos = new Vector2(-23.5f, -8);
+                    fillSize = new Vector2(15, 16);
+                    break;
+                case 0:
+                    fillPos = new Vector2(-16f, -8);
+                    fillSize = new Vector2(30, 16);
+                    break;
             }
-            else
-            {
-                float rate = Time.fixedDeltaTime * 16;
-
-                // Lerp towards left to recharge
-                fillPos = toolbarFill.rectTransform.anchoredPosition + Vector2.left * rate;
-                fillSize = toolbarFill.rectTransform.sizeDelta + Vector2.left * rate * 2;
-            }
-
-            toolbarFill.rectTransform.anchoredPosition = Vector2.Lerp(toolbarFill.rectTransform.anchoredPosition, fillPos, 0.5f);
-            toolbarFill.rectTransform.sizeDelta = Vector2.Lerp(toolbarFill.rectTransform.sizeDelta, fillSize, 0.5f);
-
         }
         else
-            toolbarFill.color = Color.clear;
+        {
+            float rate = Time.fixedDeltaTime * 16;
+
+            // Lerp towards left to recharge
+            fillPos = toolbarFill.rectTransform.anchoredPosition + Vector2.left * rate;
+            fillSize = toolbarFill.rectTransform.sizeDelta + Vector2.left * rate * 2;
+        }
+
+        toolbarFill.rectTransform.anchoredPosition = Vector2.Lerp(toolbarFill.rectTransform.anchoredPosition, fillPos, 0.5f);
+        toolbarFill.rectTransform.sizeDelta = Vector2.Lerp(toolbarFill.rectTransform.sizeDelta, fillSize, 0.5f);
     }
 
     public void SwitchMenuScreen(int screen)
@@ -406,7 +505,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHarpoonNumber()
     {
-        if (ply.pAbilities.activeAbility == 0)
+        /*if (ply.pAbilities.activeAbility == 0)
         {
             int ones = ply.pResources.harpoons % 10;
             int tens = ply.pResources.harpoons / 10;
@@ -414,10 +513,10 @@ public class GameManager : MonoBehaviour
             numberIconTens.sprite = spriteRefs.numbers[tens];
         }
         else
-        {
-            numberIconOnes.sprite = spriteRefs.numbers[12];
-            numberIconTens.sprite = spriteRefs.numbers[12];
-        }
+        {*/
+        numberIconOnes.sprite = spriteRefs.numbers[12];
+        numberIconTens.sprite = spriteRefs.numbers[12];
+        //}
     }
 
     public void PlaySFX(AudioClip clip)
@@ -456,23 +555,38 @@ public class GameManager : MonoBehaviour
         priorityStoppableSfxSource.Stop();
     }
 
-    public IEnumerator TransitionMusic(AudioClip newMusic)
+    public void PlayAmbience(int ambienceIndex)
     {
-        while(musicSource.volume > 0)
+        checkpointRefs.lastAmbienceIndex = ambienceIndex;
+        ambienceSource.clip = sfx.ambience[ambienceIndex];
+        ambienceSource.Play();
+    }
+
+    public void StopAmbience()
+    {
+        ambienceSource.Stop();
+    }
+
+    public IEnumerator TransitionMusic(int musicIndex, float pitch)
+    {
+        while (musicSource.volume > 0)
         {
             musicSource.volume -= 0.01f;
             yield return new WaitForEndOfFrame();
         }
 
         musicSource.Stop();
-        if(newMusic != null)
-            StartCoroutine(PlayMusic(newMusic));
+        if (musicIndex > -1)
+            StartCoroutine(PlayMusic(musicIndex, pitch));
     }
 
-    public IEnumerator PlayMusic(AudioClip music)
+    public IEnumerator PlayMusic(int musicIndex, float pitch)
     {
+        checkpointRefs.lastMusicIndex = musicIndex;
+        checkpointRefs.lastMusicPitch = pitch;
         musicSource.volume = 0;
-        musicSource.clip = music;
+        musicSource.pitch = pitch;
+        musicSource.clip = sfx.music[musicIndex];
         musicSource.Play();
 
         while (musicSource.volume < 1)
@@ -548,7 +662,7 @@ public class GameManager : MonoBehaviour
                 if (!creepyPortrait)
                 {
                     int k = 0;
-                    while(k < sentenceLength && !skippedText)
+                    while (k < sentenceLength && !skippedText)
                     {
                         if (k % 2 == 0)
                         {

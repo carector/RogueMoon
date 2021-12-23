@@ -34,13 +34,10 @@ public class IntroCutsceneManager : MonoBehaviour
     }
 
     IEnumerator Intro()
-    {
-        SceneManager.LoadScene(3, LoadSceneMode.Additive);
-        SceneManager.LoadScene(4, LoadSceneMode.Additive);
+    {    
         while (!ply.pMovement.isGrounded)
             yield return null;
 
-        gm.StartCoroutine(gm.PlayMusic(gm.sfx.music[0]));
         if (ply.transform.position.y > -120)
         {
             yield return new WaitForSecondsRealtime(0.75f);

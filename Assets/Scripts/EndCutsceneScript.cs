@@ -41,18 +41,23 @@ public class EndCutsceneScript : MonoBehaviour
 
     IEnumerator EndSequence()
     {
-        while(ply.transform.position.y > -630.25f)
+        float offset = -15;
+        while (ply.transform.position.y > -615.25f + offset)
+            yield return null;
+
+        gm.StartCoroutine(gm.TransitionMusic(5, 2));
+        while (ply.transform.position.y > -630.25f + offset)
             yield return null;
 
         yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "endcutscene_1");
 
-        while (ply.transform.position.y > -631f)
+        while (ply.transform.position.y > -635f + offset)
             yield return null;
-
+        gm.StartCoroutine(gm.TransitionMusic(-1, 1));
         hand.Play("HandAppear");
         yield return new WaitForSeconds(2);
         gm.PlaySFX(gm.sfx.generalSounds[1]);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.5f);
         yield return gm.DisplayDialogAutoAdvance(gm.dialogSettings.JSONSource, "endcutscene_2");
         gm.StopSFX();
         crushed = true;
@@ -60,7 +65,7 @@ public class EndCutsceneScript : MonoBehaviour
         ply.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         gm.ScreenShake(20);
         ply.GetCrushed();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(6);
         Application.LoadLevel(1);
     }
 

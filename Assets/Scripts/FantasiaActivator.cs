@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FantasiaActivator : MonoBehaviour
 {
-    public FantasiaScript f;
+    public FantasiaScript[] f;
     GameManager gm;
     // Start is called before the first frame update
     void Start()
@@ -20,10 +20,12 @@ public class FantasiaActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag == "Player" && enabled)
         {
-            gm.StartCoroutine(gm.TransitionMusic(gm.sfx.music[2]));
-            f.Activate();
+            gm.StopAmbience();
+            gm.StartCoroutine(gm.TransitionMusic(3, 1));
+            f[0].Activate();
+            this.enabled = false;
         }
     }
 }
