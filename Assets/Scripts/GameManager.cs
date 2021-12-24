@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class GameCheckpointReferences
     {
+        public bool dontLoad;
         public Transform[] checkpoints;
         public Collider2D[] blockers;
         public int currentCheckpoint = 0;
@@ -206,56 +207,65 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadIntoLevel()
     {
-        if (!PlayerPrefs.HasKey("FLOE_LAST_CHECKPOINT"))
+        if (!checkpointRefs.dontLoad)
         {
-            print("Playerprefs weren't found");
-            PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", -1);
-            PlayerPrefs.SetInt("FLOE_LAST_MUSIC", 0);
-            PlayerPrefs.SetFloat("FLOE_LAST_MUSIC_PITCH", 1);
-            PlayerPrefs.SetInt("FLOE_LAST_AMBIENCE", -1);
-            PlayerPrefs.Save();
+            if (!PlayerPrefs.HasKey("FLOE_LAST_CHECKPOINT"))
+            {
+                print("Playerprefs weren't found");
+                PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", -1);
+                PlayerPrefs.SetInt("FLOE_LAST_MUSIC", 0);
+                PlayerPrefs.SetFloat("FLOE_LAST_MUSIC_PITCH", 1);
+                PlayerPrefs.SetInt("FLOE_LAST_AMBIENCE", -1);
+                PlayerPrefs.Save();
+            }
+
+            int checkpoint = PlayerPrefs.GetInt("FLOE_LAST_CHECKPOINT");
+            int lastMusic = PlayerPrefs.GetInt("FLOE_LAST_MUSIC");
+            float lastPitch = PlayerPrefs.GetFloat("FLOE_LAST_MUSIC_PITCH");
+            int lastAmbience = PlayerPrefs.GetInt("FLOE_LAST_AMBIENCE");
+            int loadedLevelIndex = 3;
+
+            if (checkpoint >= 1 && checkpoint < 3)
+            {
+                checkpointRefs.blockers[0].enabled = true;
+                loadedLevelIndex = 4;
+            }
+            else if (checkpoint >= 3)
+            {
+                checkpointRefs.blockers[1].enabled = true;
+                loadedLevelIndex = 5;
+            }
+
+            if (checkpoint >= 0)
+            {
+                ply.transform.position = checkpointRefs.checkpoints[checkpoint].position;
+                checkpointRefs.currentCheckpoint = checkpoint;
+            }
+
+            SceneManager.LoadSceneAsync(loadedLevelIndex, LoadSceneMode.Additive);
+            while (!SceneManager.GetActiveScene().isLoaded)
+                yield return null;
+
+            if (checkpoint == 1)
+                Destroy(GameObject.Find("Level2Dither"));
+
+            // Fade in black screen
+            yield return FadeInScreen();
+
+            if (lastMusic > -1)
+                StartCoroutine(PlayMusic(lastMusic, lastPitch));
+            if (lastAmbience > -1)
+                PlayAmbience(lastAmbience);
+
+            if (checkpoint > -1)
+                ply.pMovement.canMove = true;
         }
-
-        int checkpoint = PlayerPrefs.GetInt("FLOE_LAST_CHECKPOINT");
-        int lastMusic = PlayerPrefs.GetInt("FLOE_LAST_MUSIC");
-        float lastPitch = PlayerPrefs.GetFloat("FLOE_LAST_MUSIC_PITCH");
-        int lastAmbience = PlayerPrefs.GetInt("FLOE_LAST_AMBIENCE");
-        int loadedLevelIndex = 3;
-
-        if (checkpoint >= 1 && checkpoint < 3)
+        else
         {
-            checkpointRefs.blockers[0].enabled = true;
-            loadedLevelIndex = 4;
-        }
-        else if (checkpoint >= 3)
-        {
-            checkpointRefs.blockers[1].enabled = true;
-            loadedLevelIndex = 5;
-        }
-
-        if (checkpoint >= 0)
-        {
-            ply.transform.position = checkpointRefs.checkpoints[checkpoint].position;
-            checkpointRefs.currentCheckpoint = checkpoint;
-        }
-
-        SceneManager.LoadSceneAsync(loadedLevelIndex, LoadSceneMode.Additive);
-        while (!SceneManager.GetActiveScene().isLoaded)
-            yield return null;
-
-        if (checkpoint == 1)
-            Destroy(GameObject.Find("Level2Dither"));
-
-        // Fade in black screen
-        yield return FadeInScreen();
-
-        if (lastMusic > -1)
-            StartCoroutine(PlayMusic(lastMusic, lastPitch));
-        if (lastAmbience > -1)
-            PlayAmbience(lastAmbience);
-
-        if (checkpoint > -1)
+            // Fade in black screen
+            yield return FadeInScreen();
             ply.pMovement.canMove = true;
+        }
     }
 
     IEnumerator FadeInScreen()
