@@ -26,14 +26,10 @@ public class Fish : MonoBehaviour
     public string animationPrefix = "Fish";
     public Vector2 direction;
 
-    [HideInInspector]
-    public Rigidbody2D rb;
-    [HideInInspector]
-    public PlayerController ply;
-    [HideInInspector]
-    public Animator anim;
-    [HideInInspector]
-    public SpriteRenderer spr;
+    protected Rigidbody2D rb;
+    protected PlayerController ply;
+    protected Animator anim;
+    protected SpriteRenderer spr;
 
     Transform harpoonEndpoint;
 
@@ -52,7 +48,8 @@ public class Fish : MonoBehaviour
         ply = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        anim.SetFloat("SwimSpeed", 1);
+        if(anim != null)
+            anim.SetFloat("SwimSpeed", 1);
     }
 
     // Update is called once per frame
@@ -74,7 +71,7 @@ public class Fish : MonoBehaviour
             BreakApart();
     }
 
-    IEnumerator DamageFlashCoroutine()
+    protected virtual IEnumerator DamageFlashCoroutine()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -87,7 +84,7 @@ public class Fish : MonoBehaviour
         }
     }
 
-    public void BreakApart()
+    public virtual void BreakApart()
     {
         foreach (Sprite s in goreBits)
             Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));

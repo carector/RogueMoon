@@ -7,8 +7,8 @@ public class GibScript : MonoBehaviour
     public Sprite[] spritePool;
     public bool initializedByParent;
     bool reachedZero;
-    SpriteRenderer spr;
-    Rigidbody2D rb;
+    protected SpriteRenderer spr;
+    protected Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class GibScript : MonoBehaviour
         }
     }
 
-    public void InitializeGib(Sprite s, float angularVelocity)
+    public virtual void InitializeGib(Sprite s, float angularVelocity)
     {
         spr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();

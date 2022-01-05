@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
     public PlayerAbilitySettings pAbilities;
 
     GameManager gm;
-    SpriteRenderer harpoonEndpoint;
+    [HideInInspector]
+    public SpriteRenderer harpoonEndpoint;
     SpriteRenderer harpoonChain;
     Rigidbody2D rb;
     SpriteRenderer bodySpr;
