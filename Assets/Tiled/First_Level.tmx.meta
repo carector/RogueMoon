@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b34856f042ec7e245a5b2333f5c75b71
+guid: 977c8738de84d6f438713ce6e57e655b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,10 +8,8 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
-  missingFiles:
-  - Assets/Tiled/Floe Tilesets.tsx
-  errors:
-  - 'Missing tileset asset: Floe Tilesets.tsx'
+  missingFiles: []
+  errors: []
   warnings: []
   missingSortingLayers: []
   missingLayers: []

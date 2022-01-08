@@ -710,7 +710,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = actionMenuStoredTimeScale;
         dialogSettings.isPrintingDialog = false;
         dialogText.text = "";
-        textboxHolder.anchoredPosition = new Vector2(0, 40f);
+        textboxHolder.anchoredPosition = new Vector2(0, 64f);
     }
 
     IEnumerator WaitForTextSkip()

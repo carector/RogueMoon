@@ -483,7 +483,7 @@ public class PlayerController : MonoBehaviour
     {
         bool grounded = false;
         Debug.DrawRay(transform.position + Vector3.down * 2, Vector2.down * 0.25f, Color.red, Time.fixedDeltaTime);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.down * 2, Vector2.down, 0.35f, mask);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position + Vector3.down * 2, new Vector2(0.25f, 0.25f), 0, Vector2.down, 0.1f, mask);
         if (hit.transform != null && hit.transform.tag == "Ground")
             grounded = true;
 
