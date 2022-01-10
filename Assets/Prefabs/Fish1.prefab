@@ -118,17 +118,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    health: 1
     acceleration: 100
     swimSpeed: 2
+    noticedPlayerSwimSpeed: 4
     inSwimBounds: 1
+    noticedPlayer: 0
+    damageRadius: 0
+    noticeDistance: 0
+    attackDistance: 0
+    playerLayermask:
+      serializedVersion: 2
+      m_Bits: 0
   swimAreaBounds: {fileID: 0}
   gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
+  bloodGib: {fileID: 7459286035225651355, guid: 40767144279c55147b731e287bd1ca62,
+    type: 3}
   goreBits:
   - {fileID: 8610895968501457032, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
   - {fileID: 1144253119143779311, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
   - {fileID: 6831466389684399411, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
   - {fileID: -2452382750879097800, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
   - {fileID: 7059430609009587089, guid: fc0c35d8f922b544cb1bef050e6f68b5, type: 3}
+  bloodColor: {r: 0.43921572, g: 0.65882355, b: 0.74509805, a: 0}
   animationPrefix: Fish1
   direction: {x: 0, y: 0}
 --- !u!50 &5201951791637557834

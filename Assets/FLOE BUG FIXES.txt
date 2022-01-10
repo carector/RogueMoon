@@ -1,0 +1,18 @@
+// Fix two pieces of module statagtite that are hanging off the surface of the first cave where you discover the alloy
+// Give the bozo skeleton a level 2 darkness overlay, or something more complex and sexy (will specify if you'd like) located near the red coral and fern area
+- The cryptid missing tile at the very bottom of the first tunnel down
+// Apply hitbox to the cornerless rock pieces and each piece of slope
+// Fix the dafoeboxes, determine if they should be lowered based on if the player is able to see the terrain clipping / fly over top them and stand on them, maybe make it so they can be phased through during a cutscene where the mech falls through the water (I plan on making an animation for the giant crane to drop the mech into the water)
+// Fix the microscopic shading issue that is located at the bottom of the secret area pit that connects to the spiky area
+// Remove the shading on the single block tile that is in same said area
+
+- 
+- Apply the darkness thingy to the end of the level before the pufferfish transition
+
+- FISH!!! :D :D :D :smuch: :smuch: :smuch: :smuch: :smuch: :smuch: 
+- Small critters 
+- Secret area implementation, I forgot to make parts that had the hitboxes in mind but I will specify them at some point, there are 4 in total
+- - Kissy FIsh Shrine, put kissy fish in that bitch 
+- - Small Red Hole with Ore in it
+- - Below the spiky area shortcut
+- - Bone zone

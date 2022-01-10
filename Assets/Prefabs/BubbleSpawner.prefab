@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 5925834489814110288, guid: cb0b90ef84c2e4f4dbe3a974ce2266ba, type: 3}
-  xIntensity: 1
+  xIntensity: 0.5
   size: 4

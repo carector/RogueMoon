@@ -314,6 +314,10 @@ public class GameManager : MonoBehaviour
                 else
                     Time.timeScale = 1;
             }
+
+            // TEMP
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "bones_area"));
         }
 
         // Game over if health < 0

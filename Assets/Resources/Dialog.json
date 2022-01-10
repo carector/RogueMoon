@@ -245,6 +245,87 @@
             ]
         },
         {
+            "conversationId": "bones_area",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Good Lordy, look at the size\\of these bones!",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I've caught bigger.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "It's like a titanic Otzi-- except\\it looks like something dug\\its way here and bit off\\everything it could chew.",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "We can't rule out\\decomposition.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "I thought about that, but look\\closer at the bones.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Do you see it?",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Yeah. Dozens of little teeth\\marks.",
+                            "portraitIndex": 0
+                        }
+                    ],
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Flash frozen in the ice just to\\be a fishy slopsicle!",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "All the more evidence that\\Charybdis is a young moon.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "I can only imagine the kind of\\upheaval that formed it...",
+                            "portraitIndex": 1
+                        }
+                    ],
+                },
+            ]
+        },
+        {
             "conversationId": "level3_entrance",
             "initialPortraits": [0, 1],
             "dialog": [

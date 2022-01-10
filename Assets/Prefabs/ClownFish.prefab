@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8440820684961502282}
   m_Layer: 0
   m_Name: ClownFish
-  m_TagString: Untagged
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    health: 1
     acceleration: 100
     swimSpeed: 2
     noticedPlayerSwimSpeed: 4
@@ -110,13 +111,18 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
   swimAreaBounds: {fileID: 0}
-  gib: {fileID: 0}
-  goreBits: []
+  gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
+  bloodGib: {fileID: 7459286035225651355, guid: 40767144279c55147b731e287bd1ca62,
+    type: 3}
+  goreBits:
+  - {fileID: -1748680873674119020, guid: e1a1ff0ec9d9bab439a4658c31281f6e, type: 3}
+  - {fileID: -9051124208973779900, guid: e1a1ff0ec9d9bab439a4658c31281f6e, type: 3}
+  - {fileID: -1404878916765953857, guid: e1a1ff0ec9d9bab439a4658c31281f6e, type: 3}
+  - {fileID: 721581840483443463, guid: e1a1ff0ec9d9bab439a4658c31281f6e, type: 3}
+  - {fileID: 3388187646241126514, guid: e1a1ff0ec9d9bab439a4658c31281f6e, type: 3}
+  bloodColor: {r: 0.7411765, g: 0.72156864, b: 0.3019608, a: 0}
   animationPrefix: ClownFish
   direction: {x: 0, y: 0}
-  rb: {fileID: 0}
-  ply: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!58 &8440820684961502284
 CircleCollider2D:
   m_ObjectHideFlags: 0

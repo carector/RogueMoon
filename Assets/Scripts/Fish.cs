@@ -22,7 +22,9 @@ public class Fish : MonoBehaviour
     public FishMovementSettings movementSettings;
     public Collider2D swimAreaBounds;
     public GameObject gib;
+    public GameObject bloodGib;
     public Sprite[] goreBits;
+    public Color bloodColor;
     public string animationPrefix = "Fish";
     public Vector2 direction;
 
@@ -88,6 +90,12 @@ public class Fish : MonoBehaviour
     {
         foreach (Sprite s in goreBits)
             Instantiate(gib, transform.position, Quaternion.identity).GetComponent<GibScript>().InitializeGib(s, Random.Range(-50, 50));
+        if (bloodGib != null)
+        {
+            ParticleSystem p = Instantiate(bloodGib, transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+            p.startColor = new Color(bloodColor.r, bloodColor.g, bloodColor.b, 50f / 255f);
+            p.Play();
+        }
 
         Destroy(this.gameObject);
     }

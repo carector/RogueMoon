@@ -1681,12 +1681,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    health: 1
     acceleration: 100
     swimSpeed: 3
+    noticedPlayerSwimSpeed: 4
     inSwimBounds: 1
+    noticedPlayer: 0
+    damageRadius: 0
+    noticeDistance: 0
+    attackDistance: 0
+    playerLayermask:
+      serializedVersion: 2
+      m_Bits: 0
   swimAreaBounds: {fileID: 1783623271}
   gib: {fileID: 0}
+  bloodGib: {fileID: 0}
   goreBits: []
+  bloodColor: {r: 0, g: 0, b: 0, a: 0}
   animationPrefix: KissyFish
   direction: {x: 0, y: 0}
 --- !u!95 &1304256041
@@ -2296,12 +2307,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    health: 1
     acceleration: 100
     swimSpeed: 2
+    noticedPlayerSwimSpeed: 4
     inSwimBounds: 1
+    noticedPlayer: 0
+    damageRadius: 0
+    noticeDistance: 0
+    attackDistance: 0
+    playerLayermask:
+      serializedVersion: 2
+      m_Bits: 0
   swimAreaBounds: {fileID: 130337068}
-  gib: {fileID: 0}
+  gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
+  bloodGib: {fileID: 0}
   goreBits: []
+  bloodColor: {r: 0, g: 0, b: 0, a: 0}
   animationPrefix: ClownFish
   direction: {x: 0, y: 0}
 --- !u!212 &1707515271

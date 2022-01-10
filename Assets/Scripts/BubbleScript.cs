@@ -34,7 +34,7 @@ public class BubbleScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        rb.velocity = new Vector2(Random.Range(-1, 1f)*intensity, Random.Range(-1, 1f));
+        rb.velocity = new Vector2(Random.Range(-1, 1f)*intensity, Random.Range(-0.5f, 1f));
 
         if(size == BubbleSize.random)
         {
