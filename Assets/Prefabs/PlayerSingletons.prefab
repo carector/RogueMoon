@@ -2597,8 +2597,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Size: {x: 2, y: 3}
+  m_Offset: {x: 0, y: -0.5708833}
+  m_Size: {x: 2, y: 2.8582335}
   m_Direction: 0
 --- !u!1 &7203300704803449813
 GameObject:
@@ -2646,6 +2646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7203300704742377949}
+  maxY: 23
 --- !u!1 &7203300704843458426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,7 +3339,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efea56f193d25224fa29d34c99cddf92, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d16daedd1ab99f146a569af663f213f9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -14735,7 +14736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad349a66d9579f740a23a20c54094c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sendMessageTarget: {fileID: 0}
+  sendMessageTarget: {fileID: 7203300704742377948}
   a:
   - {fileID: 8300000, guid: 52b05a76031132a49a74efafa908daf0, type: 3}
   - {fileID: 8300000, guid: ea8c77f2afc114845a21ec38a298f81a, type: 3}

@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
 
             Vector2 mouseDir = (Vector3)mouseWorldPos - transform.position;
             float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-            armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), 0.15f);
+            armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), 0.75f);
             hasRetractedArm = false;
         }
         else if (!pAbilities.attacking)
@@ -472,6 +472,7 @@ public class PlayerController : MonoBehaviour
         harpoonStartingGroundedState = false;
         harpoonEndpoint.transform.parent = null;
         harpoonLoopingAudio.loop = false;
+        harpoonLoopingAudio.Stop();
         harpoonEndpoint.color = Color.clear;
         harpoonEndpoint.transform.position = transform.position;
         harpoonChain.size = new Vector2(0, 0.375f);
@@ -484,7 +485,7 @@ public class PlayerController : MonoBehaviour
         bool grounded = false;
         Debug.DrawRay(transform.position + Vector3.down * 2, Vector2.down * 0.25f, Color.red, Time.fixedDeltaTime);
         RaycastHit2D hit = Physics2D.BoxCast(transform.position + Vector3.down * 2, new Vector2(0.25f, 0.25f), 0, Vector2.down, 0.1f, mask);
-        if (hit.transform != null && hit.transform.tag == "Ground")
+        if (hit.transform != null && (hit.transform.tag == "Ground" || hit.transform.tag == "Breakable"))
             grounded = true;
 
         return grounded;
