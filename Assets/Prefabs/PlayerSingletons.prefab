@@ -2547,7 +2547,8 @@ MonoBehaviour:
     canMove: 0
     isGrounded: 0
     isTouchingCeiling: 0
-    hoverTime: 3
+    midairGravityScale: 0.275
+    hoverTime: 4
     acceleration: 20
     groundSpeed: 4
     airSpeed: 3

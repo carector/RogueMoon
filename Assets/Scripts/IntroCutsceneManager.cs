@@ -34,7 +34,11 @@ public class IntroCutsceneManager : MonoBehaviour
     }
 
     IEnumerator Intro()
-    {    
+    {
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+
+        StartCoroutine(gm.PlayMusic(0, 1));
         while (!ply.pMovement.isGrounded)
             yield return null;
 

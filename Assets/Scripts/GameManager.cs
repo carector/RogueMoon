@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
 
     /* PlayerPrefs reference
      * Last checkpoint position index: FLOE_LAST_CHECKPOINT
-     * Last played music clip index: FLOW_LAST_MUSIC
+     * Last played music clip index: FLOE_LAST_MUSIC
      * Last played ambience clip index: FLOE_LAST_AMBIENCE
      * 
      * 
@@ -400,8 +400,8 @@ public class GameManager : MonoBehaviour
 
         // Update depth arrow + depth text
         float lowestDepth = 640;
-        int depthMultiplier = 5;
-        depthText.text = Mathf.Clamp(-Mathf.RoundToInt(ply.transform.position.y * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
+        float depthMultiplier = 2.75f;
+        depthText.text = Mathf.Clamp(-Mathf.RoundToInt((ply.transform.position.y - 35) * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
         depthArrow.anchoredPosition = new Vector2(4, Mathf.Round(80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150));
 
         UpdateHarpoonNumber();

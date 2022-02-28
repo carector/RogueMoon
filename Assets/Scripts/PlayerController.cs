@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         public bool canMove = true;
         public bool isGrounded;
         public bool isTouchingCeiling;
+        public float midairGravityScale = 0.35f;
         public float hoverTime = 4;
         public float acceleration = 5;
         public float groundSpeed = 5;
@@ -210,7 +211,7 @@ public class PlayerController : MonoBehaviour
                 CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
 
             // Minor gravity + additional downwards force if we're airborne
-            rb.gravityScale = 0.35f;
+            rb.gravityScale = pMovement.midairGravityScale;
             vel = new Vector2(horiz * 0.75f, Mathf.Clamp(vert, -0.25f, 0.75f)) * pMovement.acceleration * rb.mass;
             vel.x /= 2;
             //vel += vel = Vector2.down * pMovement.acceleration * rb.mass / 4;
@@ -422,7 +423,7 @@ public class PlayerController : MonoBehaviour
                 float timePassed = 0;
                 while (timePassed < 1.75f && hitGroundTransform != null && Vector2.Distance(transform.position, hitGroundTransform.position + hitGroundPointOffset) > 3 && Input.GetMouseButton(0) && pAbilities.aiming && !pMovement.isGrounded)
                 {
-                    harpoonLoopingAudio.pitch = 1.25f - Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f);
+                    harpoonLoopingAudio.pitch = 0.95f + Mathf.Clamp(rb.velocity.magnitude / pMovement.pulledSpeed * 0.2f, 0, 0.2f);
                     harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
                     harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
                     harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
@@ -431,8 +432,10 @@ public class PlayerController : MonoBehaviour
                     if (harpoonStartingGroundedState)
                         harpoonStartingGroundedState = CheckForGround();
 
-                    if (rb.velocity.magnitude < pMovement.pulledSpeed)
-                        rb.AddForce(((hitGroundTransform.position + hitGroundPointOffset) - transform.position) * rb.mass * pMovement.pulledSpeed);
+                    Vector3 force = (hitGroundTransform.position + hitGroundPointOffset - transform.position) / 3;
+                    rb.AddForce(force * rb.mass * pMovement.pulledSpeed);
+                    if(rb.velocity.magnitude > pMovement.pulledSpeed)
+                        rb.velocity = Vector3.ClampMagnitude(rb.velocity, pMovement.pulledSpeed);
                     timePassed += Time.fixedDeltaTime;
 
                     yield return new WaitForFixedUpdate();
@@ -452,7 +455,7 @@ public class PlayerController : MonoBehaviour
             float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
             while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3 && Input.GetMouseButton(0) && pAbilities.aiming)
             {
-                harpoonLoopingAudio.pitch = 1.25f - (Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 28, 0, 0.25f));
+                harpoonLoopingAudio.pitch = 1.25f - Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 40, 0, 0.35f);
                 harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
                 harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
                 harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;

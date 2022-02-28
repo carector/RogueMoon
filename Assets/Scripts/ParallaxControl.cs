@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParallaxControl : MonoBehaviour
 {
     public bool scrollX;
+    public bool scrollY = true;
     public Vector2 offset;
     public float minimumY = -1000;
     public float scrollMultiplier = 0.95f;
@@ -29,6 +30,8 @@ public class ParallaxControl : MonoBehaviour
             Vector3 difference = playerCam.transform.position - storedCamPos;
             if (!scrollX)
                 difference.x = 0;
+            if (!scrollY)
+                difference.y = 0;
             transform.position += new Vector3(difference.x, difference.y, 0) * scrollMultiplier;
             storedCamPos = playerCam.transform.position;
         }
