@@ -7,11 +7,12 @@ public class FullscreenSwitch : MonoBehaviour
     public int windowedX = 640;
     public int windowedY = 480;
 
+    AspectRatioController arc;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        arc = FindObjectOfType<AspectRatioController>();
     }
 
     // Update is called once per frame
@@ -31,13 +32,18 @@ public class FullscreenSwitch : MonoBehaviour
         {
             w = Screen.width;
             h = Screen.height;
+            arc.SetDefaultAspectRatio();
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
         }
         else
         {
             w = windowedX;
             h = windowedY;
         }
+
         Screen.SetResolution(w, h, !isFullscreen);
+        
         yield return null;
     }
 }

@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
         public float lastMusicPitch = 1;
     }
 
+    [System.Serializable]
+    public class GamePrefabReferences
+    {
+        public GameObject smoochMark;
+    }
+
     // Stores data used in NPC interactions
     [System.Serializable]
     public class TextData
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
     public GameDialogSettings dialogSettings;
     public GameSpriteReferences spriteRefs;
     public GameCheckpointReferences checkpointRefs;
+    public GamePrefabReferences prefabRefs;
 
     public bool menuOpen;
     public bool gamePaused;
@@ -507,6 +514,14 @@ public class GameManager : MonoBehaviour
                 ply.pResources.depthCharges++;
                 break;
         }
+    }
+
+    public void SpawnSmoochMark()
+    {
+        GameObject g = Instantiate(prefabRefs.smoochMark, cam);
+        float randX = Random.Range(-3, 3f);
+        g.transform.localPosition = new Vector3(3 * Mathf.Sign(randX) + randX, Random.Range(-4, 4f), 1);
+        g.transform.rotation = Quaternion.Euler(0, 0, Random.Range(-15f, 30f));
     }
 
     public void SwitchActiveToolHUD()

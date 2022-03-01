@@ -12,7 +12,7 @@
 - FISH!!! :D :D :D :smuch: :smuch: :smuch: :smuch: :smuch: :smuch: 
 - Small critters 
 - Secret area implementation, I forgot to make parts that had the hitboxes in mind but I will specify them at some point, there are 4 in total
-- - Kissy FIsh Shrine, put kissy fish in that bitch 
+// Kissy FIsh Shrine, put kissy fish in that bitch 
 - - Small Red Hole with Ore in it
-- - Below the spiky area shortcut
-- - Bone zone
+// Below the spiky area shortcut
+// Bone zone

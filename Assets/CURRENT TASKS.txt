@@ -1,0 +1,14 @@
+Remaining thrust meter
+Kissyfish kiss
+Try to improve fish pathfinding (maybe use nodes or navmesh)
+Mute reload sound when in dialog
+Make fish bounce back if you bump into them (can knock you out of grapple)
+Fix mech arm animation when in midair (currently plays walking animation)
+
+SFX TO ADD
+- Thrust sound
+- Random underwater ambience
+- Fish gore sounds
+- Harpoon impact sound
+- Rock and coral crumbles
+- Bump into fish sound

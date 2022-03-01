@@ -16,11 +16,13 @@ public class BubbleScript : MonoBehaviour
     public bool initializedByParent;
     public BubbleSize bubbleSize;
     public float startingXIntensity;
+    public AudioClip[] sfx;
 
     string animationPrefix;
     bool popping;
     bool initialDelayOver;
 
+    AudioSource audio;
     Animator anim;
     Rigidbody2D rb;
 
@@ -32,11 +34,18 @@ public class BubbleScript : MonoBehaviour
 
     public void Initialize(float intensity, BubbleSize size)
     {
+        audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         rb.velocity = new Vector2(Random.Range(-1, 1f)*intensity, Random.Range(-0.5f, 1f));
 
-        if(size == BubbleSize.random)
+        if (Random.Range(0, 1f) > 0.92f)
+        {
+            audio.pitch = Random.Range(0.9f, 1.1f);
+            audio.PlayOneShot(sfx[Random.Range(0, sfx.Length)]);
+        }
+
+        if (size == BubbleSize.random)
         {
             int rand = Random.Range(0, 4);
             switch(rand)

@@ -40,30 +40,26 @@ public class PufferfishScript : Fish
         else
             CheckAndPlayClip(animationPrefix + "_SwimLeft");
 
+        movementSettings.flipX = direction.x <= 0;
+
         while (true)
         {
             if (!movementSettings.noticedPlayer || ply.pResources.health <= 0)
             {
                 // Move in one direction until we leave the swim area
                 rb.AddForce(direction * movementSettings.acceleration);
-                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.swimSpeed), 0.1f);
+                rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.swimSpeed), 0.25f);
 
                 // Flip if we're outside the bounds of the swim area
                 if (!movementSettings.inSwimBounds || ShouldReturnToHitZone())
                 {
                     rb.velocity = Vector2.zero;
 
-                    if (direction.x > 0)
-                        CheckAndPlayClip(animationPrefix + "_Flip");
-                    else
-                        CheckAndPlayClip(animationPrefix + "_FlipReverse");
-
-                    yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-
                     // Flip direction and add randomness
                     direction = (swimAreaBounds.bounds.center - transform.position);
                     direction += new Vector2(Random.Range(-1, 1), Random.Range(-1, 1) * 3);
                     direction.Normalize();
+                    yield return Flip();
 
                     if (direction.x > 0)
                         CheckAndPlayClip(animationPrefix + "_SwimRight");

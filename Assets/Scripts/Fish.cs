@@ -7,6 +7,7 @@ public class Fish : MonoBehaviour
     [System.Serializable]
     public class FishMovementSettings
     {
+        public bool flipX;
         public int health = 1;
         public float acceleration = 10;
         public float swimSpeed = 3;
@@ -32,6 +33,7 @@ public class Fish : MonoBehaviour
     protected PlayerController ply;
     protected Animator anim;
     protected SpriteRenderer spr;
+    protected GameManager gm;
 
     Transform harpoonEndpoint;
 
@@ -49,6 +51,7 @@ public class Fish : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         ply = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
+        gm = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         if(anim != null)
             anim.SetFloat("SwimSpeed", 1);
@@ -103,14 +106,11 @@ public class Fish : MonoBehaviour
     public bool CanSeePlayer()
     {
         bool inLOS = false;
-        int mask = ~(1 | (1 << 8));
         Vector2 dir = (ply.transform.position - transform.position).normalized;
-        Debug.DrawRay(transform.position, dir * movementSettings.noticeDistance, Color.red, Time.deltaTime);
+        Debug.DrawRay(transform.position, dir * movementSettings.noticeDistance, Color.red, Time.fixedDeltaTime);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, movementSettings.noticeDistance, movementSettings.playerLayermask);
         if (hit.transform != null && hit.transform.tag == "Player")
-        {
             inLOS = true;
-        }
         return inLOS;
     }
 
@@ -136,18 +136,11 @@ public class Fish : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
 
-                anim.SetFloat("FlipSpeed", Mathf.Sign(direction.x));
-                if (direction.x > 0)
-                    CheckAndPlayClip(animationPrefix + "_Flip");
-                else
-                    CheckAndPlayClip(animationPrefix + "_FlipReverse");
-
-                yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-
                 // Flip direction and add randomness
                 direction = (swimAreaBounds.bounds.center - transform.position);
                 direction += new Vector2(Random.Range(-1, 1), Random.Range(-1, 1) * 3);
                 direction.Normalize();
+                yield return Flip();
 
                 if (direction.x > 0)
                     CheckAndPlayClip(animationPrefix + "_SwimRight");
@@ -191,6 +184,17 @@ public class Fish : MonoBehaviour
     public void BecomeHazardForTime(float time)
     {
         StartCoroutine(BecomeHazardForTimeCoroutine(time));
+    }
+
+    protected IEnumerator Flip()
+    {
+        if (direction.x <= 0 && !movementSettings.flipX)
+            CheckAndPlayClip(animationPrefix + "_Flip");
+        else if (direction.x > 0 && movementSettings.flipX)
+            CheckAndPlayClip(animationPrefix + "_FlipReverse");
+
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+        movementSettings.flipX = direction.x <= 0;
     }
 
     IEnumerator BecomeHazardForTimeCoroutine(float time)

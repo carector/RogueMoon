@@ -4451,6 +4451,7 @@ MonoBehaviour:
     generalSounds:
     - {fileID: 8300000, guid: 783f5bccdf35b044ca7d5ef4835e502f, type: 3}
     - {fileID: 8300000, guid: 1447dee8f92fce24191a535ae020747d, type: 3}
+    - {fileID: 8300000, guid: 8357202ce9fe76d4bbf9f2d50b28d4be, type: 3}
     dialogVoices:
     - {fileID: 8300000, guid: fb8bde0024a76af498960fe7856bc81b, type: 3}
     music:
@@ -4511,6 +4512,9 @@ MonoBehaviour:
     lastMusicIndex: -1
     lastAmbienceIndex: -1
     lastMusicPitch: 1
+  prefabRefs:
+    smoochMark: {fileID: 2030340531512844136, guid: 41b5fb53457e0ce44a61a0ff12df1fbb,
+      type: 3}
   menuOpen: 0
   gamePaused: 0
 --- !u!114 &7203300706050119983
@@ -15341,7 +15345,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.4431373, g: 0.95294124, b: 0.25490198, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

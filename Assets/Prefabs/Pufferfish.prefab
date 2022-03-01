@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1508222763
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: -9098394080347696226, guid: f07836bfb0475ba49a6f0b91491195e4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140,10 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
+    flipX: 0
     health: 4
-    acceleration: 100
+    acceleration: 150
     swimSpeed: 2
-    noticedPlayerSwimSpeed: 3.25
+    noticedPlayerSwimSpeed: 5
     inSwimBounds: 1
     noticedPlayer: 0
     damageRadius: 0.9
@@ -154,18 +155,16 @@ MonoBehaviour:
       m_Bits: 257
   swimAreaBounds: {fileID: 0}
   gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
+  bloodGib: {fileID: 0}
   goreBits:
   - {fileID: 5034244947211406799, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: 2834507629396380315, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: -1013936286428886370, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: -6242482858019746574, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: -2172924103061219563, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
+  bloodColor: {r: 0, g: 0, b: 0, a: 0}
   animationPrefix: Pufferfish
   direction: {x: 0, y: 0}
-  rb: {fileID: 0}
-  ply: {fileID: 0}
-  anim: {fileID: 0}
-  spr: {fileID: 0}
   attacking: 0
   fishGibsSmall:
   - {fileID: 1972425479664355406, guid: 7e71c4a836c935f4283c7df81c691adc, type: 3}

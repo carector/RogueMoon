@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1508222763
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 2746025235646285579, guid: a423b4a12e8caa94d8de81e10298d8ac,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,7 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
-    health: 1
+    flipX: 0
+    health: 2
     acceleration: 100
     swimSpeed: 2
     noticedPlayerSwimSpeed: 4

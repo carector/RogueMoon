@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8248943461381988834}
   - component: {fileID: 8248943461381988835}
-  - component: {fileID: 8248943461381988833}
   - component: {fileID: 8248943461381988846}
   - component: {fileID: 8248943461381988847}
   - component: {fileID: 8248943461381988832}
-  m_Layer: 0
+  - component: {fileID: 6490097585591969810}
+  m_Layer: 11
   m_Name: KissyFish
-  m_TagString: Untagged
+  m_TagString: Kissyfish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,38 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8248943461381988833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8248943461381988844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5777ffa9abdd3f74c9986f781d9a9d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSettings:
-    acceleration: 100
-    swimSpeed: 3
-    noticedPlayerSwimSpeed: 4
-    inSwimBounds: 1
-    noticedPlayer: 0
-    damageRadius: 0
-    noticeDistance: 0
-    attackDistance: 0
-    playerLayermask:
-      serializedVersion: 2
-      m_Bits: 0
-  swimAreaBounds: {fileID: 0}
-  gib: {fileID: 0}
-  goreBits: []
-  animationPrefix: KissyFish
-  direction: {x: 0, y: 0}
-  rb: {fileID: 0}
-  ply: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!58 &8248943461381988846
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -174,3 +142,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6490097585591969810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248943461381988844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439fc8d768356474c90ee604ecc47a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSettings:
+    health: 1
+    acceleration: 100
+    swimSpeed: 3
+    noticedPlayerSwimSpeed: 4
+    inSwimBounds: 1
+    noticedPlayer: 0
+    damageRadius: 0
+    noticeDistance: 8
+    attackDistance: 0
+    playerLayermask:
+      serializedVersion: 2
+      m_Bits: 257
+  swimAreaBounds: {fileID: 0}
+  gib: {fileID: 0}
+  bloodGib: {fileID: 0}
+  goreBits: []
+  bloodColor: {r: 0, g: 0, b: 0, a: 0}
+  animationPrefix: KissyFish
+  direction: {x: 0, y: 0}
+  kissing: 0
