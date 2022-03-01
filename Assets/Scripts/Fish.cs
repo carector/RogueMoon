@@ -34,6 +34,11 @@ public class Fish : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spr;
     protected GameManager gm;
+    protected Rigidbody2D prb;
+    protected Collider2D col;
+
+    protected float remainingPathTimer = 6;
+    bool bumpedPlayerCooldownInProgress;
 
     Transform harpoonEndpoint;
 
@@ -49,8 +54,10 @@ public class Fish : MonoBehaviour
     {
         harpoonEndpoint = GameObject.Find("HarpoonEndpoint").transform;
         spr = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
         ply = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
+        prb = ply.GetComponent<Rigidbody2D>();
         gm = FindObjectOfType<GameManager>();
         anim = GetComponent<Animator>();
         if(anim != null)
@@ -130,6 +137,7 @@ public class Fish : MonoBehaviour
             rb.AddForce(direction * movementSettings.acceleration);
             rb.velocity = Vector2.Lerp(rb.velocity, Vector2.ClampMagnitude(rb.velocity, movementSettings.swimSpeed), 0.1f);
             anim.SetFloat("SwimSpeed", 1);
+            remainingPathTimer -= Time.deltaTime;
 
             // Flip if we're outside the bounds of the swim area
             if (!movementSettings.inSwimBounds || ShouldReturnToHitZone())
@@ -149,6 +157,7 @@ public class Fish : MonoBehaviour
 
                 rb.velocity = direction * movementSettings.swimSpeed;
                 movementSettings.inSwimBounds = true;
+                remainingPathTimer = 6;
             }
 
             yield return new WaitForFixedUpdate();
@@ -177,6 +186,7 @@ public class Fish : MonoBehaviour
     public bool ShouldReturnToHitZone()
     {
         bool state = Vector2.Distance(transform.position, swimAreaBounds.ClosestPoint(transform.position)) > 10;
+        state = state || remainingPathTimer <= 0;
         return state;
     }
 
@@ -222,5 +232,28 @@ public class Fish : MonoBehaviour
     {
         if (collision == swimAreaBounds)
             movementSettings.inSwimBounds = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player" && !bumpedPlayerCooldownInProgress)
+        {
+            BumpPlayer();
+        }
+    }
+
+    void BumpPlayer()
+    {
+        Vector3 dir = (ply.transform.position - (Vector3)col.ClosestPoint(ply.transform.position)).normalized * 2.5f;
+        prb.velocity = dir;
+        rb.velocity = -dir;
+        StartCoroutine(BumpDelay());
+    }
+
+    IEnumerator BumpDelay()
+    {
+        bumpedPlayerCooldownInProgress = true;
+        yield return new WaitForSeconds(0.5f);
+        bumpedPlayerCooldownInProgress = false;
     }
 }

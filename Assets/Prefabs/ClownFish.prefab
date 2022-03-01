@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8440820684961502283}
   - component: {fileID: 8440820684961502286}
   - component: {fileID: 8440820684961502287}
-  - component: {fileID: 8440820684961502284}
   - component: {fileID: 8440820684961502285}
   - component: {fileID: 8440820684961502282}
+  - component: {fileID: 416792365166748579}
+  - component: {fileID: 8045862964002419977}
   m_Layer: 0
   m_Name: ClownFish
   m_TagString: Fish
@@ -124,22 +125,6 @@ MonoBehaviour:
   bloodColor: {r: 0.7411765, g: 0.72156864, b: 0.3019608, a: 0}
   animationPrefix: ClownFish
   direction: {x: 0, y: 0}
---- !u!58 &8440820684961502284
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8440820684961502280}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.119000435}
-  serializedVersion: 2
-  m_Radius: 0.47327328
 --- !u!50 &8440820684961502285
 Rigidbody2D:
   serializedVersion: 4
@@ -156,7 +141,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 322dad9edb8c93545a0d6dba3812b0aa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -180,3 +165,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &416792365166748579
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440820684961502280}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.28, y: 0.71}
+  m_Direction: 1
+--- !u!70 &8045862964002419977
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440820684961502280}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.42, y: 0.24}
+  m_Direction: 1
