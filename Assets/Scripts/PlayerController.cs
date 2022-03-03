@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
     Transform damageStartPoint;
     AudioSource harpoonLoopingAudio;
     AudioSource attackLoopingAudio;
+    AudioSource thrustLoopingAudio;
     ParticleSystem[] steamParticles;
     Vector2 mouseWorldPos;
 
@@ -82,7 +83,8 @@ public class PlayerController : MonoBehaviour
     bool hasRetractedArm;
     bool lastAttackState;
     bool invisible;
-    float storedHoverTime;
+    [HideInInspector]
+    public float storedHoverTime;
     int mask = ~((1 << 8) | (1 << 10) | (1 << 9)); // Ground + ceiling raycast layermask
     bool harpoonStartingGroundedState;
 
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour
         harpoonStartPoint = armsSpr.transform.GetChild(0);
         harpoonLoopingAudio = armsSpr.transform.GetChild(1).GetComponent<AudioSource>();
         attackLoopingAudio = armsSpr.transform.GetChild(2).GetComponent<AudioSource>();
+        thrustLoopingAudio = armsSpr.transform.GetChild(6).GetComponent<AudioSource>();
         steamParticles = new ParticleSystem[2];
         steamParticles[0] = armsSpr.transform.GetChild(3).GetComponent<ParticleSystem>();
         steamParticles[1] = armsSpr.transform.GetChild(4).GetComponent<ParticleSystem>();
@@ -164,7 +167,10 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         if (pAbilities.beingPulledTowardsHarpoon || pAbilities.impactDelayInProgress || invisible)
+        {
+            thrustLoopingAudio.volume = Mathf.Lerp(thrustLoopingAudio.volume, 0, 0.75f);
             return;
+        }
 
         bodyAnim.SetFloat("WalkSpeed", Mathf.Clamp(rb.velocity.magnitude / 3, 0, pMovement.groundSpeed / 3f));
         armsAnim.SetFloat("WalkSpeed", Mathf.Clamp(rb.velocity.magnitude / 3, 0, pMovement.groundSpeed / 3f));
@@ -194,6 +200,11 @@ public class PlayerController : MonoBehaviour
         {
             if (vert > 0 && storedHoverTime > 0)
             {
+                if (!thrustLoopingAudio.isPlaying)
+                {
+                    thrustLoopingAudio.Play();
+                    thrustLoopingAudio.volume = 1;
+                }
                 CheckAndPlayClip(bodyAnim, "Mech_Midair");
                 storedHoverTime -= Time.fixedDeltaTime;
                 if (storedHoverTime <= 0)
@@ -205,10 +216,15 @@ public class PlayerController : MonoBehaviour
                 if (rb.velocity.y < 0)
                     rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(rb.velocity.x, 1), 0.05f);
             }
-            else if (storedHoverTime <= 0)
-                vert = Mathf.Clamp(vert, -1, 0);
-            else if (vert <= 0)
-                CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
+            else
+            {
+                FadeOutThrustAudio();
+
+                if (storedHoverTime <= 0)
+                    vert = Mathf.Clamp(vert, -1, 0);
+                else if (vert <= 0)
+                    CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
+            }
 
             // Minor gravity + additional downwards force if we're airborne
             rb.gravityScale = pMovement.midairGravityScale;
@@ -233,6 +249,16 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector2.up * vel.y);
 
             //rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -pMovement.airSpeed * 1.75f, pMovement.airSpeed)), 0.1f);
+        }
+    }
+
+    public void FadeOutThrustAudio()
+    {
+        if (thrustLoopingAudio.isPlaying)
+        {
+            thrustLoopingAudio.volume = Mathf.Lerp(thrustLoopingAudio.volume, 0, 0.75f);
+            if (thrustLoopingAudio.volume <= 0.01f)
+                thrustLoopingAudio.Stop();
         }
     }
 
@@ -434,7 +460,7 @@ public class PlayerController : MonoBehaviour
 
                     Vector3 force = (hitGroundTransform.position + hitGroundPointOffset - transform.position) / 3;
                     rb.AddForce(force * rb.mass * pMovement.pulledSpeed);
-                    if(rb.velocity.magnitude > pMovement.pulledSpeed)
+                    if (rb.velocity.magnitude > pMovement.pulledSpeed)
                         rb.velocity = Vector3.ClampMagnitude(rb.velocity, pMovement.pulledSpeed);
                     timePassed += Time.fixedDeltaTime;
 

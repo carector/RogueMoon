@@ -112,9 +112,6 @@ public class GameManager : MonoBehaviour
     AudioSource harpoonLoopingAudio;
 
     Image healthbarFill;
-    Image numberIconTens;
-    Image numberIconOnes;
-    Image currentToolIcon;
     Image darknessOverlay;
     RectTransform darknessMask;
 
@@ -169,10 +166,7 @@ public class GameManager : MonoBehaviour
         dialogAudio = transform.GetChild(4).GetComponent<AudioSource>();
 
         Transform toolbar = GameObject.Find("ToolBar").transform;
-        toolbarFill = toolbar.GetChild(0).GetComponent<Image>();
-        numberIconTens = toolbar.GetChild(1).GetComponent<Image>();
-        numberIconOnes = toolbar.GetChild(2).GetComponent<Image>();
-        currentToolIcon = toolbar.GetChild(3).GetComponent<Image>();
+        toolbarFill = toolbar.GetChild(2).GetComponent<Image>();
         textboxHolder = GameObject.Find("TextboxHolder").GetComponent<RectTransform>();
         dialogText = textboxHolder.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         dialogAdvanceIcon = textboxHolder.GetChild(0).GetChild(1).GetComponent<Image>();
@@ -383,7 +377,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateAttackBar();
+        UpdateThrustBar();
 
         // Flash screen red based on health
         if (ply.pResources.health > 3 || ply.pResources.health == 0)
@@ -439,39 +433,12 @@ public class GameManager : MonoBehaviour
         depthChargeNumberText.text = ply.pResources.depthCharges.ToString();
     }
 
-    public void UpdateAttackBar()
+    public void UpdateThrustBar()
     {
         toolbarFill.color = Color.white;
-        Vector2 fillPos = Vector2.zero;
-        Vector2 fillSize = Vector2.zero;
-
-        // 14 units between edges
-        if (!ply.pAbilities.attackDelayInProgress)
-        {
-            switch (ply.pAbilities.attackCharges)
-            {
-                case 2:
-                    fillPos = new Vector2(-31, -8);
-                    fillSize = new Vector2(0, 16);
-                    break;
-                case 1:
-                    fillPos = new Vector2(-23.5f, -8);
-                    fillSize = new Vector2(15, 16);
-                    break;
-                case 0:
-                    fillPos = new Vector2(-16f, -8);
-                    fillSize = new Vector2(30, 16);
-                    break;
-            }
-        }
-        else
-        {
-            float rate = Time.fixedDeltaTime * 16;
-
-            // Lerp towards left to recharge
-            fillPos = toolbarFill.rectTransform.anchoredPosition + Vector2.left * rate;
-            fillSize = toolbarFill.rectTransform.sizeDelta + Vector2.left * rate * 2;
-        }
+        float val = (ply.pMovement.hoverTime - ply.storedHoverTime) / ply.pMovement.hoverTime;
+        Vector2 fillPos = new Vector2(2 - (val * 14), -1);
+        Vector2 fillSize = new Vector2(val * 28, 10);
 
         toolbarFill.rectTransform.anchoredPosition = Vector2.Lerp(toolbarFill.rectTransform.anchoredPosition, fillPos, 0.5f);
         toolbarFill.rectTransform.sizeDelta = Vector2.Lerp(toolbarFill.rectTransform.sizeDelta, fillSize, 0.5f);
@@ -526,10 +493,10 @@ public class GameManager : MonoBehaviour
 
     public void SwitchActiveToolHUD()
     {
-        if (ply.pAbilities.activeAbility == 0)
+        /*if (ply.pAbilities.activeAbility == 0)
             currentToolIcon.sprite = spriteRefs.numbers[10];
         else
-            currentToolIcon.sprite = spriteRefs.numbers[11];
+            currentToolIcon.sprite = spriteRefs.numbers[11];*/
     }
 
     public void UpdateHarpoonNumber()
@@ -543,8 +510,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {*/
-        numberIconOnes.sprite = spriteRefs.numbers[12];
-        numberIconTens.sprite = spriteRefs.numbers[12];
+        //numberIconOnes.sprite = spriteRefs.numbers[12];
+        //numberIconTens.sprite = spriteRefs.numbers[12];
         //}
     }
 

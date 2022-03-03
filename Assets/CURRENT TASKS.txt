@@ -2,7 +2,7 @@ Remaining thrust meter
 Kissyfish kiss
 Try to improve fish pathfinding (maybe use nodes or navmesh)
 Mute reload sound when in dialog
-Make fish bounce back if you bump into them (can knock you out of grapple)
+//? Make fish bounce back if you bump into them (can knock you out of grapple)
 Fix mech arm animation when in midair (currently plays walking animation)
 
 SFX TO ADD

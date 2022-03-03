@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: b927ae6a0b93a464299460f7b003e1dc
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5383263504638215049
+    second: ToobarFill_0
+  - first:
+      213: -6824004451465882740
+    second: ToobarFill_1
+  - first:
+      213: -2983318694731915011
+    second: ToobarFill_0
+  - first:
+      213: 7063781144332745034
+    second: ToobarFill_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,7 +121,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ToobarFill_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df0e8b4147f1996d0800000000000000
+      internalID: -2983318694731915011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToobarFill_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a493e077687970260800000000000000
+      internalID: 7063781144332745034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
