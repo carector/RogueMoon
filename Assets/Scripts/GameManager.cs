@@ -265,7 +265,7 @@ public class GameManager : MonoBehaviour
         {
             // Fade in black screen
             yield return FadeInScreen();
-            ply.pMovement.canMove = true;
+            //ply.pMovement.canMove = true;
         }
     }
 

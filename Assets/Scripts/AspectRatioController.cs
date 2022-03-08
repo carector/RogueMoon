@@ -77,7 +77,6 @@ public class AspectRatioController : MonoBehaviour
 
     // WinAPI related definitions.
     #region WINAPI
-
     // The WM_SIZING message is sent to a window through the WindowProc callback
     // when the window is resized.
     private const int WM_SIZING = 0x214;

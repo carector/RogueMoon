@@ -1,14 +1,24 @@
-Remaining thrust meter
-Kissyfish kiss
-Try to improve fish pathfinding (maybe use nodes or navmesh)
+//? Remaining thrust meter
+//? Kissyfish kiss
+//? Try to improve fish pathfinding (maybe use nodes or navmesh)
 Mute reload sound when in dialog
 //? Make fish bounce back if you bump into them (can knock you out of grapple)
 Fix mech arm animation when in midair (currently plays walking animation)
 
 SFX TO ADD
-- Thrust sound
+// Thrust sound
 - Random underwater ambience
 - Fish gore sounds
 - Harpoon impact sound
 - Rock and coral crumbles
 - Bump into fish sound
+- Metal alloy dinky dink sounds
+
+
+BUGS / TWEAKS
+- Fish clouds move in 3D, can sometimes clip through parallax
+- Make non-speaking portraits slightly darker
+- Can see end of parallax if you walk to rightmost side of top area
+- Rapidly tapping hover can mute hover sound if done correctly
+- Update fish to turn around when hitting spikes (and maybe walls)
+- Steam particle systems dont work in webgl build
