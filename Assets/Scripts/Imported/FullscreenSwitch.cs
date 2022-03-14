@@ -32,7 +32,7 @@ public class FullscreenSwitch : MonoBehaviour
         {
             w = Screen.width;
             h = Screen.height;
-            arc.SetDefaultAspectRatio();
+            //arc.SetDefaultAspectRatio();
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
         }

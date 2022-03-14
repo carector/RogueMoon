@@ -409,7 +409,7 @@ public class GameManager : MonoBehaviour
         //UpdateActionMenuNumbers();
 
         // Update darkness overlay
-        if (ply.transform.position.y < -400 && ply.transform.position.y > -625)
+        if (ply.transform.position.y < 400 && ply.transform.position.y > 625)
         {
             darknessOverlay.color = Color.Lerp(darknessOverlay.color, new Color(0, 0, 0, Mathf.Clamp(Mathf.Abs(ply.transform.position.y + 400) / 100, 0, 0.98f)), 0.05f);
         }
