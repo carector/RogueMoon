@@ -155,14 +155,15 @@ MonoBehaviour:
       m_Bits: 257
   swimAreaBounds: {fileID: 0}
   gib: {fileID: 8087717173986839551, guid: ba8a9f1d3bf4d5b4db8cc728b408f3ae, type: 3}
-  bloodGib: {fileID: 0}
+  bloodGib: {fileID: 7459286035225651355, guid: 40767144279c55147b731e287bd1ca62,
+    type: 3}
   goreBits:
   - {fileID: 5034244947211406799, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: 2834507629396380315, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: -1013936286428886370, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: -6242482858019746574, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
   - {fileID: -2172924103061219563, guid: 24010184c1b74c74ab43495515f3785a, type: 3}
-  bloodColor: {r: 0, g: 0, b: 0, a: 0}
+  bloodColor: {r: 1, g: 0.49803925, b: 0.15294118, a: 0}
   animationPrefix: Pufferfish
   direction: {x: 0, y: 0}
   attacking: 0

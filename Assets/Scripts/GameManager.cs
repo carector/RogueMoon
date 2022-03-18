@@ -318,7 +318,7 @@ public class GameManager : MonoBehaviour
 
             // TEMP
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "bones_area"));
+                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "post_combat"));
         }
 
         // Game over if health < 0

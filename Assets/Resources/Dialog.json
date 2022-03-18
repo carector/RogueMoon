@@ -145,7 +145,7 @@
                     "portrait": 1,
                     "sentences": [
                         {
-                            "text": "Ah, my heart soars when you\\wreck the landscape so!",
+                            "text": "Ah, my heart soars when you\\wreck alien biospheres so!",
                             "portraitIndex": 4
                         }
                     ],
@@ -320,6 +320,62 @@
                         {
                             "text": "I can only imagine the kind of\\upheaval that formed it...",
                             "portraitIndex": 1
+                        }
+                    ],
+                },
+            ]
+        },
+        {
+            "conversationId": "post_combat",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "All the signs of a biosphere\\were here...",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "But I didn't think we'd still\\have the inhabitants roaming\\about...!",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "I can feel the excitement tingle\\in my hemmorhoids!\\First contact with life from\\another world!",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "Can you imagine the bio-\\diversity?! All these creatures,\\cordoned off to this drifting\\corner of the universe!",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "Eyeless predators of the sea!\\Plankton-like fungus!\\Classification of creatures\\beyond human imagination!",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "...Maria?",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Ah. I'm sorry, I didn't think.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Are you alright?",
+                            "portraitIndex": 1
+                        },
+                    ],
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Shaken. I'll get over it in a\\second.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Let's keep moving.",
+                            "portraitIndex": 0
                         }
                     ],
                 },
@@ -704,7 +760,7 @@
                     "portrait": 0,
                     "sentences": [
                         {
-                            "text": "Another amphious mech.",
+                            "text": "Another amphibious mech.",
                             "portraitIndex": 0
                         },
                     ],
