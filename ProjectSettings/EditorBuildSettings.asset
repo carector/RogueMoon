@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/IntroText.unity
     guid: 5e623de2435799c4a9f7f81bd9fc6534
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/tiledTest2.unity
     guid: deb659f4101dea9439985befc5201ebc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/level2revamp.unity
     guid: 5d61dd521c8c9bc4ea42a3013920e39d
   m_configObjects: {}
