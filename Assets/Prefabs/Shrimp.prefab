@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSettings:
-    health: 5
+    flipX: 0
+    health: 4
     acceleration: 100
     swimSpeed: 5
     noticedPlayerSwimSpeed: 7

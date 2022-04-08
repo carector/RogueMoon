@@ -27,11 +27,11 @@ public class DamagePlayerOnCollide : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && !ply.pAbilities.damageDelayInProgress)
+        if(collision.tag == "Player")
         {   
             prb.velocity = (ply.transform.position - (Vector3)col.ClosestPoint(ply.transform.position)).normalized * knockbackAmount;
-            print(prb.velocity);
-            ply.TakeDamage();
+            if(!ply.pAbilities.damageDelayInProgress)
+                ply.TakeDamage();
         }
     }
 }
