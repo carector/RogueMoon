@@ -1,0 +1,6 @@
+Floe updates:
+- Add very brief controls popups in first level
+- Newgrounds medal support (import from Rat King)
+- Always loaded gamemanager (take notes from Rat King)
+- Better level load system
+- 

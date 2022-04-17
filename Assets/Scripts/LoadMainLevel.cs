@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using TMPro;
 
 public class LoadMainLevel : MonoBehaviour
 {
-    TextMeshProUGUI focusText;
+    Text focusText;
     VideoPlayer vp;
 
     // Start is called before the first frame update
     void Start()
     {
-        focusText = FindObjectOfType<TextMeshProUGUI>();
+        focusText = FindObjectOfType<Text>();
         vp = FindObjectOfType<VideoPlayer>();
         //focusText.color = Color.clear;
         StartCoroutine(WaitAndLoad());
@@ -30,11 +29,8 @@ public class LoadMainLevel : MonoBehaviour
             }
         }
 
-        // So we know we're loading from the title screen
-        //PlayerPrefs.SetInt("_LOAD_TO_LEVEL_SELECT", 0);
-
         focusText.color = Color.clear;
-        vp.url = System.IO.Path.Combine(Application.streamingAssetsPath, "TubLogo.mp4");
+        vp.url = System.IO.Path.Combine(Application.streamingAssetsPath, "Logo.mp4");
         vp.Play();
         yield return new WaitForSeconds(4.25f);
         SceneManager.LoadScene(1);
