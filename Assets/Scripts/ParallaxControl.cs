@@ -9,6 +9,7 @@ public class ParallaxControl : MonoBehaviour
     public Vector2 offset;
     public float minimumY = -1000;
     public float scrollMultiplier = 0.95f;
+    public float highestPlayerYPosToTrack; // Won't follow player above this Y-position
 
     CameraControl playerCam;
     Vector3 storedCamPos;
@@ -19,13 +20,13 @@ public class ParallaxControl : MonoBehaviour
     {
         playerCam = FindObjectOfType<CameraControl>();
         storedCamPos = playerCam.transform.position;
-        transform.position = new Vector2(playerCam.transform.position.x + offset.x, playerCam.transform.position.y + offset.y);
+        //transform.position = new Vector2(playerCam.transform.position.x + offset.x, playerCam.transform.position.y + offset.y);
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (playerCam.transform.position != storedCamPos)
+        if (playerCam.transform.position != storedCamPos && playerCam.transform.position.y < highestPlayerYPosToTrack)
         {
             Vector3 difference = playerCam.transform.position - storedCamPos;
             if (!scrollX)
@@ -33,7 +34,7 @@ public class ParallaxControl : MonoBehaviour
             if (!scrollY)
                 difference.y = 0;
             transform.position += new Vector3(difference.x, difference.y, 0) * scrollMultiplier;
-            storedCamPos = playerCam.transform.position;
         }
+        storedCamPos = playerCam.transform.position;
     }
 }

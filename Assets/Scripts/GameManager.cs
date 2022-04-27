@@ -264,6 +264,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Fade in black screen
+            SceneManager.LoadSceneAsync("level2revamp", LoadSceneMode.Additive);
             yield return FadeInScreen();
             //ply.pMovement.canMove = true;
         }

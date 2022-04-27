@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -98,7 +98,7 @@ public class GameManager2 : MonoBehaviour
     // Other references
     NewgroundsUtility ng;
     Transform cam;
-    CameraFollow camFollow;
+    CameraControl camFollow;
     PlayerController ply;
 
     // Local variables
@@ -117,7 +117,7 @@ public class GameManager2 : MonoBehaviour
         {
             PlayerPrefs.SetInt("FURTHEST_UNLOCKED_LEVEL", 0);
             PlayerPrefs.Save();
-        }*/
+        }
 
         if (gm_gameSaveData.playedCutscenes.Length == 0)
             gm_gameSaveData.playedCutscenes = new bool[3];
@@ -612,7 +612,7 @@ public class GameManager2 : MonoBehaviour
 
     void WriteSaveData()
     {
-        // Reason for idbfs prefix: https://itch.io/t/140214/persistent-data-in-updatable-webgl-games (don't question it) (it does not work anymore)
+        // Reason for idbfs prefix: https://itch.io/t/140214/persistent-data-in-updatable-webgl-games (don't question it) 
         string prefix = @"idbfs/RatKing";
 
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
@@ -624,3 +624,4 @@ public class GameManager2 : MonoBehaviour
         File.WriteAllText(prefix + @"/savedata.json", json);
     }
 }
+*/
