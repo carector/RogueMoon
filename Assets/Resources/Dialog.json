@@ -24,7 +24,7 @@
                             "text": "MS Scrander, how's it looking\\on your end?",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -37,7 +37,7 @@
                             "text": "Have Hynobius wiggle around\\some, though.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 }
             ]
         },
@@ -52,7 +52,7 @@
                             "text": "Seems that problem with the\\joint lockup won't be a pain in\\our cornholes today!",
                             "portraitIndex": 4
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -61,7 +61,7 @@
                             "text": "We're on record right now,\\Scrander.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -74,7 +74,7 @@
                             "text": "Anywho, we ought to be clear\\to proceed down the\\Gaap Entrance.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -91,7 +91,7 @@
                             "text": "Put your crash harness on,\\Bo.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -100,7 +100,7 @@
                             "text": "You're no fun.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 }
             ]
         },
@@ -115,7 +115,7 @@
                             "text": "End of the road already?",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -124,7 +124,7 @@
                             "text": "I'm planting my feet, Scrander.\\Brace.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -133,7 +133,7 @@
                             "text": "Oh boy!",
                             "portraitIndex": 4
                         }
-                    ],
+                    ]
                 }
             ]
         },
@@ -148,7 +148,7 @@
                             "text": "Ah, my heart soars when you\\wreck alien biospheres so!",
                             "portraitIndex": 4
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -157,7 +157,7 @@
                             "text": "Proceeding.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 }
             ]
         },
@@ -172,7 +172,7 @@
                             "text": "Now that's queer.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -181,7 +181,7 @@
                             "text": "The pile of metal?",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -190,7 +190,7 @@
                             "text": "Go give it a whack from the\\pneumatic driver. I'd like to\\take a closer look.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 }
             ]
         },
@@ -213,7 +213,7 @@
                             "text": "The formation is peculiar, but\\it's not far off from what\\most of Hynobius is made of.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -222,7 +222,7 @@
                             "text": "So we could throw them in\\the mats printer in a pinch.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -231,7 +231,7 @@
                             "text": "Expecting trouble, Abner?",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -240,7 +240,44 @@
                             "text": "I wouldn't be pilot for this\\mission if I wasn't.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "noise_reaction",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "You hear that?",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "I do.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Let's not listen in too close.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Agreed. Dampening audio\feedback.",
+                            "portraitIndex": 0
+                        }
+                    ]
                 }
             ]
         },
@@ -254,8 +291,8 @@
                         {
                             "text": "Good Lordy, look at the size\\of these bones!",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -264,7 +301,7 @@
                             "text": "I've caught bigger.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -273,7 +310,7 @@
                             "text": "It's like a titanic Otzi-- except\\it looks like something dug\\its way here and bit off\\everything it could chew.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -282,7 +319,7 @@
                             "text": "We can't rule out\\decomposition.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -295,7 +332,7 @@
                             "text": "Do you see it?",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -304,7 +341,7 @@
                             "text": "Yeah. Dozens of little teeth\\marks.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -321,8 +358,23 @@
                             "text": "I can only imagine the kind of\\upheaval that formed it...",
                             "portraitIndex": 1
                         }
-                    ],
-                },
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "pre_combat",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Abner! Look out!",
+                            "portraitIndex": 1
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -363,8 +415,8 @@
                         {
                             "text": "Are you alright?",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -377,8 +429,467 @@
                             "text": "Let's keep moving.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "tutorial_7",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "This coral is like razor wire.",
+                            "portraitIndex": 0
+                        }
+                    ]
                 },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "It must have been predated\\on heavily at some point.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Do you reckon it's tasty?",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "...",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Like stinging nettle! Agitating\\barbs, but beneath lies a\\delicacy.",
+                            "portraitIndex": 4
+                        },
+                        {
+                            "text": "Ah, do you think it would\\render if I boiled it?",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Focus on Hynobius' sensors.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Aye aye, Pilot Abner!",
+                            "portraitIndex": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "granddaughters_1",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I haven't really asked...",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "You aren't much of a\\question-asker, I am aware.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "About your granddaughter.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Ah! Which one do you mean?",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I thought you only had the\\one.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "My daughter is expecting\\twins.",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Oh.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Congratulations, I guess.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "You could try to sound more\\excited.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I am, though.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "granddaughters_2",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Those two are going to name\\one of them after you.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "?",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "One of my granddaughters.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Why?",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "I suppose you left an\\impression on my daughter.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Though they're spelling it\\differently. You know how\\Susie is about being her own\\original girl.",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Oh no.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "\"Myria.\"",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Ooooh no.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Good motivation to make it\\home, don't you think?",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I have to stop her before it's\\too late.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "level2_lifeforms",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "It's weird, isn't it?",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Charybdis' lifeforms, I mean.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "They're aliens, so it's to be\\expected.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "But they aren't alien enough.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Employing the No True\\Scotsman fallacy, are you?",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "I always knew you were a\\scoundrel.",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "Shut up. I mean it's analogous\\to life on Earth.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "You think it'd be more like\\Madagascar with the\\environmental isolation.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "Especially so with non-\\terrestrial life.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "But a lot of what we're\\seeing down here...",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Wouldn't look out of place\\back at home.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "I've been having the same\\thought myself.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "It's too early to make any\\conclusions, but it might be a\\case of evolutionary\\pragmatism.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Or maybe it's something\\intrinsic to life!",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "What do you mean?",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Perhaps life can only take so\\many shapes, so it assumes\\those same shapes no matter\\where it ends up.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "A kind of bio-samsara chaining\\a harsh path through the\\universe.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "It's too early for fatalistic\\poetry, MS Scrander.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "What can I say? I'm an artist\\before I'm a scientist.",
+                            "portraitIndex": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "conversationId": "beefaroni",
+            "initialPortraits": [0, 1],
+            "dialog": [
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "A young person like you\\should be bursting with energy\\out on this new frontier!",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "Did the ride here tucker you\\out?",
+                            "portraitIndex": 1
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "What I'm tuckered of is eating\\freeze dried beef-a-roni.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "It's not all that bad.",
+                            "portraitIndex": 1
+                        },
+                        {
+                            "text": "If you close your eyes, the\\noodles are like dusty pork\\rinds.",
+                            "portraitIndex": 4
+                        }
+                    ]
+                },
+                {
+                    "portrait": 0,
+                    "sentences": [
+                        {
+                            "text": "I don't want to vomit in low\\gravity conditions.",
+                            "portraitIndex": 0
+                        }
+                    ]
+                },
+                {
+                    "portrait": 1,
+                    "sentences": [
+                        {
+                            "text": "Fine, fine.",
+                            "portraitIndex": 1
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -392,7 +903,7 @@
                             "text": "Seems we're out of the reef.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -401,7 +912,7 @@
                             "text": "I wonder why?",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -410,7 +921,7 @@
                             "text": "Were you starting to get\\comfortable?",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -419,7 +930,7 @@
                             "text": "Watching you twitch at every\\corner, perhaps.",
                             "portraitIndex": 4
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -428,7 +939,7 @@
                             "text": "Hmph.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -452,8 +963,8 @@
                         {
                             "text": "Yet here we are, still in\\optimal performance range.",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -466,7 +977,7 @@
                             "text": "We're being told to stay out.",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -474,8 +985,8 @@
                         {
                             "text": "Quite the assumption,\\Pilot Abner.",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -483,8 +994,8 @@
                         {
                             "text": "No more absurd than your\\own.",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -496,8 +1007,8 @@
                         {
                             "text": "That just gets me more\\excited to see what's being\\hidden down here.",
                             "portraitIndex": 4
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -505,8 +1016,8 @@
                         {
                             "text": "I don't like this, Scrander.",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -514,8 +1025,8 @@
                         {
                             "text": "I don't either. Let's get a basic\\idea of this layer's structure\\then head back.",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -523,10 +1034,10 @@
                         {
                             "text": "Aye aye.",
                             "portraitIndex": 0
-                        },
-                    ],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "level3_bo_gone",
@@ -539,7 +1050,7 @@
                             "text": "Strange... There's some kind\\of atypical electromagnetic\\activity down here.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -548,7 +1059,7 @@
                             "text": "Will it impact performance?",
                             "portraitIndex": 0
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -565,7 +1076,7 @@
                             "text": "We might as well be\\untouchable in that regard!",
                             "portraitIndex": 4
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -574,7 +1085,7 @@
                             "text": "Don't jinx it, MS Scrander.\\There's already been too\\many surprises on this\\mission.",
                             "portraitIndex": 6
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -582,8 +1093,8 @@
                         {
                             "text": "",
                             "portraitIndex": 5
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -603,9 +1114,8 @@
                         {
                             "text": "...The waste ejection closet,\\maybe?",
                             "portraitIndex": 3
-                        },
-
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -613,8 +1123,8 @@
                         {
                             "text": "",
                             "portraitIndex": 5
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -630,10 +1140,10 @@
                         {
                             "text": "Out in the waters then. He's got to be out there, I can't\\think of anything else.",
                             "portraitIndex": 3
-                        },
-                    ],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "level3_phantasia_appear",
@@ -649,10 +1159,10 @@
                         {
                             "text": "They're coming out of the walls!...",
                             "portraitIndex": 3
-                        },
-                    ],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "level3_phantasia_done",
@@ -680,8 +1190,8 @@
                         {
                             "text": "...",
                             "portraitIndex": 3
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -705,10 +1215,10 @@
                         {
                             "text": "You better be alive. What am I supposed to tell your family otherwise?",
                             "portraitIndex": 3
-                        },
-                    ],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "endcutscene_1",
@@ -732,10 +1242,10 @@
                         {
                             "text": "Where the hell are you, Bo?!?",
                             "portraitIndex": 3
-                        },
-                    ],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "endcutscene_2",
@@ -747,10 +1257,10 @@
                         {
                             "text": "This has to be a nightmare",
                             "portraitIndex": 3
-                        },
-                    ],
-                },
-            ],
+                        }
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "pilot_convo_1",
@@ -762,8 +1272,8 @@
                         {
                             "text": "Another amphibious mech.",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -775,8 +1285,8 @@
                         {
                             "text": "The joints are ruined...\\It's a sitting duck.",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -788,8 +1298,8 @@
                         {
                             "text": "Doesn't look like their colors,\\though.",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -798,9 +1308,9 @@
                             "text": "Whoever they are, they're\\hailing us through comms.",
                             "portraitIndex": 1
                         }
-                    ],
-                },
-            ],
+                    ]
+                }
+            ]
         },
         {
             "conversationId": "pilot_convo_2",
@@ -816,8 +1326,8 @@
                         {
                             "text": "Who is commanding that\\machine?",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -838,7 +1348,7 @@
                             "text": "Yet I must\\continue to\\try.",
                             "portraitIndex": 2
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -846,8 +1356,8 @@
                         {
                             "text": "What?",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -859,8 +1369,8 @@
                         {
                             "text": "I can't make heads or tails of\\it.",
                             "portraitIndex": 1
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -884,8 +1394,8 @@
                         {
                             "text": "It is simply\\an echo of what\\will come to\\pass.",
                             "portraitIndex": 2
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -901,8 +1411,8 @@
                         {
                             "text": "Damn it. He closed the\\transmission.",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -911,7 +1421,7 @@
                             "text": "He's not picking back up\\either. Nothing more we can\\do.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -919,8 +1429,8 @@
                         {
                             "text": "Are you saying we should just leave him here?",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -933,7 +1443,7 @@
                             "text": "Even if we did get their\\support, we'd need approval\\from planetside to begin\\retrieval.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -941,8 +1451,8 @@
                         {
                             "text": "Would we even have the\\time?",
                             "portraitIndex": 0
-                        },
-                    ],
+                        }
+                    ]
                 },
                 {
                     "portrait": 1,
@@ -959,7 +1469,7 @@
                             "text": "So yes. Though that's a\\pending answer.",
                             "portraitIndex": 1
                         }
-                    ],
+                    ]
                 },
                 {
                     "portrait": 0,
@@ -971,10 +1481,10 @@
                         {
                             "text": "However long that might take.",
                             "portraitIndex": 0
-                        },
-                    ],
-                },
-            ],
-        },
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 }

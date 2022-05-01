@@ -118,7 +118,7 @@ public class BubbleScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Ground" && initialDelayOver)
+        if(collision != null && collision.tag == "Ground" && initialDelayOver)
         {
             StopAllCoroutines();
             StartCoroutine(Pop());

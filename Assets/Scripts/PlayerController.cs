@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
         {
             if (vert > 0 && storedHoverTime > 0)
             {
-                if (!thrustLoopingAudio.isPlaying)
+                if (!thrustLoopingAudio.isPlaying || thrustLoopingAudio.volume != 1)
                 {
                     thrustLoopingAudio.Play();
                     thrustLoopingAudio.volume = 1;
@@ -229,11 +229,11 @@ public class PlayerController : MonoBehaviour
             // Minor gravity + additional downwards force if we're airborne
             rb.gravityScale = pMovement.midairGravityScale;
             vel = new Vector2(horiz * 0.75f, Mathf.Clamp(vert, -0.25f, 0.75f)) * pMovement.acceleration * rb.mass;
-            vel.x /= 2;
+            vel.x /= 1.33f;
             //vel += vel = Vector2.down * pMovement.acceleration * rb.mass / 4;
         }
 
-        if ((pMovement.isGrounded && rb.velocity.magnitude < pMovement.groundSpeed))
+        if (pMovement.isGrounded && rb.velocity.magnitude < pMovement.groundSpeed)
         {
             // Slow robot down if we're grounded so we don't slide all over
             if (pMovement.isGrounded && vel.x == 0)

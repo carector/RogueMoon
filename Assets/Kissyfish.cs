@@ -43,7 +43,7 @@ public class Kissyfish : Fish
 
                 // Check for smooch
                 float smoochChance = Random.Range(0, 1f);
-                if (CanSeePlayer() && smoochChance > 0.7f)
+                if (CanSeePlayer() && smoochChance > 0.5f)
                 {
                     // Another preliminary smooch check
                     if (SmoochZoneUnoccupied() && canSmooch)
@@ -114,6 +114,7 @@ public class Kissyfish : Fish
         // Smuch
         gm.PlaySFX(gm.sfx.generalSounds[2]);
         gm.SpawnSmoochMark();
+        gm.UnlockMedal(67909);
         targetPos = new Vector2(1.7f * Mathf.Sign(dir), 0.5f);
         float timer = 0.35f;
         while (timer > 0)

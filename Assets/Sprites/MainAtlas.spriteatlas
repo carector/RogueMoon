@@ -40,11 +40,14 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c0d9b4b51b3c59c479e0dcaf5b286bde, type: 3}
     - {fileID: 102900000, guid: 5210abf30b0896c4fb09192bd36ec757, type: 3}
     bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 3087114322511383715, guid: 8c0468905748852468f67bfe589fe21c, type: 3}
@@ -1384,5 +1387,6 @@ SpriteAtlas:
   - OceanTiles2_11
   - OceanTiles2_12
   - OceanTiles2_13
+  m_RenderDataMap: {}
   m_Tag: MainAtlas
   m_IsVariant: 0

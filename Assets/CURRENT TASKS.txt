@@ -1,9 +1,31 @@
-//? Remaining thrust meter
-//? Kissyfish kiss
-//? Try to improve fish pathfinding (maybe use nodes or navmesh)
-Mute reload sound when in dialog
-//? Make fish bounce back if you bump into them (can knock you out of grapple)
-Fix mech arm animation when in midair (currently plays walking animation)
+USED DIALOG LIST
+tutorial_1
+tutorial_2
+tutorial_3 (maybe change "planting my feet" line)
+tutorial_4
+tutorial_5 (could be better placed)
+tutorial_6
+tutorial_7
+bones_area
+level3_entrance
+level3_bo_gone
+level3_phantasia_appear (probably change this since new boss exists)
+level3_phantasia_done
+endcutscene_1
+endcutscene_2
+pilot_convo_1
+pilot_convo_2
+pre_combat
+post_combat
+
+
+NOT YET USED DIALOG
+noise_reaction
+granddaughters_1
+granddaughters_2
+level2_lifeforms
+beefaroni
+
 
 SFX TO ADD
 // Thrust sound
@@ -18,7 +40,21 @@ SFX TO ADD
 BUGS / TWEAKS
 - Fish clouds move in 3D, can sometimes clip through parallax
 - Make non-speaking portraits slightly darker
-- Can see end of parallax if you walk to rightmost side of top area
-- Rapidly tapping hover can mute hover sound if done correctly
+//? Can see end of parallax if you walk to rightmost side of top area
+// Rapidly tapping hover can mute hover sound if done correctly
 - Update fish to turn around when hitting spikes (and maybe walls)
 - Steam particle systems dont work in webgl build
+- Disable thrust sound when dialog plays
+//? Remaining thrust meter
+//? Kissyfish kiss
+//? Try to improve fish pathfinding (maybe use nodes or navmesh)
+- Mute reload sound when in dialog
+//? Make fish bounce back if you bump into them (can knock you out of grapple)
+- Fix mech arm animation when in midair (currently plays walking animation)
+- Add a lot more metal health pickups in levels
+
+THINGS LEFT TO MAKE
+- New boss fish
+- Pause menu
+- Improved title screen + intro sequence
+- Bigger reward for discovering side areas

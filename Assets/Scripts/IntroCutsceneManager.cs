@@ -44,7 +44,7 @@ public class IntroCutsceneManager : MonoBehaviour
 
         if (ply.transform.position.y > -120)
         {
-            yield return new WaitForSecondsRealtime(0.75f);
+            yield return new WaitForSeconds(1f);
             yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "tutorial_1");
         }
         ply.pMovement.canMove = true;

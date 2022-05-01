@@ -114,18 +114,12 @@ public class GameManager : MonoBehaviour
     Image healthbarFill;
     Image darknessOverlay;
     RectTransform darknessMask;
-
-    TextMeshProUGUI metalNumberText;
-    TextMeshProUGUI harpoonNumberText;
-    TextMeshProUGUI depthChargeNumberText;
     TextMeshProUGUI gameOverText;
     RectTransform[] gameOverButtons;
     RectTransform gameOverPanel;
 
     RectTransform hudHolder;
     RectTransform textboxHolder;
-    RectTransform actionMenuHolder;
-    RectTransform[] actionMenuCategories = new RectTransform[3];
     RectTransform depthArrow;
     TextMeshProUGUI depthText;
     TextMeshProUGUI dialogText;
@@ -138,6 +132,8 @@ public class GameManager : MonoBehaviour
 
     PlayerController ply;
     Transform cam;
+
+    NewgroundsUtility ngUtility;
 
     bool gameOverInProgress;
     bool skippedText;
@@ -164,6 +160,7 @@ public class GameManager : MonoBehaviour
         musicSource = transform.GetChild(2).GetComponent<AudioSource>();
         ambienceSource = transform.GetChild(3).GetComponent<AudioSource>();
         dialogAudio = transform.GetChild(4).GetComponent<AudioSource>();
+        ngUtility = FindObjectOfType<NewgroundsUtility>();
 
         Transform toolbar = GameObject.Find("ToolBar").transform;
         toolbarFill = toolbar.GetChild(2).GetComponent<Image>();
@@ -173,13 +170,7 @@ public class GameManager : MonoBehaviour
         dialogAdvanceIcon.color = Color.clear;
         leftPortrait = textboxHolder.GetChild(1).GetComponent<Image>();
         rightPortrait = textboxHolder.GetChild(2).GetComponent<Image>();
-        actionMenuHolder = GameObject.Find("ActionMenu").GetComponent<RectTransform>();
-        for (int i = 0; i < 3; i++)
-            actionMenuCategories[i] = actionMenuHolder.GetChild(i).GetComponent<RectTransform>();
 
-        metalNumberText = actionMenuHolder.GetChild(3).GetComponent<TextMeshProUGUI>();
-        harpoonNumberText = actionMenuHolder.GetChild(4).GetComponent<TextMeshProUGUI>();
-        depthChargeNumberText = actionMenuHolder.GetChild(5).GetComponent<TextMeshProUGUI>();
         darknessOverlay = GameObject.Find("DarknessOverlay").GetComponent<Image>();
         darknessMask = GameObject.Find("DarknessMask").GetComponent<RectTransform>();
 
@@ -319,7 +310,7 @@ public class GameManager : MonoBehaviour
 
             // TEMP
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "post_combat"));
+                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "beefaroni"));
         }
 
         // Game over if health < 0
@@ -376,6 +367,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void UnlockMedal(int medal)
+    {
+        ngUtility.UnlockMedal(medal);
+    }
+
     private void FixedUpdate()
     {
         UpdateThrustBar();
@@ -427,13 +423,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UpdateActionMenuNumbers()
-    {
-        harpoonNumberText.text = ply.pResources.harpoons.ToString();
-        metalNumberText.text = ply.pResources.metal.ToString();
-        depthChargeNumberText.text = ply.pResources.depthCharges.ToString();
-    }
-
     public void UpdateThrustBar()
     {
         toolbarFill.color = Color.white;
@@ -443,21 +432,6 @@ public class GameManager : MonoBehaviour
 
         toolbarFill.rectTransform.anchoredPosition = Vector2.Lerp(toolbarFill.rectTransform.anchoredPosition, fillPos, 0.5f);
         toolbarFill.rectTransform.sizeDelta = Vector2.Lerp(toolbarFill.rectTransform.sizeDelta, fillSize, 0.5f);
-    }
-
-    public void SwitchMenuScreen(int screen)
-    {
-        // 0 = Synthesis
-        // 1 = Talk
-        // 2 = Map
-        // 3 = None
-        for (int i = 0; i < 3; i++)
-        {
-            if (i != screen)
-                actionMenuCategories[i].anchoredPosition = new Vector2(17, -250);
-            else
-                actionMenuCategories[i].anchoredPosition = new Vector2(17, -48);
-        }
     }
 
     public void CraftItem(int item)
@@ -595,6 +569,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator DisplayDialog(TextAsset src, string id)
     {
+        if (dialogSettings.isPrintingDialog)
+            yield break;
         dialogSettings.isPrintingDialog = true;
         actionMenuStoredTimeScale = Time.timeScale;
         Time.timeScale = 0;

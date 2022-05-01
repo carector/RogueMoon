@@ -4391,7 +4391,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="30" name="33 NC Background Shadow Overlay 1" width="100" height="100" offsetx="-53.33" offsety="-93.33">
+ <layer id="30" name="33 NC Background Shadow Overlay 1" width="100" height="100" visible="0" offsetx="-53.33" offsety="-93.33">
   <data encoding="csv">
    <chunk x="-16" y="48" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -54807,7 +54807,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="48" name="2 Collectable Poin Particles (Ore)" width="100" height="100" offsetx="-53.33" offsety="-93.33">
+ <layer id="48" name="2 Collectable Poin Particles (Ore)" width="100" height="100" visible="0" offsetx="-53.33" offsety="-93.33">
   <data encoding="csv">
    <chunk x="-32" y="96" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
