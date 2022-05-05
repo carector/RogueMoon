@@ -6,27 +6,28 @@ using UnityEngine.UI;
 public class ButtonMouseOver : MonoBehaviour
 {
     public int offset = 64;
+    public int minimumMouseXPos;
 
     Vector2 startPos;
     RectTransform t;
     bool mouseOver;
-    TitleScreenManager tsm;
+    PauseMenuManager pmm;
     Button b;
 
     // Start is called before the first frame update
     void Start()
     {
         b = GetComponent<Button>();
-        tsm = FindObjectOfType<TitleScreenManager>();
+        pmm = FindObjectOfType<PauseMenuManager>();
         t = GetComponent<RectTransform>();
         startPos = t.anchoredPosition;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Vector2 target = Vector2.zero;
-        if (mouseOver)
+        if (mouseOver && Input.mousePosition.x >= minimumMouseXPos)
             target = new Vector2(offset, 0);
 
         t.anchoredPosition = Vector2.Lerp(t.anchoredPosition, startPos + target, 0.5f);
