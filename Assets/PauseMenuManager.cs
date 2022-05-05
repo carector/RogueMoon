@@ -18,6 +18,7 @@ public class PauseMenuManager : MonoBehaviour
     TextMeshProUGUI fishNoDataText;
     TextMeshProUGUI fishNameText;
     TextMeshProUGUI fishDescriptionText;
+    GameManager gm;
 
     float scrollPanelYPos = 0;
     int activeIndex = 2;
@@ -28,8 +29,9 @@ public class PauseMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        SwitchScreen(-1);
 
+        gm = FindObjectOfType<GameManager>();
         fishNoDataText = GameObject.Find("FishNoDataText").GetComponent<TextMeshProUGUI>();
         fishNameText = GameObject.Find("FishNameText").GetComponent<TextMeshProUGUI>();
         fishDescriptionText = GameObject.Find("FishDescriptionText").GetComponent<TextMeshProUGUI>();
@@ -50,24 +52,56 @@ public class PauseMenuManager : MonoBehaviour
             else
                 encyclopediaButtonTexts[i].text = "???";
         }
-        
+
 
         //blackout.color = Color.black;
         //StartCoroutine(FadeInScreen());
     }
 
+    public void TogglePausedState()
+    {
+        if (gm.gamePaused)
+        {
+            gm.gamePaused = false;
+            SwitchScreen(-1);
+            Time.timeScale = 1;
+        }
+        else if (!gm.gamePaused && Time.timeScale == 1)
+        {
+            gm.gamePaused = true;
+            SwitchScreen(0);
+            Time.timeScale = 0;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (activeIndex == 2)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            encyclopediaScrollPanel.anchoredPosition = Vector2.Lerp(encyclopediaScrollPanel.anchoredPosition, new Vector2(0, scrollPanelYPos), 0.25f);
-            encyclopediaScrollPanel.anchoredPosition = new Vector2(encyclopediaScrollPanel.anchoredPosition.x, Mathf.RoundToInt(encyclopediaScrollPanel.anchoredPosition.y));
-
-            if(currentEncyclopediaEntry >= 0 && unlockedEntries[currentEncyclopediaEntry])
+            if (activeIndex <= 0)
             {
-                currentDescriptionLength = Mathf.RoundToInt(Mathf.Lerp(currentDescriptionLength, encyclopediaEntries[currentEncyclopediaEntry].fishDescription.Length, 0.025f));
-                fishDescriptionText.text = encyclopediaEntries[currentEncyclopediaEntry].fishDescription.Substring(0, currentDescriptionLength);
+                TogglePausedState();
+            }
+            else
+                activeIndex = 0;
+        }
+
+        if (gm.gamePaused)
+        {
+            if (activeIndex == 1)
+            {
+                encyclopediaScrollPanel.anchoredPosition = Vector2.Lerp(encyclopediaScrollPanel.anchoredPosition, new Vector2(0, scrollPanelYPos), 0.25f);
+                encyclopediaScrollPanel.anchoredPosition = new Vector2(encyclopediaScrollPanel.anchoredPosition.x, Mathf.RoundToInt(encyclopediaScrollPanel.anchoredPosition.y));
+
+                if (Input.mouseScrollDelta.y != 0 && Input.mousePosition.x < 256 && !Input.GetMouseButton(0))
+                    encyclopediaScroll.value = Mathf.Clamp(encyclopediaScroll.value - Input.mouseScrollDelta.y * 0.1f, 0, 1);
+
+                if (currentEncyclopediaEntry >= 0 && unlockedEntries[currentEncyclopediaEntry])
+                {
+                    currentDescriptionLength = Mathf.RoundToInt(Mathf.Lerp(currentDescriptionLength, encyclopediaEntries[currentEncyclopediaEntry].fishDescription.Length, 0.025f));
+                    fishDescriptionText.text = encyclopediaEntries[currentEncyclopediaEntry].fishDescription.Substring(0, currentDescriptionLength);
+                }
             }
         }
     }
@@ -110,9 +144,37 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
+    // Screens:
+    // 0: Top menu / pause menu
+    // 1: Encyclopedia
+    // 2: Options
+    // 3: Credits
+    // 4: Quit
+
     public void SwitchScreen(int index)
     {
         activeIndex = index;
+
+        for (int i = 0; i < screens.Length; i++)
+        {
+            if (i != index)
+                screens[i].anchoredPosition = new Vector2(0, -1000);
+            else
+                screens[i].anchoredPosition = Vector2.zero;
+        }
+
+        currentEncyclopediaEntry = -1;
+
+        switch (activeIndex)
+        {
+            case 1:
+                encyclopediaScrollPanel.anchoredPosition = new Vector2(encyclopediaScrollPanel.anchoredPosition.x, 0);
+                encyclopediaScroll.value = 0;
+                fishNameText.text = "";
+                fishDescriptionText.text = "";
+                fishNoDataText.text = "";
+                break;
+        }
     }
 
     public void UpdateEncyclopediaScroll()
@@ -146,12 +208,6 @@ public class PauseMenuManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < screens.Length; i++)
-        {
-            if (i != activeIndex)
-                screens[i].anchoredPosition = new Vector2(80, 0);
-            else
-                screens[i].anchoredPosition = Vector2.Lerp(screens[i].anchoredPosition, new Vector2(-72, 0), 0.25f);
-        }
+
     }
 }
