@@ -84,7 +84,7 @@ public class PauseMenuManager : MonoBehaviour
                 TogglePausedState();
             }
             else
-                activeIndex = 0;
+                SwitchScreen(0);
         }
 
         if (gm.gamePaused)
@@ -95,7 +95,7 @@ public class PauseMenuManager : MonoBehaviour
                 encyclopediaScrollPanel.anchoredPosition = new Vector2(encyclopediaScrollPanel.anchoredPosition.x, Mathf.RoundToInt(encyclopediaScrollPanel.anchoredPosition.y));
 
                 if (Input.mouseScrollDelta.y != 0 && Input.mousePosition.x < 256 && !Input.GetMouseButton(0))
-                    encyclopediaScroll.value = Mathf.Clamp(encyclopediaScroll.value - Input.mouseScrollDelta.y * 0.1f, 0, 1);
+                    encyclopediaScroll.value = Mathf.Clamp(encyclopediaScroll.value - Input.mouseScrollDelta.y * 0.07f, 0, 1);
 
                 if (currentEncyclopediaEntry >= 0 && unlockedEntries[currentEncyclopediaEntry])
                 {
@@ -181,7 +181,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (encyclopediaScroll == null)
             return;
-        scrollPanelYPos = Mathf.Clamp(Mathf.RoundToInt(encyclopediaScroll.value * 100), 0, 100);
+        scrollPanelYPos = Mathf.Clamp(Mathf.RoundToInt(encyclopediaScroll.value * 186), -2, 184);
     }
 
     public void DisplayEncyclopediaEntry(int index)

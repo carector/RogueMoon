@@ -199,6 +199,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadIntoLevel()
     {
+        //yield break; //  TEMP
+
         if (!checkpointRefs.dontLoad)
         {
             if (!PlayerPrefs.HasKey("FLOE_LAST_CHECKPOINT"))
@@ -255,7 +257,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Fade in black screen
-            SceneManager.LoadSceneAsync("level2revamp", LoadSceneMode.Additive);
+            //SceneManager.LoadSceneAsync("level2revamp", LoadSceneMode.Additive);
             yield return FadeInScreen();
             //ply.pMovement.canMove = true;
         }
