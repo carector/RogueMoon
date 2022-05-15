@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossFishScript : MonoBehaviour
 {
     public float segmentOffset = 3f;
+    public float minXBeforeRotating;
     public Vector2[] positionPoints;
     Transform head;
     List<Transform> bodySegments;
@@ -23,12 +24,10 @@ public class BossFishScript : MonoBehaviour
         bodySegments = new List<Transform>();
         for (int i = 1; i < transform.childCount; i++)
         {
-            positionPoints[i] = transform.position + Vector3.left * 3 * i;
+            positionPoints[i] = transform.position + Vector3.right * 3 * i;
 
             bodySegments.Add(transform.GetChild(i));
         }
-        //for(int i = 0; i < bodySegments.Count; i++)
-            //bodySegments[i].transform.parent = null;
 
         StartCoroutine(UpdateSegmentPositions());
     }
@@ -51,10 +50,12 @@ public class BossFishScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        head.position += head.right*0.1f;
+        head.position += head.right*0.1185f;
 
         // Update segment positions + rotate them towards next point
-        head.right = Vector2.MoveTowards(head.right, (ply.transform.position - head.transform.position).normalized, 0.01f);
+        if(head.transform.position.x < minXBeforeRotating)
+            head.right = Vector2.MoveTowards(head.right, (ply.transform.position - head.transform.position).normalized, 0.01f);
+
         int currentPoint = 0;
         Vector3 lastSegmentPosition = head.position;
         for (int i = 0; i < bodySegments.Count; i++)
