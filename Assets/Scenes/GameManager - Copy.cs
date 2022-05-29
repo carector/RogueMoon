@@ -110,7 +110,7 @@ public class GameManager2 : MonoBehaviour
         GetReferences();
         ReadSaveData();
 
-        /*
+        
         if (PlayerPrefs.HasKey("FURTHEST_UNLOCKED_LEVEL"))
             gm_gameSaveData.furthestUnlockedLevel = PlayerPrefs.GetInt("FURTHEST_UNLOCKED_LEVEL");
         else
@@ -623,5 +623,4 @@ public class GameManager2 : MonoBehaviour
         string json = JsonUtility.ToJson(gm_gameSaveData);
         File.WriteAllText(prefix + @"/savedata.json", json);
     }
-}
-*/
+}*/

@@ -71,9 +71,12 @@ public class PlayerController : MonoBehaviour
     Animator armsAnim;
     Transform harpoonStartPoint;
     Transform damageStartPoint;
-    AudioSource harpoonLoopingAudio;
-    AudioSource attackLoopingAudio;
-    AudioSource thrustLoopingAudio;
+    [HideInInspector]
+    public AudioSource harpoonLoopingAudio;
+    [HideInInspector]
+    public AudioSource attackLoopingAudio;
+    [HideInInspector]
+    public AudioSource thrustLoopingAudio;
     ParticleSystem[] steamParticles;
     Vector2 mouseWorldPos;
 
@@ -352,7 +355,6 @@ public class PlayerController : MonoBehaviour
     void SetActiveAbility(int ability)
     {
         gm.PlaySFX(gm.sfx.playerSounds[1]);
-        gm.SwitchActiveToolHUD();
         pAbilities.activeAbility = ability;
         //StartCoroutine(SwitchToolDelayCoroutine());
     }

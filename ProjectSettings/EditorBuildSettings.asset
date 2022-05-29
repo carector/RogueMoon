@@ -8,24 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Logo.unity
     guid: c308564d284edd148aef74f03d991ac8
-  - enabled: 0
-    path: Assets/Scenes/title.unity
-    guid: f401aad8c8932594fa42ce1c0dfcf84b
-  - enabled: 0
-    path: Assets/Scenes/playerloader.unity
-    guid: 0a8a07021c8ca01428534bb94ab5fd91
-  - enabled: 0
-    path: Assets/Scenes/level1.unity
-    guid: 6d908e21bd746aa44ad5c15433818a64
-  - enabled: 0
-    path: Assets/Scenes/level2.unity
-    guid: 3b6d047d08c8f1845a6918838215495b
-  - enabled: 0
-    path: Assets/Scenes/level3.unity
-    guid: 6e89860a0214c3449854cc7c0937c657
-  - enabled: 0
-    path: Assets/Scenes/IntroText.unity
-    guid: 5e623de2435799c4a9f7f81bd9fc6534
+  - enabled: 1
+    path: Assets/Scenes/singletonsLoader.unity
+    guid: cd143e7d58403f747b0756b356c90e4b
+  - enabled: 1
+    path: Assets/Scenes/titleScreenRevamp.unity
+    guid: 5742a89558a746f4aa04564fd19e75d9
   - enabled: 1
     path: Assets/Scenes/level1revamp.unity
     guid: deb659f4101dea9439985befc5201ebc

@@ -29,7 +29,7 @@ public class PauseMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SwitchScreen(-1);
+        ChangeMenuDepth(-1);
 
         gm = FindObjectOfType<GameManager>();
         fishNoDataText = GameObject.Find("FishNoDataText").GetComponent<TextMeshProUGUI>();
@@ -58,36 +58,10 @@ public class PauseMenuManager : MonoBehaviour
         //StartCoroutine(FadeInScreen());
     }
 
-    public void TogglePausedState()
-    {
-        if (gm.gamePaused)
-        {
-            gm.gamePaused = false;
-            SwitchScreen(-1);
-            Time.timeScale = 1;
-        }
-        else if (!gm.gamePaused && Time.timeScale == 1)
-        {
-            gm.gamePaused = true;
-            SwitchScreen(0);
-            Time.timeScale = 0;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (activeIndex <= 0)
-            {
-                TogglePausedState();
-            }
-            else
-                SwitchScreen(0);
-        }
-
-        if (gm.gamePaused)
+        if (gm.gameVars.currentScreen != GameManager.GameScreen.inGame)
         {
             if (activeIndex == 1)
             {
@@ -151,13 +125,14 @@ public class PauseMenuManager : MonoBehaviour
     // 3: Credits
     // 4: Quit
 
-    public void SwitchScreen(int index)
+    public void ChangeMenuDepth(int index)
     {
         activeIndex = index;
 
         for (int i = 0; i < screens.Length; i++)
         {
-            if (i != index)
+            // Only need to hide top menu buttons if we're on the encyclopedia (only screen that covers everything)
+            if (i != index && (i != 0 || index != 1))
                 screens[i].anchoredPosition = new Vector2(0, -1000);
             else
                 screens[i].anchoredPosition = Vector2.zero;

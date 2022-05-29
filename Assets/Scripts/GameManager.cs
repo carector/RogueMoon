@@ -8,6 +8,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameScreen
+    {
+        titleScreen,
+        inGame,
+        paused
+    }
+
     [System.Serializable]
     public class GameSoundEffects
     {
@@ -45,6 +52,13 @@ public class GameManager : MonoBehaviour
         public int lastMusicIndex = -1;
         public int lastAmbienceIndex = -1;
         public float lastMusicPitch = 1;
+    }
+
+    [System.Serializable]
+    public class GameGlobalVariables
+    {
+        public GameScreen currentScreen;
+        public bool isPaused;
     }
 
     [System.Serializable]
@@ -93,15 +107,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameGlobalVariables gameVars;
     public GameSoundEffects sfx;
     public GameDialogSettings dialogSettings;
     public GameSpriteReferences spriteRefs;
     public GameCheckpointReferences checkpointRefs;
     public GamePrefabReferences prefabRefs;
 
-    public bool menuOpen;
-    public bool gamePaused;
-
+    CameraControl camControl;
+    PauseMenuManager pmm;
     AudioSource musicSource;
     AudioSource ambienceSource;
 
@@ -109,7 +123,6 @@ public class GameManager : MonoBehaviour
     AudioSource stoppableSfxSource;
     AudioSource priorityStoppableSfxSource;
     AudioSource dialogAudio;
-    AudioSource harpoonLoopingAudio;
 
     Image healthbarFill;
     Image darknessOverlay;
@@ -129,6 +142,7 @@ public class GameManager : MonoBehaviour
     Image dialogAdvanceIcon;
     Image screenBlackout;
     Animator warningScreenAnimator;
+    Animator cutsceneCam;
 
     PlayerController ply;
     Transform cam;
@@ -143,17 +157,11 @@ public class GameManager : MonoBehaviour
     // open we don't fuck up our timescale
     float actionMenuStoredTimeScale;
 
-    /* PlayerPrefs reference
-     * Last checkpoint position index: FLOE_LAST_CHECKPOINT
-     * Last played music clip index: FLOE_LAST_MUSIC
-     * Last played ambience clip index: FLOE_LAST_AMBIENCE
-     * 
-     * 
-     */
-
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.transform.parent);
+
         Time.timeScale = 1;
         sfxSource = transform.GetChild(0).GetComponent<AudioSource>();
         stoppableSfxSource = transform.GetChild(0).GetComponent<AudioSource>();
@@ -161,6 +169,9 @@ public class GameManager : MonoBehaviour
         ambienceSource = transform.GetChild(3).GetComponent<AudioSource>();
         dialogAudio = transform.GetChild(4).GetComponent<AudioSource>();
         ngUtility = FindObjectOfType<NewgroundsUtility>();
+        pmm = FindObjectOfType<PauseMenuManager>();
+        cutsceneCam = GameObject.Find("CutsceneCamera").GetComponent<Animator>();
+        camControl = FindObjectOfType<CameraControl>();
 
         Transform toolbar = GameObject.Find("ToolBar").transform;
         toolbarFill = toolbar.GetChild(2).GetComponent<Image>();
@@ -176,7 +187,6 @@ public class GameManager : MonoBehaviour
 
         warningScreenAnimator = GameObject.Find("WarningScreen").GetComponent<Animator>();
         healthbarFill = GameObject.Find("HealthbarFill").GetComponent<Image>();
-        harpoonLoopingAudio = GameObject.Find("HarpoonLoopingAudio").GetComponent<AudioSource>();
         ply = FindObjectOfType<PlayerController>();
         cam = FindObjectOfType<CameraControl>().transform.GetChild(0);
 
@@ -194,72 +204,67 @@ public class GameManager : MonoBehaviour
         // Convert dialog from JSON file to nice, readable dialog
         dialogSettings.cachedTextData = DeserializeDialog(dialogSettings.JSONSource);
 
-        StartCoroutine(LoadIntoLevel());
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            StartCoroutine(LoadSceneCoroutine(2));
+        else
+            StartCoroutine(LoadSceneCoroutine(-1));
     }
 
-    IEnumerator LoadIntoLevel()
+    public void LoadScene(int buildIndex)
     {
-        //yield break; //  TEMP
+        StartCoroutine(LoadSceneCoroutine(buildIndex));
+    }
+    IEnumerator LoadSceneCoroutine(int buildIndex)
+    {
+        yield return FadeOutScreen();
+        Time.timeScale = 1;
 
-        if (!checkpointRefs.dontLoad)
+        if (buildIndex != -1)
         {
-            if (!PlayerPrefs.HasKey("FLOE_LAST_CHECKPOINT"))
-            {
-                print("Playerprefs weren't found");
-                PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", -1);
-                PlayerPrefs.SetInt("FLOE_LAST_MUSIC", 0);
-                PlayerPrefs.SetFloat("FLOE_LAST_MUSIC_PITCH", 1);
-                PlayerPrefs.SetInt("FLOE_LAST_AMBIENCE", -1);
-                PlayerPrefs.Save();
-            }
-
-            int checkpoint = PlayerPrefs.GetInt("FLOE_LAST_CHECKPOINT");
-            int lastMusic = PlayerPrefs.GetInt("FLOE_LAST_MUSIC");
-            float lastPitch = PlayerPrefs.GetFloat("FLOE_LAST_MUSIC_PITCH");
-            int lastAmbience = PlayerPrefs.GetInt("FLOE_LAST_AMBIENCE");
-            int loadedLevelIndex = 3;
-
-            if (checkpoint >= 1 && checkpoint < 3)
-            {
-                checkpointRefs.blockers[0].enabled = true;
-                loadedLevelIndex = 4;
-            }
-            else if (checkpoint >= 3)
-            {
-                checkpointRefs.blockers[1].enabled = true;
-                loadedLevelIndex = 5;
-            }
-
-            if (checkpoint >= 0)
-            {
-                ply.transform.position = checkpointRefs.checkpoints[checkpoint].position;
-                checkpointRefs.currentCheckpoint = checkpoint;
-            }
-
-            SceneManager.LoadSceneAsync(loadedLevelIndex, LoadSceneMode.Additive);
-            while (!SceneManager.GetActiveScene().isLoaded)
+            AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
+            while (!asyncLoadLevel.isDone)
                 yield return null;
 
-            if (checkpoint == 1)
-                Destroy(GameObject.Find("Level2Dither"));
-
-            // Fade in black screen
-            yield return FadeInScreen();
-
-            if (lastMusic > -1)
-                StartCoroutine(PlayMusic(lastMusic, lastPitch));
-            if (lastAmbience > -1)
-                PlayAmbience(lastAmbience);
-
-            if (checkpoint > -1)
-                ply.pMovement.canMove = true;
+            PostLoadChecks(buildIndex);
         }
         else
+            PostLoadChecks(SceneManager.GetActiveScene().buildIndex);
+
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return FadeInScreen();
+    }
+
+    // Performs any necessary changes when loading levels
+    // ex: finding player reference, switching to proper game screen
+    void PostLoadChecks(int buildIndex)
+    {
+        print(buildIndex);
+        // Determine UI screen based on which level we're loading
+        // 0: logo
+        // 1: singletonsLoader
+        // 2: titlescreen
+        // 3: levels
+        if (buildIndex == 2)
         {
-            // Fade in black screen
-            //SceneManager.LoadSceneAsync("level2revamp", LoadSceneMode.Additive);
-            yield return FadeInScreen();
-            //ply.pMovement.canMove = true;
+            StartCoroutine(PlayMusic(4, 1));
+            cutsceneCam.Play("CutsceneCameraTitleScreen");
+            pmm.ChangeMenuDepth(0);
+        }
+        if (buildIndex == 3)
+        {
+            // Load other in-game levels
+            for (int i = 3; i <= 4; i++)
+                if (i != buildIndex)
+                    SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+
+            ply = FindObjectOfType<PlayerController>();
+            camControl.target = ply.transform;
+            pmm.ChangeMenuDepth(-1);
+            cutsceneCam.Play("CutsceneCameraIdle");
+            gameVars.currentScreen = GameScreen.inGame;
+            gameVars.isPaused = false;
         }
     }
 
@@ -275,30 +280,29 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator FadeOutScreen()
     {
+        screenBlackout.rectTransform.anchoredPosition = new Vector2(0, 0);
+        while (screenBlackout.color.a < 1)
+        {
+            screenBlackout.color = new Color(0, 0, 0, screenBlackout.color.a + 0.075f);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    // Update is called once per frame
+    void Update() // TODO
+    {
+        if (gameVars.currentScreen != GameScreen.inGame)
+            return;
+
         UpdateHUD();
 
         if (ply.pResources.health > 0)
         {
-            /*
-            // Open mech menu
-            if (Input.GetKeyDown(KeyCode.Tab) && !dialogSettings.isPrintingDialog)
-            {
-                menuOpen = !menuOpen;
-                if (menuOpen)
-                {
-                    Time.timeScale = 0;
-                    actionMenuHolder.anchoredPosition = Vector2.zero;
-                }
-                else
-                {
-                    Time.timeScale = 1;
-                    actionMenuHolder.anchoredPosition = new Vector2(0, -160);
-                    SwitchMenuScreen(4);
-                }
-            }*/
+            if (Input.GetKeyDown(KeyCode.Escape))
+                TogglePausedState();
 
             // TEMP
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -310,6 +314,22 @@ public class GameManager : MonoBehaviour
         {
             gameOverInProgress = true;
             StartCoroutine(GameOverSequence());
+        }
+    }
+
+    public void TogglePausedState()
+    {
+        if (gameVars.isPaused && gameVars.currentScreen == GameScreen.paused)
+        {
+            gameVars.isPaused = false;
+            pmm.ChangeMenuDepth(-1);
+            Time.timeScale = 1;
+        }
+        else if (!gameVars.isPaused && gameVars.currentScreen == GameScreen.inGame)
+        {
+            gameVars.isPaused = true;
+            pmm.ChangeMenuDepth(0);
+            Time.timeScale = 0;
         }
     }
 
@@ -347,12 +367,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void QuitToTitle()
+    public void QuitToTitle() // TODO
     {
         Application.LoadLevel(1);
     }
 
-    public void RestartFromCheckpoint()
+    public void RestartFromCheckpoint() // TODO
     {
         PlayerPrefs.SetInt("FLOE_LAST_CHECKPOINT", checkpointRefs.currentCheckpoint);
         PlayerPrefs.Save();
@@ -366,6 +386,9 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (gameVars.currentScreen != GameScreen.inGame)
+            return;
+
         UpdateThrustBar();
 
         // Flash screen red based on health
@@ -393,9 +416,6 @@ public class GameManager : MonoBehaviour
         float depthMultiplier = 2.75f;
         depthText.text = Mathf.Clamp(-Mathf.RoundToInt((ply.transform.position.y - 35) * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
         depthArrow.anchoredPosition = new Vector2(4, Mathf.Round(80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150));
-
-        UpdateHarpoonNumber();
-        //UpdateActionMenuNumbers();
 
         // Update darkness overlay
         if (ply.transform.position.y < 400 && ply.transform.position.y > 625)
@@ -426,60 +446,12 @@ public class GameManager : MonoBehaviour
         toolbarFill.rectTransform.sizeDelta = Vector2.Lerp(toolbarFill.rectTransform.sizeDelta, fillSize, 0.5f);
     }
 
-    public void CraftItem(int item)
-    {
-        if (ply.pResources.metal <= 0)
-            return;
-
-        // 0: Repair ship
-        // 1: Craft harpoon
-        // 2: Craft depth charge
-        PlaySFX(sfx.generalSounds[0]);
-        switch (item)
-        {
-            case (0):
-                ply.pResources.health = 8;
-                break;
-            case (1):
-                if (ply.pResources.harpoons < 99)
-                    ply.pResources.harpoons++;
-                break;
-            case (2):
-                ply.pResources.depthCharges++;
-                break;
-        }
-    }
-
     public void SpawnSmoochMark()
     {
         GameObject g = Instantiate(prefabRefs.smoochMark, cam);
         float randX = Random.Range(-3, 3f);
         g.transform.localPosition = new Vector3(3 * Mathf.Sign(randX) + randX, Random.Range(-4, 4f), 1);
         g.transform.rotation = Quaternion.Euler(0, 0, Random.Range(-15f, 30f));
-    }
-
-    public void SwitchActiveToolHUD()
-    {
-        /*if (ply.pAbilities.activeAbility == 0)
-            currentToolIcon.sprite = spriteRefs.numbers[10];
-        else
-            currentToolIcon.sprite = spriteRefs.numbers[11];*/
-    }
-
-    public void UpdateHarpoonNumber()
-    {
-        /*if (ply.pAbilities.activeAbility == 0)
-        {
-            int ones = ply.pResources.harpoons % 10;
-            int tens = ply.pResources.harpoons / 10;
-            numberIconOnes.sprite = spriteRefs.numbers[ones];
-            numberIconTens.sprite = spriteRefs.numbers[tens];
-        }
-        else
-        {*/
-        //numberIconOnes.sprite = spriteRefs.numbers[12];
-        //numberIconTens.sprite = spriteRefs.numbers[12];
-        //}
     }
 
     public void PlaySFX(AudioClip clip)
@@ -566,8 +538,8 @@ public class GameManager : MonoBehaviour
         dialogSettings.isPrintingDialog = true;
         actionMenuStoredTimeScale = Time.timeScale;
         Time.timeScale = 0;
-        bool harpoonPlaying = harpoonLoopingAudio.isPlaying;
-        harpoonLoopingAudio.Stop();
+        bool harpoonPlaying = ply.harpoonLoopingAudio.isPlaying;
+        ply.harpoonLoopingAudio.Stop();
 
 
         // Get references
@@ -661,7 +633,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (harpoonPlaying)
-            harpoonLoopingAudio.Play();
+            ply.harpoonLoopingAudio.Play();
         Time.timeScale = actionMenuStoredTimeScale;
         dialogSettings.isPrintingDialog = false;
         dialogText.text = "";
@@ -682,8 +654,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator DisplayDialogAutoAdvance(TextAsset src, string id)
     {
         dialogSettings.isPrintingDialog = true;
-        bool harpoonPlaying = harpoonLoopingAudio.isPlaying;
-        harpoonLoopingAudio.Stop();
+        bool harpoonPlaying = ply.harpoonLoopingAudio.isPlaying;
+        ply.harpoonLoopingAudio.Stop();
 
         // Get references
         TextData t = DeserializeDialog(src);

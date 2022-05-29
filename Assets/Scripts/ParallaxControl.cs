@@ -10,6 +10,8 @@ public class ParallaxControl : MonoBehaviour
     public float minimumY = -1000;
     public float scrollMultiplier = 0.95f;
     public float highestPlayerYPosToTrack; // Won't follow player above this Y-position
+    public bool useCutsceneCamera;
+    Transform transformOverride;
 
     CameraControl playerCam;
     Vector3 storedCamPos;
@@ -18,8 +20,14 @@ public class ParallaxControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (useCutsceneCamera)
+            transformOverride = GameObject.Find("CutsceneCamera").transform;
+
         playerCam = FindObjectOfType<CameraControl>();
-        storedCamPos = playerCam.transform.position;
+        if (playerCam == null && transformOverride != null)
+            storedCamPos = transformOverride.position;
+        else
+            storedCamPos = playerCam.transform.position;
         //transform.position = new Vector2(playerCam.transform.position.x + offset.x, playerCam.transform.position.y + offset.y);
     }
 
@@ -29,6 +37,9 @@ public class ParallaxControl : MonoBehaviour
         if (playerCam.transform.position != storedCamPos && playerCam.transform.position.y < highestPlayerYPosToTrack)
         {
             Vector3 difference = playerCam.transform.position - storedCamPos;
+            if(transformOverride != null)
+                difference = transformOverride.position - storedCamPos;
+
             if (!scrollX)
                 difference.x = 0;
             if (!scrollY)
