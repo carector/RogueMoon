@@ -20,6 +20,9 @@ public class PauseMenuManager : MonoBehaviour
     TextMeshProUGUI fishDescriptionText;
     GameManager gm;
 
+    RectTransform titleScreenButtons;
+    RectTransform pauseMenuButtons;
+
     float scrollPanelYPos = 0;
     int activeIndex = 2;
 
@@ -41,6 +44,8 @@ public class PauseMenuManager : MonoBehaviour
 
         encyclopediaScroll = GameObject.Find("EncyclopediaScrollbar").GetComponent<Scrollbar>();
         encyclopediaScrollPanel = GameObject.Find("EncyclopediaScrollPanel").GetComponent<RectTransform>();
+        titleScreenButtons = GameObject.Find("TitleScreenButtons").GetComponent<RectTransform>();
+        pauseMenuButtons = GameObject.Find("PauseMenuButtons").GetComponent<RectTransform>();
         encyclopediaButtonTexts = new List<TextMeshProUGUI>();
         unlockedEntries = new bool[encyclopediaEntries.Length];
         unlockedEntries[0] = true;
@@ -142,6 +147,18 @@ public class PauseMenuManager : MonoBehaviour
 
         switch (activeIndex)
         {
+            case 0:
+                if(gm.gameVars.currentScreen == GameManager.GameScreen.paused)
+                {
+                    pauseMenuButtons.anchoredPosition = Vector2.zero;
+                    titleScreenButtons.anchoredPosition = -Vector2.right * 1000;
+                }
+                else
+                {
+                    pauseMenuButtons.anchoredPosition = -Vector2.right*1000;
+                    titleScreenButtons.anchoredPosition = Vector2.zero;
+                }
+                break;
             case 1:
                 encyclopediaScrollPanel.anchoredPosition = new Vector2(encyclopediaScrollPanel.anchoredPosition.x, 0);
                 encyclopediaScroll.value = 0;

@@ -248,6 +248,7 @@ public class GameManager : MonoBehaviour
         // 3: levels
         if (buildIndex == 2)
         {
+            gameVars.currentScreen = GameScreen.titleScreen;
             StartCoroutine(PlayMusic(4, 1));
             cutsceneCam.Play("CutsceneCameraTitleScreen");
             pmm.ChangeMenuDepth(0);
@@ -273,8 +274,8 @@ public class GameManager : MonoBehaviour
         while (screenBlackout.color.a > 0)
         {
             screenBlackout.color = new Color(0, 0, 0, screenBlackout.color.a - 0.075f);
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
+            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
         }
         screenBlackout.rectTransform.anchoredPosition = new Vector2(0, -3000);
 
@@ -286,8 +287,8 @@ public class GameManager : MonoBehaviour
         while (screenBlackout.color.a < 1)
         {
             screenBlackout.color = new Color(0, 0, 0, screenBlackout.color.a + 0.075f);
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
+            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
         }
     }
 
@@ -319,15 +320,20 @@ public class GameManager : MonoBehaviour
 
     public void TogglePausedState()
     {
+        if (dialogSettings.isPrintingDialog)
+            return;
+
         if (gameVars.isPaused && gameVars.currentScreen == GameScreen.paused)
         {
             gameVars.isPaused = false;
+            gameVars.currentScreen = GameScreen.inGame;
             pmm.ChangeMenuDepth(-1);
             Time.timeScale = 1;
         }
         else if (!gameVars.isPaused && gameVars.currentScreen == GameScreen.inGame)
         {
             gameVars.isPaused = true;
+            gameVars.currentScreen = GameScreen.paused;
             pmm.ChangeMenuDepth(0);
             Time.timeScale = 0;
         }

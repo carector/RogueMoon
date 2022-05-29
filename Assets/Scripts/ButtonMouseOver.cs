@@ -13,10 +13,12 @@ public class ButtonMouseOver : MonoBehaviour
     bool mouseOver;
     PauseMenuManager pmm;
     Button b;
+    GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         b = GetComponent<Button>();
         pmm = FindObjectOfType<PauseMenuManager>();
         t = GetComponent<RectTransform>();
@@ -28,15 +30,18 @@ public class ButtonMouseOver : MonoBehaviour
     {
         Vector2 target = Vector2.zero;
         if (mouseOver && Input.mousePosition.x >= minimumMouseXPos)
+        {
             target = new Vector2(offset, 0);
+        }
 
         t.anchoredPosition = Vector2.Lerp(t.anchoredPosition, startPos + target, 0.5f);
     }
 
     private void OnMouseEnter()
     {
-        if (b.interactable)
+        if (b.interactable && Input.mousePosition.x >= minimumMouseXPos)
         {
+            gm.PlaySFXStoppable(gm.sfx.generalSounds[Random.Range(3, 7)], 1);
             mouseOver = true;
             int rand = Random.Range(0, 3);
         }
