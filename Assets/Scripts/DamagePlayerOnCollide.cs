@@ -8,6 +8,7 @@ public class DamagePlayerOnCollide : MonoBehaviour
     Rigidbody2D prb;
     Collider2D col;
 
+    public int damageAmount = 1;
     public float knockbackAmount = 4;
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class DamagePlayerOnCollide : MonoBehaviour
         {   
             prb.velocity = (ply.transform.position - (Vector3)col.ClosestPoint(ply.transform.position)).normalized * knockbackAmount;
             if(!ply.pAbilities.damageDelayInProgress)
-                ply.TakeDamage();
+                ply.TakeDamage(damageAmount);
         }
     }
 }

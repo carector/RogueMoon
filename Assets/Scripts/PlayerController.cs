@@ -201,6 +201,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // Thrust
             if (vert > 0 && storedHoverTime > 0)
             {
                 if (!thrustLoopingAudio.isPlaying || thrustLoopingAudio.volume != 1)
@@ -209,11 +210,14 @@ public class PlayerController : MonoBehaviour
                     thrustLoopingAudio.volume = 1;
                 }
                 CheckAndPlayClip(bodyAnim, "Mech_Midair");
+                armsAnim.SetFloat("WalkSpeed", 1);
+
                 storedHoverTime -= Time.fixedDeltaTime;
                 if (storedHoverTime <= 0)
                 {
                     gm.PlaySFX(gm.sfx.playerSounds[2]);
                     CheckAndPlayClip(bodyAnim, "Mech_NoThrust");
+                    armsAnim.SetFloat("WalkSpeed", 0);
                 }
 
                 if (rb.velocity.y < 0)
@@ -222,6 +226,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 FadeOutThrustAudio();
+                armsAnim.SetFloat("WalkSpeed", 0);
 
                 if (storedHoverTime <= 0)
                     vert = Mathf.Clamp(vert, -1, 0);
@@ -543,6 +548,7 @@ public class PlayerController : MonoBehaviour
     {
         pAbilities.impactDelayInProgress = true;
         CheckAndPlayClip(bodyAnim, "Mech_Impact");
+        CheckAndPlayClip(armsAnim, "Arm_Walk");
         rb.velocity = new Vector2(0, -2);
         yield return new WaitForSeconds(pAbilities.impactDelayTime);
         pAbilities.impactDelayInProgress = false;
@@ -583,7 +589,11 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(pAbilities.attackDelayTime);
 
-        CheckAndPlayClip(armsAnim, "Arm_Walk");
+        if(pMovement.isGrounded)
+            CheckAndPlayClip(armsAnim, "Arm_Walk");
+        else
+            CheckAndPlayClip(armsAnim, "Arm_Idle");
+
         pAbilities.attacking = false;
         if (pAbilities.attackCharges == 0)
             StartCoroutine(RechargeAttack());
@@ -668,13 +678,18 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+        TakeDamage(1);
+    }
+
+    public void TakeDamage(int amount)
+    {
         // Short immunity period after getting attacked
         if (pAbilities.damageDelayInProgress || pResources.health <= 0)
             return;
 
         for (int i = 0; i < 4; i++)
             Instantiate(pAbilities.bubble, damageStartPoint.position, Quaternion.identity).GetComponent<BubbleScript>().Initialize(4, BubbleScript.BubbleSize.random);
-        pResources.health--;
+        pResources.health = Mathf.Clamp(pResources.health - amount, 0, 20);
         gm.ScreenShake(7);
         if (pResources.health > 0)
             StartCoroutine(DamageFlashCoroutine());

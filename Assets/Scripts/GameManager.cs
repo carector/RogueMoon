@@ -225,10 +225,10 @@ public class GameManager : MonoBehaviour
             while (!asyncLoadLevel.isDone)
                 yield return null;
 
-            PostLoadChecks(buildIndex);
+            yield return PostLoadChecks(buildIndex);
         }
         else
-            PostLoadChecks(SceneManager.GetActiveScene().buildIndex);
+            yield return PostLoadChecks(SceneManager.GetActiveScene().buildIndex);
 
 
         yield return new WaitForEndOfFrame();
@@ -238,9 +238,8 @@ public class GameManager : MonoBehaviour
 
     // Performs any necessary changes when loading levels
     // ex: finding player reference, switching to proper game screen
-    void PostLoadChecks(int buildIndex)
+    IEnumerator PostLoadChecks(int buildIndex)
     {
-        print(buildIndex);
         // Determine UI screen based on which level we're loading
         // 0: logo
         // 1: singletonsLoader
@@ -253,13 +252,19 @@ public class GameManager : MonoBehaviour
             cutsceneCam.Play("CutsceneCameraTitleScreen");
             pmm.ChangeMenuDepth(0);
         }
-        if (buildIndex == 3)
+        if (buildIndex >= 3)
         {
             // Load other in-game levels
-            for (int i = 3; i <= 4; i++)
-                if (i != buildIndex)
-                    SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
-
+            if (buildIndex == 3)
+            {
+                for (int i = 3; i <= 4; i++)
+                    if (i != buildIndex)
+                    {
+                        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+                        while (!asyncLoadLevel.isDone)
+                            yield return null;
+                    }
+            }
             ply = FindObjectOfType<PlayerController>();
             camControl.target = ply.transform;
             pmm.ChangeMenuDepth(-1);
