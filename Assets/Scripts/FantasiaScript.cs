@@ -15,6 +15,7 @@ public class FantasiaScript : Fish
         spr = GetComponent<SpriteRenderer>();
         eyeSpr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         GetReferences();
+        Activate();
         StartCoroutine(MovementCycle());
     }
 

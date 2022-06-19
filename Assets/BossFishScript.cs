@@ -21,6 +21,7 @@ public class BossFishScript : MonoBehaviour
     GameManager gm;
     float elapsedTime;
     Transform[] currentNodePath;
+    public bool charging;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,35 @@ public class BossFishScript : MonoBehaviour
         currentNodePath = new Transform[parent.childCount];
         for (int i = 0; i < currentNodePath.Length; i++)
             currentNodePath[i] = parent.GetChild(i);
+
+        currentPathNode = 0;
+    }
+
+    public void StartChargeAttack()
+    {
+        charging = true;
+        StartCoroutine(ChargeAttackCoroutine());
+    }
+
+    IEnumerator ChargeAttackCoroutine()
+    {
+        float amount = 0.1125f;
+        while (amount > 0)
+        {
+            head.position += head.right * amount;
+            amount -= 0.005f;
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < 40; i++)
+        {
+            head.position += head.right * 0.5f;
+            yield return new WaitForFixedUpdate();
+        }
+
+        charging = false;
     }
 
     // Update is called once per frame
@@ -83,9 +113,12 @@ public class BossFishScript : MonoBehaviour
         if (gm.gameVars.isPaused)
             return;
 
-        elapsedTime += Time.fixedDeltaTime;
-        head.position += head.right * 0.1125f;
-        headFocusPoint.localPosition = Vector2.up * Mathf.Sin(elapsedTime * 3) * 0.1f;
+        if (!charging)
+        {
+            elapsedTime += Time.fixedDeltaTime;
+            head.position += head.right * 0.1125f;
+            headFocusPoint.localPosition = Vector2.up * Mathf.Sin(elapsedTime * 3) * 0.1f;
+        }
 
         // Update eye positions (scrapped)
         //for (int i = 0; i < 2; i++)
@@ -134,7 +167,7 @@ public class BossFishScript : MonoBehaviour
         */
         int currentPoint = 0;
         float firstPointOffset = 5;
-        Vector3 lastSegmentPosition = headFocusPoint.position;
+        Vector3 lastSegmentPosition = head.position;
         for (int i = 0; i < bodySegments.Count; i++)
         {
             // Distance here is the sum of the distances between each point
@@ -145,7 +178,13 @@ public class BossFishScript : MonoBehaviour
                 currentPoint++;
                 distance += Vector2.Distance(positionPoints[currentPoint - 1], positionPoints[currentPoint]);
             }
-            firstPointOffset = 0;
+
+            // Offset head node a little bit to align properly
+            if (i == 0)
+                firstPointOffset = -1.75f;
+            else
+                firstPointOffset = 0;
+
             if (currentPoint < positionPoints.Length) // && distance >= segmentOffset
             {
                 bodySegments[i].position = Vector2.Lerp(bodySegments[i].position, positionPoints[currentPoint], 0.33f);

@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     bool invisible;
     [HideInInspector]
     public float storedHoverTime;
-    int mask = ~((1 << 8) | (1 << 10) | (1 << 9)); // Ground + ceiling raycast layermask
+    int mask = ~((1 << 8) | (1 << 10) | (1 << 9) | (1 << 12)); // Ignore ground + ceiling + objects raycast layermask
     bool harpoonStartingGroundedState;
 
     // Start is called before the first frame update
@@ -412,10 +412,8 @@ public class PlayerController : MonoBehaviour
                     {
                         gm.PlaySFX(gm.sfx.playerSounds[0]);
                         hitObject = col.transform;
-                        hitObject.SendMessage("GetPulledByHarpoon");
-                        harpoonEndpoint.transform.parent = col.transform;
-                        hitRb = hitObject.GetComponent<Rigidbody2D>();
-                        hitRb.bodyType = RigidbodyType2D.Dynamic;
+                        hitObject.SendMessage("GetPulledByHarpoon", SendMessageOptions.DontRequireReceiver);
+                        hitObject.transform.parent = harpoonEndpoint.transform;
                         break;
                     }
                     else if (col.tag.Equals("Fish"))
@@ -478,29 +476,52 @@ public class PlayerController : MonoBehaviour
         // Pull object towards player
         else if (hitObject != null)
         {
-            bodyAnim.SetFloat("WalkSpeed", 0);
-            armsAnim.SetFloat("WalkSpeed", 0);
             harpoonLoopingAudio.Play();
-            pMovement.canMove = false;
-            rb.velocity = new Vector2(0, -2);
+            //rb.velocity = new Vector2(0, -2);
+
+            hitRb = hitObject.GetComponent<Rigidbody2D>();
+            hitRb.bodyType = RigidbodyType2D.Kinematic;
+            hitRb.velocity = Vector2.zero;
             hitRb.angularVelocity = 0;
-            float timePassed = 0;
-            float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
-            while (timePassed < 1.75f && Vector2.Distance(hitObject.position, transform.position) > 3 && Input.GetMouseButton(0) && pAbilities.aiming)
+
+            pAbilities.beingPulledTowardsHarpoon = false;
+            pAbilities.firingHarpoon = false;
+
+            //float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
+            while (Input.GetMouseButton(0) && pAbilities.aiming && (hitRb.transform.parent == harpoonStartPoint.transform || hitRb.transform.parent == harpoonEndpoint.transform))
             {
-                harpoonLoopingAudio.pitch = 1.25f - Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 40, 0, 0.35f);
-                harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
-                harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
-                harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
+                
+                if(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position) < 0.1f && harpoonLoopingAudio.isPlaying)
+                {
+                    harpoonEndpoint.transform.position = harpoonStartPoint.position;
+                    hitRb.transform.parent = harpoonStartPoint.transform;
+                    hitRb.transform.localPosition = Vector2.zero + Vector2.right*0.25f;
+                    harpoonLoopingAudio.loop = false;
+                    harpoonLoopingAudio.Stop();
+                    harpoonEndpoint.color = Color.clear;
+                    harpoonChain.size = new Vector2(0, 0.375f);
+                }
+                else
+                {
+                    harpoonLoopingAudio.pitch = 1.25f - Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 40, 0, 0.35f);
+                    harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, harpoonStartPoint.position, 0.5f);
+                    harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
+                    harpoonChain.transform.position = (harpoonEndpoint.transform.position + transform.position) / 2;
+                    harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
+                }
 
-                //hitRb.transform.rotation = Quaternion.Lerp(hitRb.transform.rotation, Quaternion.Euler(0, 0, angleBetweenHarpoon), 0.25f);
-
-                if (hitRb.velocity.magnitude < pMovement.pulledSpeed)
-                    hitRb.AddForce((transform.position - hitObject.position) * hitRb.mass * pMovement.pulledSpeed / 6);
-
-                timePassed += Time.fixedDeltaTime;
+                if (hitRb.transform.parent == harpoonStartPoint.transform)
+                    hitRb.transform.localPosition = Vector2.Lerp(hitRb.transform.localPosition, Vector2.zero + Vector2.right * 0.25f, 0.25f);
 
                 yield return new WaitForFixedUpdate();
+            }
+
+            if ((hitRb.transform.parent == harpoonStartPoint.transform || hitRb.transform.parent == harpoonEndpoint.transform))
+            {
+                hitRb.transform.parent = null;
+                hitRb.SendMessage("GetReleasedByHarpoon");
+                hitRb.bodyType = RigidbodyType2D.Dynamic;
+                hitRb.velocity = harpoonStartPoint.forward * 10;
             }
             pMovement.canMove = true;
         }
@@ -548,7 +569,8 @@ public class PlayerController : MonoBehaviour
     {
         pAbilities.impactDelayInProgress = true;
         CheckAndPlayClip(bodyAnim, "Mech_Impact");
-        CheckAndPlayClip(armsAnim, "Arm_Walk");
+        if(!pAbilities.aiming)
+            CheckAndPlayClip(armsAnim, "Arm_Walk");
         rb.velocity = new Vector2(0, -2);
         yield return new WaitForSeconds(pAbilities.impactDelayTime);
         pAbilities.impactDelayInProgress = false;
