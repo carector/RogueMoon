@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabbableObject : MonoBehaviour
+public class GrabbableObject : Grabbable
 {
-    Collider2D col;
-    Rigidbody2D rb;
+    protected Collider2D col;
+    protected Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
+    {
+        GetReferences();
+    }
+
+    protected void GetReferences()
     {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -20,14 +25,21 @@ public class GrabbableObject : MonoBehaviour
         
     }
 
-    public void GetPulledByHarpoon()
+    public override void GetPulledByHarpoon()
     {
         col.isTrigger = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0;
     }
 
-    public void GetReleasedByHarpoon()
+    public override void GetReleasedByHarpoon(Vector2 velocity)
     {
         col.isTrigger = false;
+        transform.parent = null;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        print(velocity);
+        rb.velocity = velocity;
     }
 
     public void DisableCollider()

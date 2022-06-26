@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     [System.Serializable]
     public class PlayerAbilitySettings
     {
-        public int activeAbility = 0;
         public bool aiming;
         public float harpoonRange = 10;
         public bool firingHarpoon;
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
         public bool jumpDelayInProgress = false;
         public bool impactDelayInProgress = false;
         public bool attackDelayInProgress = false;
-        public bool swapToolDelayInProgress = false;
+
         public bool damageDelayInProgress = false;
         public GameObject explosion;
         public GameObject bubble;
@@ -85,11 +84,14 @@ public class PlayerController : MonoBehaviour
     float gravityScale;
     bool hasRetractedArm;
     bool lastAttackState;
+    bool lastAimState;
     bool invisible;
     [HideInInspector]
     public float storedHoverTime;
     int mask = ~((1 << 8) | (1 << 10) | (1 << 9) | (1 << 12)); // Ignore ground + ceiling + objects raycast layermask
     bool harpoonStartingGroundedState;
+    bool releasedAim = true;
+    Grabbable hitObject;
 
     // Start is called before the first frame update
     void Start()
@@ -272,31 +274,19 @@ public class PlayerController : MonoBehaviour
 
     void RotateArm()
     {
-        if (pAbilities.firingHarpoon || pAbilities.swapToolDelayInProgress)
-            return;
-
-        bool lastAimState = pAbilities.aiming;
-
-        if (Input.GetMouseButton(1) && !pAbilities.attacking && !pAbilities.attackDelayInProgress && pMovement.canMove)
+        // Arm aiming
+        if (pAbilities.firingHarpoon)
         {
-            pAbilities.aiming = true;
-            CheckAndPlayClip(armsAnim, "Arm_Ready");
+            //CheckAndPlayClip(armsAnim, "Arm_Ready");
 
             // If we weren't aiming in the previous frame, fix rotation and scale to prevent weird rotation visual
-            if (!lastAimState && armsSpr.transform.localScale.x == -1)
-            {
-                armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
-                armsSpr.transform.localScale = new Vector2(1, -1);
-            }
 
-            Vector2 mouseDir = (Vector3)mouseWorldPos - transform.position;
-            float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-            armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), 0.75f);
+            //harpoonEndpoint.transform.position = harpoonStartPoint.position;
             hasRetractedArm = false;
         }
-        else if (!pAbilities.attacking)
+
+        else if (!pAbilities.attacking && !pAbilities.aiming)
         {
-            pAbilities.aiming = false;
             if (!hasRetractedArm)
                 CheckAndPlayClip(armsAnim, "Arm_Unready");
 
@@ -304,13 +294,14 @@ public class PlayerController : MonoBehaviour
             if ((lastAimState || lastAttackState) && armsSpr.transform.localScale.y == -1)
             {
                 armsSpr.transform.rotation = Quaternion.Euler(0, 0, armsSpr.transform.rotation.eulerAngles.z + 180);
-                armsSpr.transform.localScale = new Vector2(-1, 1);
+                //armsSpr.transform.localScale = new Vector2(-1, 1);
             }
             armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.identity, 0.15f);
             hasRetractedArm = true;
         }
 
         lastAttackState = pAbilities.attacking;
+        lastAimState = pAbilities.firingHarpoon;
     }
 
     void CheckButtonInputs()
@@ -318,36 +309,31 @@ public class PlayerController : MonoBehaviour
         if (!pMovement.canMove)
             return;
 
-        if (pAbilities.aiming)
+        // Set aim state
+        pAbilities.aiming = Input.GetMouseButton(1) && !pAbilities.attackDelayInProgress && (Vector2.Distance(transform.position, mouseWorldPos) > 2 || hitObject != null);
+
+        if(!Input.GetMouseButton(1))
+            releasedAim = true;
+
+        // Fire harpoon
+        if (!pAbilities.attacking && pAbilities.aiming && !pAbilities.firingHarpoon && releasedAim)
         {
-            // Fire harpoon
-            if (pAbilities.activeAbility == 0 && Input.GetMouseButtonDown(0) && !pAbilities.firingHarpoon)
-            {
-                pAbilities.firingHarpoon = true;
-                StartCoroutine(FireHarpoon());
-            }
-        }
-        else
-        {
-            // Attack
-            if (pAbilities.activeAbility == 1 && Input.GetMouseButtonDown(0) && !pAbilities.attacking && !pAbilities.attackDelayInProgress)
-            {
-                pAbilities.attacking = true;
-                StartCoroutine(Attack());
-            }
+            Vector3 dir = (Vector3)mouseWorldPos - transform.position;
+
+            pAbilities.firingHarpoon = true;
+            releasedAim = false;
+            StartCoroutine(FireHarpoon());
         }
 
-        // Swap current tool (when aiming vs not aiming)
-        if (!pAbilities.firingHarpoon && !pAbilities.swapToolDelayInProgress && !pAbilities.attackDelayInProgress)
+        // Attack
+        if (!pAbilities.aiming && Input.GetMouseButtonDown(0) && !pAbilities.attacking && !pAbilities.attackDelayInProgress)
         {
-            if (pAbilities.aiming && pAbilities.activeAbility == 1)
-                SetActiveAbility(0);
-            else if (!pAbilities.aiming && pAbilities.activeAbility == 0)
-                SetActiveAbility(1);
+            pAbilities.attacking = true;
+            StartCoroutine(Attack());
         }
 
         // Reload
-        if (pAbilities.activeAbility == 1 && Input.GetKeyDown(KeyCode.R) && !pAbilities.attacking && !pAbilities.attackDelayInProgress && pAbilities.attackCharges != 2)
+        if (Input.GetKeyDown(KeyCode.R) && !pAbilities.attacking && !pAbilities.attackDelayInProgress && pAbilities.attackCharges != 2)
             StartCoroutine(RechargeAttack());
 
         // Jump
@@ -357,39 +343,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SetActiveAbility(int ability)
-    {
-        gm.PlaySFX(gm.sfx.playerSounds[1]);
-        pAbilities.activeAbility = ability;
-        //StartCoroutine(SwitchToolDelayCoroutine());
-    }
-
     IEnumerator FireHarpoon()
     {
         harpoonEndpoint.color = Color.white;
-        CheckAndPlayClip(armsAnim, "Arm_FireHarpoon");
         if (pResources.harpoons > 0)
             pResources.harpoons--;
 
         // Fire harpoon and wait for hit
         // IF hit object: Pull object towards player
         // IF hit terrain: Pull player towards point
-        Vector3 dir = (Vector3)mouseWorldPos - harpoonStartPoint.position;
+        Vector3 dir = (Vector3)mouseWorldPos - transform.position;
+
         Vector2 pos = harpoonStartPoint.position + (dir * pAbilities.harpoonRange);
 
-        harpoonEndpoint.transform.position = harpoonStartPoint.position;
+        CheckAndPlayClip(armsAnim, "Arm_FireHarpoon");
+
+        float offset = 0;
+        // fix rotation and scale to prevent weird rotation visual
+        if (armsSpr.transform.localScale.x == -1)
+            offset = 180;
+
         Vector2 mouseDir = (Vector3)mouseWorldPos - transform.position;
         float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
+        armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle + offset)), 1f);
+
+        yield return new WaitForFixedUpdate();
+
+        harpoonEndpoint.transform.position = harpoonStartPoint.position;
         harpoonEndpoint.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         Transform hitGroundTransform = null;
         Vector3 hitGroundPointOffset = Vector3.zero;
-        Transform hitObject = null;
-        Rigidbody2D hitRb = null;
+        hitObject = null;
         bool hitFish = false;
 
         Vector2 previousPointPos = harpoonStartPoint.position;
-        while (pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, transform.position) < pAbilities.harpoonRange && !pAbilities.beingPulledTowardsHarpoon)
+        while (pAbilities.aiming && pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, transform.position) < pAbilities.harpoonRange && !pAbilities.beingPulledTowardsHarpoon)
         {
             harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, pos, 1f);
             harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
@@ -411,8 +400,8 @@ public class PlayerController : MonoBehaviour
                     else if (col.tag.Equals("Harpoonable"))
                     {
                         gm.PlaySFX(gm.sfx.playerSounds[0]);
-                        hitObject = col.transform;
-                        hitObject.SendMessage("GetPulledByHarpoon", SendMessageOptions.DontRequireReceiver);
+                        hitObject = col.transform.GetComponent<Grabbable>();
+                        hitObject.GetPulledByHarpoon();
                         hitObject.transform.parent = harpoonEndpoint.transform;
                         break;
                     }
@@ -452,7 +441,7 @@ public class PlayerController : MonoBehaviour
             if (pAbilities.beingPulledTowardsHarpoon)
             {
                 float timePassed = 0;
-                while (timePassed < 1.75f && hitGroundTransform != null && Vector2.Distance(transform.position, hitGroundTransform.position + hitGroundPointOffset) > 3 && Input.GetMouseButton(0) && pAbilities.aiming && !pMovement.isGrounded)
+                while (!releasedAim && timePassed < 1.75f && hitGroundTransform != null && Vector2.Distance(transform.position, hitGroundTransform.position + hitGroundPointOffset) > 3 && pAbilities.aiming && !pMovement.isGrounded)
                 {
                     harpoonLoopingAudio.pitch = 0.95f + Mathf.Clamp(rb.velocity.magnitude / pMovement.pulledSpeed * 0.2f, 0, 0.2f);
                     harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
@@ -479,27 +468,31 @@ public class PlayerController : MonoBehaviour
             harpoonLoopingAudio.Play();
             //rb.velocity = new Vector2(0, -2);
 
-            hitRb = hitObject.GetComponent<Rigidbody2D>();
-            hitRb.bodyType = RigidbodyType2D.Kinematic;
-            hitRb.velocity = Vector2.zero;
-            hitRb.angularVelocity = 0;
-
             pAbilities.beingPulledTowardsHarpoon = false;
             pAbilities.firingHarpoon = false;
 
             //float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
-            while (Input.GetMouseButton(0) && pAbilities.aiming && (hitRb.transform.parent == harpoonStartPoint.transform || hitRb.transform.parent == harpoonEndpoint.transform))
+            while (hitObject != null && !releasedAim && pAbilities.aiming && (hitObject.transform.parent == harpoonStartPoint.transform || hitObject.transform.parent == harpoonEndpoint.transform))
             {
-                
-                if(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position) < 0.1f && harpoonLoopingAudio.isPlaying)
+                if (Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position) < 0.5f)
                 {
-                    harpoonEndpoint.transform.position = harpoonStartPoint.position;
-                    hitRb.transform.parent = harpoonStartPoint.transform;
-                    hitRb.transform.localPosition = Vector2.zero + Vector2.right*0.25f;
-                    harpoonLoopingAudio.loop = false;
-                    harpoonLoopingAudio.Stop();
-                    harpoonEndpoint.color = Color.clear;
-                    harpoonChain.size = new Vector2(0, 0.375f);
+                    if (armsSpr.transform.localScale.x == -1)
+                        offset = 180;
+
+                    mouseDir = (Vector3)mouseWorldPos - transform.position;
+                    angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
+                    armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle + offset)), 1f);
+
+                    if (harpoonLoopingAudio.isPlaying)
+                    {
+                        harpoonEndpoint.transform.position = harpoonStartPoint.position;
+                        hitObject.transform.parent = harpoonStartPoint.transform;
+                        hitObject.transform.localPosition = Vector2.zero + Vector2.right * 0.25f;
+                        harpoonLoopingAudio.loop = false;
+                        harpoonLoopingAudio.Stop();
+                        harpoonEndpoint.color = Color.clear;
+                        harpoonChain.size = new Vector2(0, 0.375f);
+                    }
                 }
                 else
                 {
@@ -510,22 +503,20 @@ public class PlayerController : MonoBehaviour
                     harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
                 }
 
-                if (hitRb.transform.parent == harpoonStartPoint.transform)
-                    hitRb.transform.localPosition = Vector2.Lerp(hitRb.transform.localPosition, Vector2.zero + Vector2.right * 0.25f, 0.25f);
+                if (hitObject.transform.parent == harpoonStartPoint.transform)
+                    hitObject.transform.localPosition = Vector2.Lerp(hitObject.transform.localPosition, Vector2.zero + Vector2.right * 0.25f, 0.25f);
 
                 yield return new WaitForFixedUpdate();
-            }
 
-            if ((hitRb.transform.parent == harpoonStartPoint.transform || hitRb.transform.parent == harpoonEndpoint.transform))
-            {
-                hitRb.transform.parent = null;
-                hitRb.SendMessage("GetReleasedByHarpoon");
-                hitRb.bodyType = RigidbodyType2D.Dynamic;
-                hitRb.velocity = harpoonStartPoint.forward * 10;
+                if (!pAbilities.aiming && hitObject != null && (hitObject.transform.parent == harpoonStartPoint.transform || hitObject.transform.parent == harpoonEndpoint.transform))
+                {
+                    hitObject.GetReleasedByHarpoon(rb.velocity + ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized * 10);
+                }
             }
             pMovement.canMove = true;
         }
 
+        hitObject = null;
         harpoonStartingGroundedState = false;
         harpoonEndpoint.transform.parent = null;
         harpoonLoopingAudio.loop = false;
@@ -535,6 +526,7 @@ public class PlayerController : MonoBehaviour
         harpoonChain.size = new Vector2(0, 0.375f);
         pAbilities.beingPulledTowardsHarpoon = false;
         pAbilities.firingHarpoon = false;
+        StartCoroutine(RechargeHarpoon());
     }
 
     bool CheckForGround()
@@ -569,7 +561,7 @@ public class PlayerController : MonoBehaviour
     {
         pAbilities.impactDelayInProgress = true;
         CheckAndPlayClip(bodyAnim, "Mech_Impact");
-        if(!pAbilities.aiming)
+        if (!pAbilities.aiming)
             CheckAndPlayClip(armsAnim, "Arm_Walk");
         rb.velocity = new Vector2(0, -2);
         yield return new WaitForSeconds(pAbilities.impactDelayTime);
@@ -611,7 +603,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(pAbilities.attackDelayTime);
 
-        if(pMovement.isGrounded)
+        if (pMovement.isGrounded)
             CheckAndPlayClip(armsAnim, "Arm_Walk");
         else
             CheckAndPlayClip(armsAnim, "Arm_Idle");
@@ -635,6 +627,12 @@ public class PlayerController : MonoBehaviour
         pAbilities.attackCharges = 2;
         pAbilities.attackDelayInProgress = false;
     }
+    IEnumerator RechargeHarpoon()
+    {
+        pAbilities.attackDelayInProgress = true;
+        yield return new WaitForSeconds(0.15f);
+        pAbilities.attackDelayInProgress = false;
+    }
 
     IEnumerator JumpDelayCoroutine()
     {
@@ -643,13 +641,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 4.5f);
         yield return new WaitForSeconds(pAbilities.jumpDelayTime);
         pAbilities.jumpDelayInProgress = false;
-    }
-
-    IEnumerator SwitchToolDelayCoroutine()
-    {
-        pAbilities.swapToolDelayInProgress = true;
-        yield return new WaitForSeconds(pAbilities.swapToolDelayTime);
-        pAbilities.swapToolDelayInProgress = false;
     }
 
     void AddWaterResistanceForce()
@@ -670,7 +661,7 @@ public class PlayerController : MonoBehaviour
             bodySpr.flipX = true;
             int dirX = 1;
             int dirY = 1;
-            if (!pAbilities.aiming)
+            if (!pAbilities.firingHarpoon)
                 dirX = -1;
             else
                 dirY = -1;

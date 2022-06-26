@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2056957239965901789}
   - component: {fileID: 2056957239965901778}
   - component: {fileID: 2056957239965901779}
+  - component: {fileID: 4378191477316332797}
+  - component: {fileID: 523927853118567793}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -48,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -114,3 +117,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aff3e52c0e5f5a4ba9f7183185df00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4378191477316332797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056957239965901790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackAmount: 6
+--- !u!58 &523927853118567793
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056957239965901790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
