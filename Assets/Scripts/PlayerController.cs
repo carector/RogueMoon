@@ -345,7 +345,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator FireHarpoon()
     {
-        harpoonEndpoint.color = Color.white;
+        harpoonEndpoint.color = Color.clear;
         if (pResources.harpoons > 0)
             pResources.harpoons--;
 
@@ -376,6 +376,7 @@ public class PlayerController : MonoBehaviour
         Vector3 hitGroundPointOffset = Vector3.zero;
         hitObject = null;
         bool hitFish = false;
+        harpoonEndpoint.color = Color.white;
 
         Vector2 previousPointPos = harpoonStartPoint.position;
         while (pAbilities.aiming && pAbilities.firingHarpoon && Vector2.Distance(harpoonEndpoint.transform.position, transform.position) < pAbilities.harpoonRange && !pAbilities.beingPulledTowardsHarpoon)
@@ -384,6 +385,7 @@ public class PlayerController : MonoBehaviour
             harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
             harpoonChain.transform.position = (harpoonEndpoint.transform.position + harpoonStartPoint.position) / 2;
             harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
+            
 
             Collider2D[] cols = Physics2D.OverlapBoxAll(harpoonEndpoint.transform.position - harpoonEndpoint.transform.right * 0.25f, new Vector2(1.5f, 0.25f), harpoonEndpoint.transform.eulerAngles.z);
             if (cols.Length > 0)
@@ -471,13 +473,15 @@ public class PlayerController : MonoBehaviour
             pAbilities.beingPulledTowardsHarpoon = false;
             pAbilities.firingHarpoon = false;
 
+            offset = 0;
+
             //float angleBetweenHarpoon = Vector2.Angle(harpoonEndpoint.transform.forward, hitObject.transform.forward);
             while (hitObject != null && !releasedAim && pAbilities.aiming && (hitObject.transform.parent == harpoonStartPoint.transform || hitObject.transform.parent == harpoonEndpoint.transform))
             {
                 if (Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position) < 0.5f)
                 {
-                    if (armsSpr.transform.localScale.x == -1)
-                        offset = 180;
+                    //if (armsSpr.transform.localScale.x == -1)
+                        //offset = 180;
 
                     mouseDir = (Vector3)mouseWorldPos - transform.position;
                     angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
@@ -496,6 +500,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle + offset)), 1f);
                     harpoonLoopingAudio.pitch = 1.25f - Mathf.Clamp(Vector2.Distance(transform.position, harpoonEndpoint.transform.position) / 40, 0, 0.35f);
                     harpoonEndpoint.transform.position = Vector2.MoveTowards(harpoonEndpoint.transform.position, harpoonStartPoint.position, 0.5f);
                     harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
@@ -661,7 +666,7 @@ public class PlayerController : MonoBehaviour
             bodySpr.flipX = true;
             int dirX = 1;
             int dirY = 1;
-            if (!pAbilities.firingHarpoon)
+            if (!pAbilities.firingHarpoon && hitObject == null)
                 dirX = -1;
             else
                 dirY = -1;
