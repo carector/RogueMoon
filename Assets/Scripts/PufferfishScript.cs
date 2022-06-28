@@ -88,7 +88,7 @@ public class PufferfishScript : Fish
                     rb.velocity = plyDirection * 3;
                     CheckAndPlayClip(animationPrefix + "_Attack");
 
-                    yield return new WaitForSeconds(1.75f);
+                    yield return new WaitForSeconds(2.25f);
                     attacking = false;
                 }
             }

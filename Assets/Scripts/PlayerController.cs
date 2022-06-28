@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
             hasRetractedArm = false;
         }
 
-        else if (!pAbilities.attacking && !pAbilities.aiming)
+        else if (!pAbilities.attacking && !pAbilities.aiming && hitObject == null)
         {
             if (!hasRetractedArm)
                 CheckAndPlayClip(armsAnim, "Arm_Unready");
@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
         // Set aim state
         pAbilities.aiming = Input.GetMouseButton(1) && !pAbilities.attackDelayInProgress && (Vector2.Distance(transform.position, mouseWorldPos) > 2 || hitObject != null);
 
-        if(!Input.GetMouseButton(1))
+        if (!Input.GetMouseButton(1))
             releasedAim = true;
 
         // Fire harpoon
@@ -385,7 +385,7 @@ public class PlayerController : MonoBehaviour
             harpoonChain.size = new Vector2(Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position), 0.375f);
             harpoonChain.transform.position = (harpoonEndpoint.transform.position + harpoonStartPoint.position) / 2;
             harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
-            
+
 
             Collider2D[] cols = Physics2D.OverlapBoxAll(harpoonEndpoint.transform.position - harpoonEndpoint.transform.right * 0.25f, new Vector2(1.5f, 0.25f), harpoonEndpoint.transform.eulerAngles.z);
             if (cols.Length > 0)
@@ -480,12 +480,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (Vector2.Distance(harpoonEndpoint.transform.position, harpoonStartPoint.position) < 0.5f)
                 {
-                    //if (armsSpr.transform.localScale.x == -1)
-                        //offset = 180;
-
                     mouseDir = (Vector3)mouseWorldPos - transform.position;
                     angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-                    armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle + offset)), 1f);
 
                     if (harpoonLoopingAudio.isPlaying)
                     {
@@ -508,6 +504,14 @@ public class PlayerController : MonoBehaviour
                     harpoonChain.transform.right = (harpoonEndpoint.transform.position - harpoonStartPoint.position).normalized;
                 }
 
+                // Bullshit arm rotation handling
+                if (bodySpr.flipX)
+                    armsSpr.transform.localScale = new Vector3(1, -1, 1);
+                else
+                    armsSpr.transform.localScale = Vector3.one;
+
+                armsSpr.transform.rotation = Quaternion.Lerp(armsSpr.transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), 0.5f);
+
                 if (hitObject.transform.parent == harpoonStartPoint.transform)
                     hitObject.transform.localPosition = Vector2.Lerp(hitObject.transform.localPosition, Vector2.zero + Vector2.right * 0.25f, 0.25f);
 
@@ -518,6 +522,17 @@ public class PlayerController : MonoBehaviour
                     hitObject.GetReleasedByHarpoon(rb.velocity + ((Vector2)(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)).normalized * 10);
                 }
             }
+
+            // Bullshit arm bullshit bullshit
+            if (bodySpr.flipX)
+            {
+                print("Fleep");
+                armsSpr.transform.localScale = new Vector3(-1, 1, 1);
+                armsSpr.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+180));
+            }
+            else
+                armsSpr.transform.localScale = Vector3.one;
+
             pMovement.canMove = true;
         }
 
@@ -532,6 +547,7 @@ public class PlayerController : MonoBehaviour
         pAbilities.beingPulledTowardsHarpoon = false;
         pAbilities.firingHarpoon = false;
         StartCoroutine(RechargeHarpoon());
+        yield return new WaitForFixedUpdate();
     }
 
     bool CheckForGround()
@@ -661,17 +677,15 @@ public class PlayerController : MonoBehaviour
             return;
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePosition.x < transform.position.x)
-        {
-            bodySpr.flipX = true;
-            int dirX = 1;
-            int dirY = 1;
-            if (!pAbilities.firingHarpoon && hitObject == null)
-                dirX = -1;
-            else
-                dirY = -1;
 
-            armsSpr.transform.localScale = new Vector3(dirX, dirY, 1);
+        // Flip left if mouse is left of player
+        if (mousePosition.x < transform.position.x && !pAbilities.firingHarpoon)
+        {
+            int dirX = -1;
+            int dirY = 1;
+            bodySpr.flipX = true;
+            if (hitObject == null)
+                armsSpr.transform.localScale = new Vector3(dirX, dirY, 1);
         }
         else
         {

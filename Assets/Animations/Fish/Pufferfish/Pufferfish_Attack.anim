@@ -28,7 +28,10 @@ AnimationClip:
     - time: 0.2
       value: {fileID: 7478407674237482187, guid: f07836bfb0475ba49a6f0b91491195e4,
         type: 3}
-    - time: 1.4
+    - time: 1.3333334
+      value: {fileID: -7111261801108071560, guid: f07836bfb0475ba49a6f0b91491195e4,
+        type: 3}
+    - time: 1.4166666
       value: {fileID: 7478407674237482187, guid: f07836bfb0475ba49a6f0b91491195e4,
         type: 3}
     - time: 1.5333333
@@ -59,6 +62,7 @@ AnimationClip:
     - {fileID: 2758892428433715691, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
     - {fileID: -7111261801108071560, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
     - {fileID: 7478407674237482187, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
+    - {fileID: -7111261801108071560, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
     - {fileID: 7478407674237482187, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
     - {fileID: 2758892428433715691, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
     - {fileID: 2758892428433715691, guid: f07836bfb0475ba49a6f0b91491195e4, type: 3}
@@ -91,6 +95,6 @@ AnimationClip:
     functionName: BecomeHazardForTime
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
+    floatParameter: 1.25
     intParameter: 0
     messageOptions: 0

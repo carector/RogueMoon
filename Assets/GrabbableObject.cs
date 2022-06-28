@@ -20,9 +20,10 @@ public class GrabbableObject : Grabbable
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (!col.enabled)
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, 0.25f);
     }
 
     public override void GetPulledByHarpoon()

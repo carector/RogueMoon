@@ -4179,8 +4179,8 @@ GameObject:
   - component: {fileID: 1285821176}
   - component: {fileID: 1285821175}
   - component: {fileID: 1285821179}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 12
+  m_Name: GrabbableObject
   m_TagString: Harpoonable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
