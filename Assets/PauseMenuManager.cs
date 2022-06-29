@@ -22,9 +22,11 @@ public class PauseMenuManager : MonoBehaviour
 
     RectTransform titleScreenButtons;
     RectTransform pauseMenuButtons;
+    RectTransform creditsScreen;
+    RectTransform creditsScreenBgImage;
 
     float scrollPanelYPos = 0;
-    int activeIndex = 2;
+    int activeIndex = -1;
 
     int currentEncyclopediaEntry = -1;
     public int currentDescriptionLength;
@@ -46,9 +48,11 @@ public class PauseMenuManager : MonoBehaviour
         encyclopediaScrollPanel = GameObject.Find("EncyclopediaScrollPanel").GetComponent<RectTransform>();
         titleScreenButtons = GameObject.Find("TitleScreenButtons").GetComponent<RectTransform>();
         pauseMenuButtons = GameObject.Find("PauseMenuButtons").GetComponent<RectTransform>();
-        encyclopediaButtonTexts = new List<TextMeshProUGUI>();
+        creditsScreen = GameObject.Find("CreditsPanel").GetComponent<RectTransform>();
+        creditsScreenBgImage = GameObject.Find("CreditsBG").GetComponent<RectTransform>();
+        /*encyclopediaButtonTexts = new List<TextMeshProUGUI>();
         unlockedEntries = new bool[encyclopediaEntries.Length];
-        unlockedEntries[0] = true;
+
         for (int i = 0; i < 11; i++)
         {
             encyclopediaButtonTexts.Add(encyclopediaScrollPanel.GetChild(i).GetComponentInChildren<TextMeshProUGUI>());
@@ -56,7 +60,7 @@ public class PauseMenuManager : MonoBehaviour
                 encyclopediaButtonTexts[i].text = encyclopediaEntries[i].fishName;
             else
                 encyclopediaButtonTexts[i].text = "???";
-        }
+        }*/
 
 
         //blackout.color = Color.black;
@@ -68,6 +72,7 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (gm.gameVars.currentScreen != GameManager.GameScreen.inGame)
         {
+            // Encyclopedia (depracated)
             if (activeIndex == 1)
             {
                 encyclopediaScrollPanel.anchoredPosition = Vector2.Lerp(encyclopediaScrollPanel.anchoredPosition, new Vector2(0, scrollPanelYPos), 0.25f);
@@ -81,6 +86,11 @@ public class PauseMenuManager : MonoBehaviour
                     currentDescriptionLength = Mathf.RoundToInt(Mathf.Lerp(currentDescriptionLength, encyclopediaEntries[currentEncyclopediaEntry].fishDescription.Length, 0.025f));
                     fishDescriptionText.text = encyclopediaEntries[currentEncyclopediaEntry].fishDescription.Substring(0, currentDescriptionLength);
                 }
+            }
+            else if (activeIndex == 2)
+            {
+                print(Input.mousePosition);
+                creditsScreenBgImage.anchoredPosition = Vector2.Lerp(creditsScreenBgImage.anchoredPosition, (Input.mousePosition - new Vector3(512, 224)) * 0.02f, 0.1f);
             }
         }
     }
@@ -148,14 +158,14 @@ public class PauseMenuManager : MonoBehaviour
         switch (activeIndex)
         {
             case 0:
-                if(gm.gameVars.currentScreen == GameManager.GameScreen.paused)
+                if (gm.gameVars.currentScreen == GameManager.GameScreen.paused)
                 {
                     pauseMenuButtons.anchoredPosition = Vector2.zero;
                     titleScreenButtons.anchoredPosition = -Vector2.right * 1000;
                 }
                 else
                 {
-                    pauseMenuButtons.anchoredPosition = -Vector2.right*1000;
+                    pauseMenuButtons.anchoredPosition = -Vector2.right * 1000;
                     titleScreenButtons.anchoredPosition = Vector2.zero;
                 }
                 break;
@@ -165,6 +175,9 @@ public class PauseMenuManager : MonoBehaviour
                 fishNameText.text = "";
                 fishDescriptionText.text = "";
                 fishNoDataText.text = "";
+                break;
+            case 2:
+                creditsScreenBgImage.anchoredPosition = (Input.mousePosition - new Vector3(512, 224)) * 0.02f;
                 break;
         }
     }

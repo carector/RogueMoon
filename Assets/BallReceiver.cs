@@ -29,7 +29,7 @@ public class BallReceiver : MonoBehaviour
         if (collision.gameObject == objectToReceive.gameObject)
         {
             objectToReceive.transform.parent = transform;
-            objectToReceive.DisableCollider();
+            objectToReceive.GetGrabbedByReceptor();
             child = objectToReceive.transform;
 
             for (int i = 0; i < blockersToDisable.Length; i++)

@@ -15,6 +15,7 @@ public class Fish : MonoBehaviour
         public bool inSwimBounds = true;
         public bool noticedPlayer;
         public float damageRadius;
+        public Vector2 damageCircleOffset;
         public float noticeDistance;
         public float attackDistance;
         public LayerMask playerLayermask;
@@ -76,7 +77,8 @@ public class Fish : MonoBehaviour
         if (rb != null)
         {
             Vector2 dir = (transform.position - harpoonEndpoint.position).normalized;
-            rb.velocity = dir * 10;
+            rb.velocity += dir * 10;
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 10);
         }
         StartCoroutine(DamageFlashCoroutine());
         if (movementSettings.health <= 0)
@@ -211,7 +213,7 @@ public class Fish : MonoBehaviour
     {
         while (time > 0)
         {
-            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, movementSettings.damageRadius);
+            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position + (Vector3)movementSettings.damageCircleOffset, movementSettings.damageRadius);
             foreach (Collider2D c in cols)
             {
                 if (c.tag == "Player")

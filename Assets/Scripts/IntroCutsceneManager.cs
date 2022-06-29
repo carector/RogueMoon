@@ -8,7 +8,7 @@ public class IntroCutsceneManager : MonoBehaviour
     PlayerController ply;
     GameManager gm;
     bool showedMetalDialog;
-
+    int level = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,7 @@ public class IntroCutsceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ply.pResources.metal > 0 && !showedMetalDialog && ply.transform.position.y > -120)
+        if (ply.pResources.metal > 0 && !showedMetalDialog && ply.transform.position.y < -240)
         {
             showedMetalDialog = true;
             StartCoroutine(MetalPickupDialog());

@@ -12,8 +12,6 @@ public class BlockerScript : MonoBehaviour
     {
         spr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-
-        DisableSelf();
     }
 
     // Update is called once per frame

@@ -6,7 +6,8 @@ public class GrabbableObject : Grabbable
 {
     protected Collider2D col;
     protected Rigidbody2D rb;
-
+    Animator anim;
+    bool decaying;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class GrabbableObject : Grabbable
     {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,19 @@ public class GrabbableObject : Grabbable
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
+        if (!decaying)
+        {
+            decaying = true;
+            StartCoroutine(DecayOverTime());
+        }
+    }
+
+    IEnumerator DecayOverTime()
+    {
+        yield return new WaitForSeconds(8);
+        anim.Play("GrabbableFade");
+        yield return new WaitForSeconds(4);
+        Destroy(this.gameObject);
     }
 
     public override void GetReleasedByHarpoon(Vector2 velocity)
@@ -43,8 +58,10 @@ public class GrabbableObject : Grabbable
         rb.velocity = velocity;
     }
 
-    public void DisableCollider()
+    public void GetGrabbedByReceptor()
     {
         col.enabled = false;
+        StopAllCoroutines();
+        anim.Play("GrabbableIdle");
     }
 }

@@ -44,14 +44,14 @@ public class ExplosiveObject : Grabbable
 
     IEnumerator ExplosionCountdown()
     {
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 9; i++)
         {
-            if (i == 6)
+            if (i == 7)
                 StartCoroutine(ShakeSprite());
-            else if (i < 6)
+            else if (i < 7)
                 StartCoroutine(RedFlash());
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(1);
         }
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);

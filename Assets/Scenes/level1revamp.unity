@@ -5176,6 +5176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &19787271
 GameObject:
@@ -11605,6 +11606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &126483978
 GameObject:
@@ -12332,6 +12334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &260235905
 GameObject:
@@ -18404,6 +18407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1001 &420108676
 PrefabInstance:
@@ -21036,6 +21040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &821438901 stripped
 GameObject:
@@ -21055,6 +21060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &822714761
 GameObject:
@@ -27043,6 +27049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Metal_2x2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203178199824738155, guid: bd491a6fb2031224dacbc389308b9050,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd491a6fb2031224dacbc389308b9050, type: 3}
@@ -40233,6 +40244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1001 &1258993862
 PrefabInstance:
@@ -40326,6 +40338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1261660321 stripped
 GameObject:
@@ -40345,6 +40358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1284808715
 GameObject:
@@ -45471,6 +45485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1333607874
 GameObject:
@@ -45626,6 +45641,90 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1393808693
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7203300704742377949, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 118.043396
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300704742377949, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -141.4339
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.7066
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.933904
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -51.054897
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132180, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132183, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerSingletons (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132183, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea29c2f0c2ace504593744d34245dcb3, type: 3}
 --- !u!1 &1408841826
 GameObject:
   m_ObjectHideFlags: 0
@@ -45936,6 +46035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1454790633
 GameObject:
@@ -46187,6 +46287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1477599438 stripped
 GameObject:
@@ -46206,6 +46307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1511865453
 GameObject:
@@ -46388,6 +46490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1549979137
 GameObject:
@@ -46572,6 +46675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1562318205
 GameObject:
@@ -46654,6 +46758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1567142666
 GameObject:
@@ -47304,6 +47409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metal_1x1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8282332016691933367, guid: ba2235b77cf99c84aa11b76671316da0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2235b77cf99c84aa11b76671316da0, type: 3}
 --- !u!1 &1630117701 stripped
@@ -47344,6 +47454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1001 &1634707926
 PrefabInstance:
@@ -47758,6 +47869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1001 &1680010478
 PrefabInstance:
@@ -47869,6 +47981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1691632612
 GameObject:
@@ -53474,6 +53587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1816945339 stripped
 GameObject:
@@ -53493,6 +53607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1837164748 stripped
 GameObject:
@@ -53512,6 +53627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1863143508
 GameObject:
@@ -53614,6 +53730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!4 &1883555465 stripped
 Transform:
@@ -53961,6 +54078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &1972001089
 GameObject:
@@ -55171,6 +55289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &2052505048
 GameObject:
@@ -55514,6 +55633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1 &2103026283 stripped
 GameObject:
@@ -55533,6 +55653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!4 &2109194595 stripped
 Transform:
@@ -55765,6 +55886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d1a4c68af8b9b4582e8a1532310cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 1
   knockbackAmount: 4
 --- !u!1001 &6436934667809210
 PrefabInstance:
@@ -55832,6 +55954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerSingletons
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203300706045132183, guid: ea29c2f0c2ace504593744d34245dcb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea29c2f0c2ace504593744d34245dcb3, type: 3}
@@ -56045,6 +56172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Metal_1x1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282332016691933367, guid: ba2235b77cf99c84aa11b76671316da0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2235b77cf99c84aa11b76671316da0, type: 3}

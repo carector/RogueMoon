@@ -51,6 +51,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -148,6 +149,7 @@ MonoBehaviour:
     inSwimBounds: 1
     noticedPlayer: 0
     damageRadius: 0.9
+    damageCircleOffset: {x: 0, y: -0.36}
     noticeDistance: 10
     attackDistance: 4
     playerLayermask:
