@@ -54,6 +54,11 @@ public class ExplosiveObject : Grabbable
             yield return new WaitForSeconds(1);
         }
 
+        Explode();
+    }
+
+    public void Explode()
+    {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }

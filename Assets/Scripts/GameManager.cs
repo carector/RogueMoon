@@ -286,6 +286,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void CutToBlackScreen()
+    {
+        screenBlackout.rectTransform.anchoredPosition = new Vector2(0, 0);
+        screenBlackout.color = Color.black;
+    }
+
     IEnumerator FadeOutScreen()
     {
         screenBlackout.rectTransform.anchoredPosition = new Vector2(0, 0);
@@ -312,7 +318,7 @@ public class GameManager : MonoBehaviour
 
             // TEMP
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "beefaroni"));
+                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "level2_end"));
         }
 
         // Game over if health < 0
