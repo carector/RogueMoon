@@ -1279,34 +1279,24 @@
                     "portrait": 0,
                     "sentences": [
                         {
-                            "text": "Will it impact performance?",
+                            "text": "We've rebooted.",
                             "portraitIndex": 0
-                        }
-                    ]
-                },
-                {
-                    "portrait": 1,
-                    "sentences": [
-                        {
-                            "text": "With the shielding over the\\Hynobius' electronic systems,\\it shouldn't be a problem\\at all.",
-                            "portraitIndex": 1
                         },
                         {
-                            "text": "To be expected of the\\vanguard unit for the Europan\\expeditions.",
-                            "portraitIndex": 4
+                            "text": "Damage report is coming\\through. The hull is fine, but\\Hynobius' sensors are...",
+                            "portraitIndex": 0
                         },
                         {
-                            "text": "We might as well be\\untouchable in that regard!",
-                            "portraitIndex": 4
-                        }
-                    ]
-                },
-                {
-                    "portrait": 0,
-                    "sentences": [
+                            "text": "...This can't be right. These\\readings place us miles below\\our maximum depth rating.",
+                            "portraitIndex": 0
+                        },
                         {
-                            "text": "Don't jinx it, MS Scrander.\\There's already been too\\many surprises on this\\mission.",
-                            "portraitIndex": 6
+                            "text": "Something must have been\\damaged in the fall, but I'm\\not seeing any warnings for\\instrument failure.",
+                            "portraitIndex": 0
+                        },
+                        {
+                            "text": "How would you explain it,\\Scrander?",
+                            "portraitIndex": 0
                         }
                     ]
                 },
@@ -1361,7 +1351,7 @@
                             "portraitIndex": 3
                         },
                         {
-                            "text": "Out in the waters, then. He's got to be out there, I can't\\think of anything else.",
+                            "text": "Out in the waters, then. He's got to be out there. I can't\\think of anything else.",
                             "portraitIndex": 3
                         }
                     ]

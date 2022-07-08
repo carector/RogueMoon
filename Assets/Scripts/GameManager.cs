@@ -318,7 +318,7 @@ public class GameManager : MonoBehaviour
 
             // TEMP
             if (Input.GetKeyDown(KeyCode.Alpha1))
-                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "level2_end"));
+                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "level3_bo_gone_redo"));
         }
 
         // Game over if health < 0

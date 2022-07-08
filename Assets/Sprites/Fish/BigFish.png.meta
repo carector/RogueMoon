@@ -181,9 +181,9 @@ TextureImporter:
       name: BigFish_3
       rect:
         serializedVersion: 2
-        x: 189
+        x: 190
         y: 0
-        width: 197
+        width: 196
         height: 96
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
