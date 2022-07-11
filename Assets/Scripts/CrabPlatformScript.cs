@@ -6,7 +6,7 @@ public class CrabPlatformScript : MonoBehaviour
 {
     public float leftMax;
     public float rightMax;
-
+    public float speedMultiplier = 1;
 
     PlayerController ply;
     Animator anim;
@@ -34,7 +34,7 @@ public class CrabPlatformScript : MonoBehaviour
             anim.Play("CrabMoveLeft");
             while (transform.position.x > leftMax)
             {
-                transform.position += Vector3.left * 0.01f;
+                transform.position += Vector3.left * 0.01f*speedMultiplier;
                 yield return null;
             }
 
@@ -46,7 +46,7 @@ public class CrabPlatformScript : MonoBehaviour
             anim.Play("CrabMoveRight");
             while (transform.position.x < rightMax)
             {
-                transform.position += Vector3.right * 0.01f;
+                transform.position += Vector3.right * 0.01f*speedMultiplier;
                 yield return null;
             }
 

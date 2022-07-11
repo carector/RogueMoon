@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -6144521410037500469
     second: BigFish_Head_2
+  - first:
+      213: 1706751471429313901
+    second: BigFish_Head_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -170,6 +173,27 @@ TextureImporter:
       bones: []
       spriteID: bc5bee725564abaa0800000000000000
       internalID: -6144521410037500469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigFish_Head_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d656b66ab699fa710800000000000000
+      internalID: 1706751471429313901
       vertices: []
       indices: 
       edges: []

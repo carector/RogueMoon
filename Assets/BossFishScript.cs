@@ -10,8 +10,6 @@ public class BossFishScript : MonoBehaviour
     public Vector2[] positionPoints;
     Transform head;
     Transform headFocusPoint;
-    Transform[] eyePositions;
-    Transform[] eyes;
     List<Transform> bodySegments;
     Vector2 startingPos;
     PlayerController ply;
@@ -22,7 +20,7 @@ public class BossFishScript : MonoBehaviour
     float elapsedTime;
     Transform[] currentNodePath;
     public bool charging;
-
+    Animator headAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,23 +30,17 @@ public class BossFishScript : MonoBehaviour
         positionPoints = new Vector2[300];
         positionPoints[0] = transform.position;
         head = transform.GetChild(0);
+        headAnim = transform.GetChild(1).GetComponent<Animator>();
         headFocusPoint = head.GetChild(0);
         bodySegments = new List<Transform>();
-
-        eyePositions = new Transform[2];
-        eyePositions[0] = transform.GetChild(1).GetChild(1);
-        eyePositions[1] = transform.GetChild(1).GetChild(2);
-
-        eyes = new Transform[2];
-        for (int i = 0; i < 2; i++)
-            eyes[i] = GameObject.Find("BiggunEye" + i).transform;
 
         for (int i = 1; i < transform.childCount; i++)
         {
             positionPoints[i] = transform.position - (Vector3.right * (2 * i));
-
             bodySegments.Add(transform.GetChild(i));
             bodySegments[i - 1].position = positionPoints[i];
+            if (i > 2 && (i - 1) % 2 == 0 && i < transform.childCount - 1)
+                bodySegments[i - 1].GetComponent<Animator>().Play("Boss_BodySegment", 0, (float)i / transform.childCount);
         }
 
         UpdateNodePath(startingNodePath);
@@ -88,6 +80,7 @@ public class BossFishScript : MonoBehaviour
 
     IEnumerator ChargeAttackCoroutine()
     {
+        headAnim.Play("Boss_HeadLunge", 0, 0);
         float amount = 0.1125f;
         while (amount > 0)
         {
