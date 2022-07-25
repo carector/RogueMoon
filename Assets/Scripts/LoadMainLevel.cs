@@ -22,17 +22,21 @@ public class LoadMainLevel : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
+            focusText.color = Color.white;
             while (!Input.GetMouseButtonDown(0))
             {
-                focusText.color = Color.white;
                 yield return null;
             }
+
+            focusText.color = Color.clear;
+        }
+        else
+        {
+            vp.url = System.IO.Path.Combine(Application.streamingAssetsPath, "Logo.mp4");
+            vp.Play();
+            yield return new WaitForSeconds(4.25f);
         }
 
-        focusText.color = Color.clear;
-        vp.url = System.IO.Path.Combine(Application.streamingAssetsPath, "Logo.mp4");
-        vp.Play();
-        yield return new WaitForSeconds(4.25f);
         SceneManager.LoadScene(1);
     }
 }

@@ -40,6 +40,7 @@ public class Level3EndCutscene : MonoBehaviour
 
     IEnumerator CutsceneSequence()
     {
+        gm.StopMusic();
         gm.ScreenShake(15);
         ply.pMovement.canMove = false;
         Rigidbody2D prb = ply.GetComponent<Rigidbody2D>();
@@ -70,7 +71,14 @@ public class Level3EndCutscene : MonoBehaviour
 
         gm.CutToBlackScreen();
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
+        ply.transform.position = new Vector2(76, -766);
+        gm.EnableDarknessCamera();
+        prb.isKinematic = false;
+        yield return gm.FadeInScreen();
+        yield return new WaitForSeconds(1.25f);
+        yield return gm.DisplayDialog(gm.dialogSettings.JSONSource, "level3_bo_gone_redo");
+        ply.pMovement.canMove = true;
 
     }
 }

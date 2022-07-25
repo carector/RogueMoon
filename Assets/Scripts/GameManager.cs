@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     PlayerController ply;
     Transform cam;
+    Camera shadowCamera;
 
     NewgroundsUtility ngUtility;
 
@@ -189,7 +190,7 @@ public class GameManager : MonoBehaviour
         healthbarFill = GameObject.Find("HealthbarFill").GetComponent<Image>();
         ply = FindObjectOfType<PlayerController>();
         cam = FindObjectOfType<CameraControl>().transform.GetChild(0);
-
+        shadowCamera = GameObject.Find("LightCamera").GetComponent<Camera>();
         screenBlackout = GameObject.Find("ScreenBlackout").GetComponent<Image>();
         screenBlackout.color = Color.black;
         depthArrow = GameObject.Find("DepthArrow").GetComponent<RectTransform>();
@@ -208,6 +209,15 @@ public class GameManager : MonoBehaviour
             StartCoroutine(LoadSceneCoroutine(2));
         else
             StartCoroutine(LoadSceneCoroutine(-1));
+
+        if (ply != null && ply.transform.position.y < -700)
+            EnableDarknessCamera();
+    }
+
+    public void EnableDarknessCamera()
+    {
+        float val = 135 / 255f;
+        shadowCamera.backgroundColor = new Color(val, val, val, 1);
     }
 
     public void LoadScene(int buildIndex)
@@ -257,7 +267,7 @@ public class GameManager : MonoBehaviour
             // Load other in-game levels
             if (buildIndex == 3)
             {
-                for (int i = 3; i <= 4; i++)
+                for (int i = 3; i <= 5; i++)
                     if (i != buildIndex)
                     {
                         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
@@ -274,7 +284,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator FadeInScreen()
+    public IEnumerator FadeInScreen()
     {
         while (screenBlackout.color.a > 0)
         {
@@ -315,10 +325,6 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 TogglePausedState();
-
-            // TEMP
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                StartCoroutine(DisplayDialog(dialogSettings.JSONSource, "level3_bo_gone_redo"));
         }
 
         // Game over if health < 0
@@ -431,7 +437,10 @@ public class GameManager : MonoBehaviour
         // Update depth arrow + depth text
         float lowestDepth = 640;
         float depthMultiplier = 2.75f;
-        depthText.text = Mathf.Clamp(-Mathf.RoundToInt((ply.transform.position.y - 35) * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
+        if (ply.transform.position.y < -800)
+            depthText.text = "9999 m";
+        else
+            depthText.text = Mathf.Clamp(-Mathf.RoundToInt((ply.transform.position.y - 35) * depthMultiplier), 0, lowestDepth * depthMultiplier).ToString() + " m";
         depthArrow.anchoredPosition = new Vector2(4, Mathf.Round(80 - (Mathf.Clamp(Mathf.RoundToInt(-ply.transform.position.y), 0, lowestDepth) / lowestDepth) * 150));
 
         // Update darkness overlay
@@ -517,6 +526,11 @@ public class GameManager : MonoBehaviour
     public void StopAmbience()
     {
         ambienceSource.Stop();
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 
     public IEnumerator TransitionMusic(int musicIndex, float pitch)

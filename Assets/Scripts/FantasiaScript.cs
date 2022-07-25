@@ -5,10 +5,13 @@ using UnityEngine;
 public class FantasiaScript : Fish
 {
     public bool attacking;
+    public Transform endOfSectionFocus;
     bool canAttack = true;
     bool hasNoticed;
     bool playerOutOfBounds;
     SpriteRenderer eyeSpr;
+    Vector2 targetMovementPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +49,6 @@ public class FantasiaScript : Fish
             Vector2 plyDirection;
             if (playerOutOfBounds)
             {
-                if (transform.position.x < 237)
-                    transform.position = new Vector2(256, -595);
                 rb.velocity = Vector2.zero;
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(239, -598), 0.1f);
                 plyDirection = (new Vector3(267, -597) - transform.position).normalized;

@@ -480,6 +480,7 @@ SpriteAtlas:
   - {fileID: 3536155650115711487, guid: 20cc6fbd35f89cf49a19539408aeefef, type: 3}
   - {fileID: 5299778046604980305, guid: 20cc6fbd35f89cf49a19539408aeefef, type: 3}
   - {fileID: 2746976336197111798, guid: 20cc6fbd35f89cf49a19539408aeefef, type: 3}
+  - {fileID: 21300000, guid: 3d50e46e8c9ca554981ba567888218e0, type: 3}
   - {fileID: -6563577184584288098, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
   - {fileID: 4529658946511107816, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
   - {fileID: 8614370233597259487, guid: 08ea783ff41813345b03c49671a58cf1, type: 3}
@@ -1149,6 +1150,7 @@ SpriteAtlas:
   - OceanTiles5_10
   - OceanTiles5_13
   - OceanTiles5_12
+  - MechGibs
   - OceanTiles1_11
   - OceanTiles1_10
   - OceanTiles1_13

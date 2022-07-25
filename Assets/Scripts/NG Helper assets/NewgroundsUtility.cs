@@ -140,7 +140,7 @@ public class NewgroundsUtility : MonoBehaviour
         medalIcon.sprite = GetSpriteFromMedalID(md.id);
         //yield return SetIconFromURL(md.icon);
         medalDisplayerAnimator.Play("MedalDisplayer_SlideIn");
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(2.5f);
         medalDisplayerAnimator.Play("MedalDisplayer_SlideOut");
         yield return new WaitForSeconds(0.65f);
 

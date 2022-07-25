@@ -18,7 +18,7 @@ public class FullscreenSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F4))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             StartCoroutine(SetFullscreenMode(Screen.fullScreen));
         }
